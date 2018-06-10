@@ -1,0 +1,36 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "spotify-server",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "serve": "node build"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "typescript",
+    "spotify",
+    "oauth"
+  ],
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-spotify": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/express": "^4.16.0",
+    "@types/express-session": "^1.15.10",
+    "@types/passport": "^0.4.5",
+    "typescript": "^2.9.1"
+  }
+}
