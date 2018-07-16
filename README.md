@@ -39,4 +39,16 @@ SPOTIFY_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 SPOTIFY_REDIRECT=/auth/callback
 ```
 
+# deployment
+
+This can be deployed using a service such as [now](https://zeit.co/now):
+
+```bash
+git clone https://github.com/mjw56/spotify
+cd spotify
+now -e SPOTIFY_CLIENT_ID=<YOUR_SPOTIFY_CLIENT_ID> -e SPOTIFY_CLIENT_SECRET=<YOUR_SPOTIFY_CLIENT_SECRET> -e SPOTIFY_REDIRECT=/auth/callback -e SESSION_SECRET="supersecretivestring" -e PROD_PORT=3000
+```
+
+voila!
+
 Happy Hacking!
