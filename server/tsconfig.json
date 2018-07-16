@@ -8,10 +8,16 @@
     "esModuleInterop": true,
     "rootDir": ".",
     "outDir": "build",
-    "removeComments": true
+    "removeComments": true,
+    "types": [
+      "express",
+      "node"
+    ]
   },
   "include": [
-    "*"
+    "*",
+    "routes/**/*",
+    "services/**/*"
   ],
   "exclude": [
       "node_modules/**/*"
