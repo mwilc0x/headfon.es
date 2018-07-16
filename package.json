@@ -1,5 +1,9 @@
 {
   "scripts": {
+    "bootstrap": "npm run install-child-deps && npm run start-prod",
+    "install-client": "cd client && npm install && cd ../",
+    "install-server": "cd server && npm install && cd ../",
+    "install-child-deps": "npm run install-client && npm run install-server",
     "start-dev": "NODE_ENV=development concurrently \"cd client && npm run watch-css\" \"cd client && npm run start\" \"cd server && npm run build && npm run start-dev\"",
     "start-prod": "NODE_ENV=production concurrently \"cd client && npm run build\" \"cd server && npm run build && npm run start\""
   },
