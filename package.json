@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start-dev": "NODE_ENV=development concurrently \"cd client && npm run watch-css\" \"cd client && npm run start\" \"cd server && npm run build && npm run start-dev\"",
+    "start-prod": "NODE_ENV=production concurrently \"cd client && npm run build\" \"cd server && npm run build && npm run start\""
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.0"
+  }
+}
