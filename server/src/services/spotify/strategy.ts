@@ -1,5 +1,3 @@
-import { HOST, PORT } from '../../config';
-
 const SpotifyStrategy: any = require('passport-spotify').Strategy;
 
 export default new SpotifyStrategy({
@@ -9,9 +7,9 @@ export default new SpotifyStrategy({
     passReqToCallback: true,
     proxy: true
   },
-  function(request, accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      done(null, Object.assign({}, profile, { accessToken }));
+  (request, accessToken, refreshToken, expires_in,  profile, done) => {
+    process.nextTick(() => {
+      done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in }));
     });
   }
 );

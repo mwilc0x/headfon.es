@@ -1,0 +1,10 @@
+type PlayHistory {
+    """
+    The track the user listened to.
+    """
+    track: Track
+    """
+    The date and time the track was played.
+    """
+    played_at: String
+}

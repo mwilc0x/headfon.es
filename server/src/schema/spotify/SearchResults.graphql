@@ -1,0 +1,6 @@
+type SearchResults {
+    albums: AlbumPaging
+    artists: ArtistPaging
+    playlists: PlaylistPaging
+    tracks: TrackPaging
+}

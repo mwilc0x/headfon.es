@@ -1,0 +1,3 @@
+type ExternalUrls {
+    spotify: String
+}

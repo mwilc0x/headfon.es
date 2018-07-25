@@ -1,5 +1,5 @@
 export default (app) => {
-  if (process.env.DEBUG) {
+  if (true) {
     const morgan = require('morgan');
     const uuid = require('node-uuid');
   
@@ -19,3 +19,4 @@ export default (app) => {
     app.use(morgan(':id :method :url :cookie :response-time'));
   }
 }
+

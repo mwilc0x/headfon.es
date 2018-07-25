@@ -1,25 +1,16 @@
 {
   "compilerOptions": {
-    "lib": ["es6"],
-    "module": "commonjs",
     "target": "es5",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "rootDir": ".",
-    "outDir": "build",
-    "removeComments": true,
-    "types": [
-      "express",
-      "node"
-    ]
-  },
-  "include": [
-    "*",
-    "routes/**/*",
-    "services/**/*"
-  ],
-  "exclude": [
-      "node_modules/**/*"
-  ]
+    "module": "commonjs",
+    "sourceMap": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "lib": [
+      "esnext", "dom"
+    ],
+    "skipLibCheck": true
+  }
 }

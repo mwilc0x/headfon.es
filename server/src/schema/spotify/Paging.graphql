@@ -1,0 +1,48 @@
+interface Paging {
+    href: String
+    limit: Int
+    next: String
+    previous: String
+    offset: Int
+    total: Int
+}
+
+type AlbumPaging implements Paging {
+    items: [Album]
+    href: String
+    limit: Int
+    next: String
+    previous: String
+    offset: Int
+    total: Int
+}
+
+type ArtistPaging implements Paging {
+    items: [Artist]
+    href: String
+    limit: Int
+    next: String
+    previous: String
+    offset: Int
+    total: Int
+}
+
+type PlaylistPaging implements Paging {
+    items: [Playlist]
+    href: String
+    limit: Int
+    next: String
+    previous: String
+    offset: Int
+    total: Int
+}
+
+type TrackPaging implements Paging {
+    items: [Track]
+    href: String
+    limit: Int
+    next: String
+    previous: String
+    offset: Int
+    total: Int
+}

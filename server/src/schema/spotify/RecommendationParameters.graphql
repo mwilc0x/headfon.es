@@ -1,0 +1,6 @@
+input RecommendationParameters {
+    limit: Int
+    seed_artists: [String]
+    seed_genres: [String]
+    seed_tracks: [String]
+}
