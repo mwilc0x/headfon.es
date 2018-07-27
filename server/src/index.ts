@@ -29,7 +29,7 @@ const server = new GraphQLServer({
   },
 });
 
-passport.use('spotify', spotifyStrategy);
+passport.use(spotifyStrategy);
 refresh.use(spotifyStrategy);
 
 function userSerializer(user, done) {

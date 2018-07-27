@@ -2,27 +2,27 @@ import api from '../api/spotify';
 import { Context } from '../utils'
 import refresh from 'passport-oauth2-refresh';
 
+const refreshToken = (fn, args, user) => {
+  return new Promise((resolve, reject) => {
+    refresh.requestNewAccessToken('spotify', user.refreshToken, async (err, accessToken, refreshToken) => {
+      user.accessToken = accessToken;
+      args[2] = { ...args[2], user };
+      const result = await fn(...args);
+      resolve(result);
+    });
+  });
+}
+
 function handleErrors(fn) {
   return async function(...args) {
     try {
       const result = await fn(...args);
       return result;
     } catch (e) {
+      // TODO: more error handling use cases
       if (e.status === 401) {
-        console.log('caught 401 error', e);
         const { user = {} } = args[2];
-
-        return refresh.requestNewAccessToken('spotify', user.refreshToken, (err, accessToken, refreshToken) => {
-          // You have a new access token, store it in the user object,
-          // or use it to make a new request.
-          // `refreshToken` may or may not exist, depending on the strategy you are using.
-          // You probably don't need it anyway, as according to the OAuth 2.0 spec,
-          // it should be the same as the initial refresh token.
-          console.log('new access token', accessToken, refreshToken);
-          user.accessToken = accessToken;
-          args[2] = user;
-          return fn(...args);
-        });
+        return refreshToken(fn, args, user);
       }
     }
   }
