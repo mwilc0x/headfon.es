@@ -16,9 +16,11 @@
     "dataloader": "^1.4.0",
     "express-session": "^1.15.6",
     "graphql-yoga": "1.14.12",
+    "jsonwebtoken": "^8.3.0",
     "memorystore": "^1.6.0",
     "node-fetch": "^2.1.2",
     "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "passport-oauth2-refresh": "^1.1.0",
     "passport-spotify": "^1.0.0",
     "prisma-binding": "2.1.1"

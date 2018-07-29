@@ -2,13 +2,13 @@ import passport from 'passport';
 import scope from '../scope.json';
 const { SCOPE_VALUES } = scope;
 
-const base = passport.authenticate('spotify');
+const base = passport.authenticate('spotify', { session: false });
 
 const redirect =  (req, res, next) => {
-  req.session.spotifyScopes = req.query.scopes ? Object.keys(req.query.scopes) : SCOPE_VALUES;    
   return passport.authenticate('spotify', <any>{
-    scope: req.session.spotifyScopes,
-    showDialog: true
+    scope: SCOPE_VALUES,
+    showDialog: true,
+    session: false
   })(req, res, next);
 }
 
