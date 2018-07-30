@@ -28,40 +28,16 @@ const server = new GraphQLServer({
   context: (req) => {
     const { user } = req.request;
     return { user };
-  },
+  }
 });
-
-// Generate the Token for the user authenticated in the request
-// export default function generateUserToken(req, res) {
-//   const accessToken = token.generateAccessToken(req.user.id);
-//   res.render('authenticated.html', {
-//       token: accessToken
-//   });
-// }
 
 passport.use(spotifyStrategy);
 refresh.use(spotifyStrategy);
 passport.use('jwt', jwtStrategy);
 
-// function userSerializer(user, done) {
-//   done(null, user);
-// }
-// passport.serializeUser(userSerializer);
-// passport.deserializeUser(userSerializer);
-
 server.use(cookieParser());
 server.use(bodyParser());
-
-// const MemoryStore = memorystore(session);
-// server.use(session({
-//   store: new MemoryStore({
-//     checkPeriod: 86400000 // prune expired entries every 24h
-//   }),
-//   secret: process.env.SESSION_SECRET
-// }));
-
 server.use(passport.initialize());
-// server.use(passport.session());
 
 debug(server);
 
@@ -86,5 +62,9 @@ const options = {
   playground: '/playground',
   formatError
 };
+
+server.express.use(cookieParser());
+server.express.use(passport.initialize());
+server.express.post('/graphql', passport.authenticate(['jwt'], { session: false }));
 
 server.start(options, () => console.log(`Server is running on http://localhost:${PORT}`));

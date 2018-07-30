@@ -16,12 +16,10 @@ const options = {
 };
 
 export default new Strategy(options,
-(jwt_payload, next) => {
-  console.log('JWT Payload Received:', jwt_payload);
-  // usually this would be a database call:
-  // var user = users[_.findIndex(users, {id: jwt_payload.id})];
-  if (true) {
-    next(null, {});
+(user, next) => {
+  // TODO: think about a database access
+  if (!!user) {
+    next(null, user);
   } else {
     next(null, false);
   }
