@@ -14,9 +14,8 @@ export const { Provider, Consumer, createSelector, mutate } = createState(appSta
 
 /* ACTIONS */
 
-export const authorizeUser = (authorized: boolean, user: object | null) => mutate(draft => {
+export const authorize = (authorized: boolean) => mutate(draft => {
   draft.authorized = authorized;
-  draft.user = user;
 });
 
 export const setUser = (user: object) => mutate(draft => {

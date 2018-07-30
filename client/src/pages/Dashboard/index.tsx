@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Search } from '../../components';
 import { logout } from '../../api';
-import { authorizeUser } from '../../store';
+import { authorize } from '../../store';
 
 interface IDashboardProps { path: string }
 
@@ -16,7 +16,7 @@ export class Dashboard extends React.Component<IDashboardProps, {}> {
   }
   private handleLogout = () => {
     logout().then(r => {
-      authorizeUser(false, null);
+      authorize(false);
     });
   }
 }

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Redirect } from '@reach/router';
-import { Consumer, selectAuthorized, authorizeUser } from '../../store';
+import { Consumer, selectAuthorized, authorize } from '../../store';
 import { openWindow } from '../../helpers/openWindow';
-import { fetchUser } from '../../api';
 
 interface ILoginProps {
   path: string, 
@@ -38,9 +37,7 @@ export class Login extends React.Component<ILoginProps, {}> {
       this.login.close();
       this.login = null;
 
-      fetchUser().then(user => {
-        authorizeUser(true, user);
-      });
+      authorize(true);
     }
   }
 
