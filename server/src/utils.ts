@@ -1,3 +1,4 @@
 export interface Context {
-  user: any
+  user: any,
+  response: any
 }

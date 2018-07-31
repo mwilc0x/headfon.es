@@ -5,8 +5,6 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import session from 'express-session';
-import memorystore from 'memorystore';
 import passport from 'passport';
 import refresh from 'passport-oauth2-refresh';
 import { formatError } from 'apollo-errors';
@@ -16,7 +14,6 @@ import middleware from './middleware';
 
 import jwtStrategy from './services/jwt/strategy';
 import spotifyStrategy from './services/spotify/strategy';
-import generateJwt from './services/jwt/generateToken';
 
 import debug from './services/debug';
 
@@ -25,9 +22,10 @@ import { PORT } from './config';
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
-  context: (req) => {
+  context: (req, res) => {
+    const { response } = req;
     const { user } = req.request;
-    return { user };
+    return { response, user };
   }
 });
 

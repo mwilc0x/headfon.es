@@ -1,4 +1,5 @@
 import generateJwt from '../services/jwt/generateToken';
+import { getUserDetailsForToken } from '../services/spotify/api';
 
 const loginRedirect = () => `
   <div>
@@ -10,8 +11,7 @@ const loginRedirect = () => `
 `;
 
 export default (req, res) => {
-  // TODO: think about minimal data storage in JWT
-  const token = generateJwt(req.user);
+  const token = generateJwt(getUserDetailsForToken(req.user));
 
   res.cookie('jwt', `${token}`);
   res.send(loginRedirect());

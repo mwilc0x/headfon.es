@@ -1,11 +1,17 @@
 import api from '../api/spotify';
 import { Context } from '../utils'
 import refresh from 'passport-oauth2-refresh';
+import generateJwt from '../services/jwt/generateToken';
+import { getUserDetailsForToken } from '../services/spotify/api';
 
-const refreshToken = (fn, args, user) => {
+const refreshToken = (fn, args, user, response) => {
   return new Promise((resolve, reject) => {
     refresh.requestNewAccessToken('spotify', user.refreshToken, async (err, accessToken, refreshToken) => {
       user.accessToken = accessToken;
+
+      const newToken = generateJwt(getUserDetailsForToken(user));
+      response.cookie('jwt', newToken);
+
       args[2] = { ...args[2], user };
       const result = await fn(...args);
       resolve(result);
@@ -19,10 +25,9 @@ function handleErrors(fn) {
       const result = await fn(...args);
       return result;
     } catch (e) {
-      // TODO: more error handling use cases
       if (e.status === 401) {
-        const { user = {} } = args[2];
-        return refreshToken(fn, args, user);
+        const { response, user = {} } = args[2];
+        return refreshToken(fn, args, user, response);
       }
     }
   }
