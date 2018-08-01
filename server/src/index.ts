@@ -9,6 +9,8 @@ import passport from 'passport';
 import refresh from 'passport-oauth2-refresh';
 import { formatError } from 'apollo-errors';
 
+import { initDatabase } from './database';
+
 import routes from './routes';
 import middleware from './middleware';
 
@@ -28,6 +30,8 @@ const server = new GraphQLServer({
     return { response, user };
   }
 });
+
+initDatabase();
 
 passport.use(spotifyStrategy);
 refresh.use(spotifyStrategy);
