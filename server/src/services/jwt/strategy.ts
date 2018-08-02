@@ -1,4 +1,5 @@
 import { Strategy } from 'passport-jwt';
+import { User } from '../../database/model';
 
 const cookieExtractor = function(req) {
   var token = null;
@@ -16,10 +17,12 @@ const options = {
 };
 
 export default new Strategy(options,
-(user, next) => {
-  // TODO: think about a database access
-  if (!!user) {
-    next(null, user);
+async (user, next) => {
+  const userLookup = new User(user);
+  const savedUser = await userLookup.getUser();
+
+  if (!!savedUser) {
+    next(null, savedUser);
   } else {
     next(null, false);
   }

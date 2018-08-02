@@ -3,18 +3,26 @@ import { Context } from '../utils'
 import refresh from 'passport-oauth2-refresh';
 import generateJwt from '../services/jwt/generateToken';
 import { getUserDetailsForToken } from '../services/spotify/api';
+import { User } from '../database/model';
 
 const refreshToken = (fn, args, user, response) => {
   return new Promise((resolve, reject) => {
     refresh.requestNewAccessToken('spotify', user.refreshToken, async (err, accessToken, refreshToken) => {
-      user.accessToken = accessToken;
-
-      const newToken = generateJwt(getUserDetailsForToken(user));
-      response.cookie('jwt', newToken);
-
-      args[2] = { ...args[2], user };
-      const result = await fn(...args);
-      resolve(result);
+      if (err) {
+        reject(err);
+      }
+  
+      try {
+        const { id } = user;
+        const userForSave = new User({ id, accessToken });
+        const savedUser = await userForSave.updateAccessToken();
+  
+        args[2] = { ...args[2], user: savedUser };
+        const result = await fn(...args);
+        resolve(result);
+      } catch (e) {
+        console.error(e);
+      }
     });
   });
 }

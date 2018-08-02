@@ -1,5 +1,6 @@
 import generateJwt from '../services/jwt/generateToken';
 import { getUserDetailsForToken } from '../services/spotify/api';
+import { User } from '../database/model';
 
 const loginRedirect = () => `
   <div>
@@ -10,9 +11,13 @@ const loginRedirect = () => `
   </div>
 `;
 
-export default (req, res) => {
-  const token = generateJwt(getUserDetailsForToken(req.user));
+export default async (req, res) => {
+  const userDetails = getUserDetailsForToken(req.user);
+  const token = generateJwt({ id: userDetails.id });
 
+  const userForSave = new User(userDetails);
+  const savedUser = await userForSave.handleLogin();
+  
   res.cookie('jwt', `${token}`);
   res.send(loginRedirect());
 };
