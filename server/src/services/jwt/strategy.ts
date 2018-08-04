@@ -18,12 +18,16 @@ const options = {
 
 export default new Strategy(options,
 async (user, next) => {
-  const userLookup = new User(user);
-  const savedUser = await userLookup.getUser();
-
-  if (!!savedUser) {
-    next(null, savedUser);
-  } else {
-    next(null, false);
+  try {
+    const userLookup = new User(user);
+    const savedUser = await userLookup.getUser();
+  
+    if (!!savedUser) {
+      next(null, savedUser);
+    } else {
+      next(null, false);
+    }
+  } catch (e) {
+    console.error(e.message);
   }
 });

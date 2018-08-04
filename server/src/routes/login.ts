@@ -12,12 +12,16 @@ const loginRedirect = () => `
 `;
 
 export default async (req, res) => {
-  const userDetails = getUserDetailsForToken(req.user);
-  const token = generateJwt({ id: userDetails.id });
-
-  const userForSave = new User(userDetails);
-  const savedUser = await userForSave.handleLogin();
+  try {
+    const userDetails = getUserDetailsForToken(req.user);
+    const token = generateJwt({ id: userDetails.id });
   
-  res.cookie('jwt', `${token}`);
-  res.send(loginRedirect());
+    const userForSave = new User(userDetails);
+    await userForSave.handleLogin();
+
+    res.cookie('jwt', `${token}`);
+    res.send(loginRedirect());
+  } catch (e) {
+    console.error(e.message);
+  }
 };
