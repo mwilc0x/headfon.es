@@ -46,7 +46,7 @@ This can be deployed using a service such as [now](https://zeit.co/now):
 ```bash
 git clone https://github.com/mjw56/spotify
 cd spotify
-now -e SPOTIFY_CLIENT_ID=<YOUR_SPOTIFY_CLIENT_ID> -e SPOTIFY_CLIENT_SECRET=<YOUR_SPOTIFY_CLIENT_SECRET> -e SPOTIFY_REDIRECT=/auth/callback -e SESSION_SECRET="supersecretivestring" -e PROD_PORT=3000
+now -e SESSION_SECRET="thisisasecret" -e SPOTIFY_CLIENT_ID=XXXXXXX -e SPOTIFY_CLIENT_SECRET=XXXXXXX -e SPOTIFY_REDIRECT=XXXXXXX -e JWT_SECRET="XXXXXXX" -e MONGO_DB_URI_PROD="XXXXXXX" -e JWT_ISSUER=XXXXXXX-e JWT_AUDIENCE=XXXXXXX
 ```
 
 voila!
