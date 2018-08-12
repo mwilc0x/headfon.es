@@ -14,6 +14,7 @@ Here is a high level view of how this is structured across the client and server
 - [@reach/router](https://github.com/reach/router) routing
 - [react-copy-write](https://github.com/aweary/react-copy-write) state management
 - [typescript](https://github.com/Microsoft/TypeScript) type system
+- [Spotify Web Playback SDK](https://developer.spotify.com/documentation/web-playback-sdk/)
 
 ### server
 
@@ -21,6 +22,8 @@ Here is a high level view of how this is structured across the client and server
 - [GraphQL](https://github.com/graphql/graphql-js) data transport
 - [Spotify API](https://developer.spotify.com/documentation/web-api/) Spotify Web API
 - [typescript](https://github.com/Microsoft/TypeScript) type system
+- [MongoDB](https://www.mongodb.com/) database local
+- [mLab](https://mlab.com/) database cloud
 
 ### environment variables
 
