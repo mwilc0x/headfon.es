@@ -12,7 +12,7 @@ type Album {
     popularity: Int
     release_date: String
     release_date_precision: String
-    tracks: [Track]
+    tracks: TrackPaging
     totalTracks: Int
     uri: String
 }

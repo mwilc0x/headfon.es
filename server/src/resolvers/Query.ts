@@ -81,6 +81,7 @@ async function recentlyPlayed(parent, {}, ctx: Context, info) {
 async function search(parent, { query }, ctx: Context, info) {
   return api.search(ctx.user.accessToken, query);
 }
-export const Query = { 
+export const Query = {
+  album: handleErrors(album),
   search: handleErrors(search)
 };

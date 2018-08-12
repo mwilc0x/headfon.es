@@ -48,6 +48,7 @@ server.use('/auth/callback', middleware.spotify.base, routes.login);
 server.use('/logout', routes.logout);
 server.use('/app', middleware.auth, routes.app);
 server.use('/user', passport.authenticate(['jwt'], { session: false }), routes.user);
+server.use('/token', passport.authenticate(['jwt'], { session: false }), routes.token);
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
