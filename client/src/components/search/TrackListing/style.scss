@@ -1,0 +1,28 @@
+.track-listing {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 30px 0;
+  color: #fff;
+
+  .track-info {
+    display: flex;
+    flex-direction: column;
+
+    .track-info__name {
+      font-size: 17px;
+    }
+
+    .track-info__artist {
+      opacity: 0.6;
+      font-size: 15px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.85;
+  }
+}

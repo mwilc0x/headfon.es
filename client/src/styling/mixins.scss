@@ -1,0 +1,11 @@
+@mixin module-padding() {
+  padding: 1em;
+
+  @media (min-width: 768px) {
+    padding: 5em;
+  }
+
+  @media (min-width: 1260px) {
+    padding: 5em;
+  }
+}

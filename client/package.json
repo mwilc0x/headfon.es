@@ -11,10 +11,10 @@
     "urql": "^0.2.2"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar src/ -o src/ --include-path src/styling",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --include-path src/styling --watch --recursive",
     "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build && sw-precache --root='build/' --config config/sw.js ",
+    "build": "react-scripts-ts build && yarn build-css && sw-precache --root='build/' --config config/sw.js ",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },

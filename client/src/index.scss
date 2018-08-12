@@ -1,6 +1,44 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Hiragino Kaku Gothic Pro;
+  font-weight: 100;
   background-color: #181818;
+}
+
+button {
+  background-color: #1db954;
+  padding: 11px 44px;
+  font-size: 11px;
+    line-height: 16px;
+    letter-spacing: .015em;
+    font-weight: 200;
+    color: hsla(0,0%,100%,.6);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    transition: none 33ms cubic-bezier(.3,0,.7,1);
+    transition-property: all;
+    color: #fff;
+    margin-top: 16px;
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    background-image: none;
+    border: 0;
+    border-radius: 500px;
+    padding: 13px;
+    min-width: 130px;
+    white-space: normal;
+    will-change: transform;
+    line-height: 1.6;
+    vertical-align: middle;
+    user-select: none;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
 }

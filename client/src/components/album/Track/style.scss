@@ -1,0 +1,12 @@
+li.track {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.85;
+  }
+}

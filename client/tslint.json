@@ -8,6 +8,9 @@
   },
   "rules": {
     "no-console": false,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "interface-name": false,
+    "no-implicit-any": false,
+    "variable-name": false
   }
 }

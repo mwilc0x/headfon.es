@@ -1,0 +1,11 @@
+.album-listing {
+  &:hover {
+    cursor: pointer;
+    opacity: 0.85;
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%
+  }
+}

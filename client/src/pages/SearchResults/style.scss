@@ -1,0 +1,5 @@
+@import 'mixins.scss';
+
+.search-results-listings {
+  @include module-padding();
+}

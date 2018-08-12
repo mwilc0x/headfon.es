@@ -1,0 +1,47 @@
+.search {
+  position: relative;
+    background-color: #282828;
+    padding: 32px 2em;
+
+  input {
+    font-size: 25px;
+    line-height: 25px;
+    letter-spacing: -.005em;
+    font-weight: 600;
+    color: #fff;
+    text-transform: none;
+    caret-color: #1db954;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    &::placeholder {}
+
+    @media (min-width: 768px) {
+      font-size: 30px;
+      line-height: 30px;
+    }
+
+    @media (min-width: 1260px) {
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+
+  .search-input-info {
+    color: #fff;
+    background: #282828;
+    font-weight: bold;
+    font-size: 15px;
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 1260px) {
+      font-size: 25px;
+    }
+  }
+}

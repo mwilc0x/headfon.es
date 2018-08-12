@@ -1,0 +1,36 @@
+@import 'mixins.scss';
+
+.album-viewer {
+  @include module-padding();
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 38% 58%;
+    grid-column-gap: 4%;
+  }
+
+  .album-viewer__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .album-viewer__right {
+    display: flex;
+    flex-direction: column;
+
+    > ol.track-listing {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0;
+      // wtf?
+      -webkit-padding-start: 0;
+
+      @media (max-width: 768px) {
+        margin-top: 60px;
+      }
+    }
+  }
+}

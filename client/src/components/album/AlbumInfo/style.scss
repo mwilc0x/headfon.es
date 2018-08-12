@@ -1,0 +1,48 @@
+img.album-cover {
+  object-fit: cover;
+  width: 60%;
+  max-width: 500px;
+}
+
+.album-name {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 15px 0 7px 0;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 22px;
+  }
+
+  @media (min-width: 1260px) {
+    font-size: 26px;
+  }
+}
+
+.album-artist {
+  color: #666;
+  font-size: 12px;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 1260px) {
+    font-size: 16px;
+  }
+}
+
+.album-year {
+  color: #666;
+  font-size: 15px;
+  margin: 10px 0;
+
+  @media (min-width: 768px) {
+    font-size: 17px;
+  }
+
+  @media (min-width: 1260px) {
+    font-size: 19px;
+  }  
+}
