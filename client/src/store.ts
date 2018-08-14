@@ -31,7 +31,8 @@ const defaultState = {
     }
   },
   searchResults: { albums: { items: [] }, artists: { items: [] }, tracks: { items: [] } },
-  trackDetails: { 
+  trackDetails: {
+    paused: true,
     track_window: { 
       current_track: { 
         album: { images: [{ url: '' }] }, 

@@ -1,0 +1,17 @@
+@import 'theme.scss';
+
+.PlayButton, .PauseButton {
+  margin: 0;
+  padding: 13px;
+  background: transparent;
+  border: 2px solid $primaryColor;
+  border-radius: 100%;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  min-width: unset;
+
+  .PlayIcon, .PauseIcon {
+    fill: $primaryColor;
+  }
+}

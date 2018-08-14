@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Controls from './controls';
 import { getCookie } from '../../helpers/cookies';
 import { Consumer, selectCurrentPlayingTrack, selectTrackDetails, setTrackDetails } from '../../store';
 import './style.css';
@@ -7,8 +8,9 @@ declare global {
   interface Window { Spotify: any, onSpotifyWebPlaybackSDKReady: any; }
 }
 
-const Footer = (props) => {
-  const { track_window } = props;
+const PlayerControls = (props) => {
+  const { controls, trackDetails } = props;
+  const { paused, track_window } = trackDetails;
   const { current_track } = track_window;
 
   const { album, artists, name } = current_track;
@@ -18,7 +20,7 @@ const Footer = (props) => {
   return (
     <footer className="now-playing-container">
       <div className="now-playing-bar">
-        <div className="now-playing-bar__left">
+        <div className="now-playing-bar-section left">
           <div className="now-playing">
             { !!url && <img src={url} /> }
 
@@ -26,8 +28,18 @@ const Footer = (props) => {
               <span className="track-info__name">{name}</span>
               <span className="track-info__artist">{artists[0].name}</span>
             </div>
+
           </div>
         </div>
+
+        <div className="now-playing-bar-section middle">
+          <Controls
+            controls={controls}
+            paused={paused}
+          />
+        </div>
+
+        <div className="now-playing-bar-section right" />
       </div>
     </footer>
   )
@@ -38,7 +50,7 @@ interface Props {
   trackDetails: any;
 }
 
-class Playing extends React.Component<Props, {}> {
+class PlayerContainer extends React.Component<Props, {}> {
   public static defaultProps = { trackDetails: {} };
 
   public player: any;
@@ -71,9 +83,17 @@ class Playing extends React.Component<Props, {}> {
   public render() {
     const { trackDetails } = this.props;
 
+    const controls = {
+      pause: this.pause,
+      resume: this.resume
+    };
+
     return (
       <div className="player">
-        <Footer { ...trackDetails } />
+        <PlayerControls 
+          controls={controls}
+          trackDetails={trackDetails} 
+        />
       </div>
     );
   }
@@ -98,6 +118,7 @@ class Playing extends React.Component<Props, {}> {
 
     // Ready
     this.player.addListener('ready', ({ device_id }: any) => {
+      console.log('device id', device_id);
       device_id = device_id;
     });
 
@@ -130,20 +151,32 @@ class Playing extends React.Component<Props, {}> {
       });
     })  
   }
+  private pause = () => {
+    this.player.pause().then(() => {
+      console.log('Paused!');
+    });
+  }
+  private resume = () => {
+    this.player.resume().then(() => {
+      console.log('Resumed!');
+    });
+  }
   private handlePlayerStateChange(state: any) {
-    console.log('player state changed', state);
     setTrackDetails(state);
   }
 }
 
-const Container = () => {
+const ContextContainer = () => {
   return (
     <Consumer select={[selectCurrentPlayingTrack, selectTrackDetails]}>
       {(currentPlayingTrack: any, trackDetails: any) => (
-        <Playing currentPlayingTrack={currentPlayingTrack} trackDetails={trackDetails} />
+        <PlayerContainer 
+          currentPlayingTrack={currentPlayingTrack} 
+          trackDetails={trackDetails} 
+        />
       )}
     </Consumer>
   );
 }
 
-export default Container;
+export default ContextContainer;

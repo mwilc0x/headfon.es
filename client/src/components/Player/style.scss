@@ -18,9 +18,31 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 90px;
-    padding: 0 16px;
+  }
+
+  .now-playing-bar-section:first-child { 
+    margin-right: auto;
+    justify-content: flex-start;
+    
+    .now-playing {
+      padding-left: 5em;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  .now-playing-bar-section:last-child { margin-left: auto;  }
+
+  .now-playing-bar-section {
+    height: inherit;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .now-playing {
