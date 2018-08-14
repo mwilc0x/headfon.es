@@ -8,7 +8,11 @@ interface ISearchProps { client: Client }
 interface ISearchState { query: string }
 
 export class Search extends React.Component<ISearchProps, ISearchState> {
+  public input;
   public state: ISearchState = { query: '' };
+  public componentDidMount() {
+    this.input.focus();
+  }
 
   public render() {
     return (
@@ -20,8 +24,8 @@ export class Search extends React.Component<ISearchProps, ISearchState> {
           onChange={this.handleChange} 
           onKeyPress={this.handleKeyPress} 
           placeholder="Start typing..."
+          ref={r => this.input = r}
         />
-        {/* <button onClick={this.handleSearch}>Search</button> */}
       </div>
     );
   }

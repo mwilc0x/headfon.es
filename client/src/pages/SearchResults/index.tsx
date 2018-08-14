@@ -23,3 +23,5 @@ export class SearchResults extends React.Component<IRouteProps, {}> {
     );
   }
 }
+
+export default SearchResults;

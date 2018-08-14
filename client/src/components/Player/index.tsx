@@ -109,11 +109,19 @@ class Playing extends React.Component<Props, {}> {
     // Connect to the player!
     this.player.connect();
   }
-  private play(uri: string) {
+  private play(uri: string = '') {
+    let payload;
+    if (uri.indexOf('album') > -1) {
+      payload = { context_uri: uri };
+    } else {
+      // TODO: other URI use cases?
+      payload = { uris: [uri] };      
+    }
+
     const { _options: { getOAuthToken, id } } = this.player;
     getOAuthToken((token: string) => {
       fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
-        body: JSON.stringify({ uris: [uri] }),
+        body: JSON.stringify(payload),
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -123,6 +131,7 @@ class Playing extends React.Component<Props, {}> {
     })  
   }
   private handlePlayerStateChange(state: any) {
+    console.log('player state changed', state);
     setTrackDetails(state);
   }
 }
