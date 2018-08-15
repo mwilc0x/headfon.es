@@ -32,6 +32,12 @@ const defaultState = {
   },
   searchResults: { albums: { items: [] }, artists: { items: [] }, tracks: { items: [] } },
   trackDetails: {
+    context: { 
+      metadata: { 
+        context_description: ''
+      },
+      uri: ''
+    },
     paused: true,
     track_window: { 
       current_track: { 

@@ -10,12 +10,20 @@ declare global {
 
 const PlayerControls = (props) => {
   const { controls, trackDetails } = props;
-  const { paused, track_window } = trackDetails;
-  const { current_track } = track_window;
-
+  const { context, paused, track_window } = trackDetails;
+  const { current_track, next_tracks, previous_tracks } = track_window;
   const { album, artists, name } = current_track;
   const { images: [albumImage] } = album;
   const { url } = albumImage;
+
+  const { uri, metadata: { context_description} } = context;
+
+  const playerContext = {
+    context_description,
+    next_tracks,
+    previous_tracks,
+    uri
+  };
 
   return (
     <footer className="now-playing-container">
@@ -34,6 +42,7 @@ const PlayerControls = (props) => {
 
         <div className="now-playing-bar-section middle">
           <Controls
+            context={playerContext}
             controls={controls}
             paused={paused}
           />
@@ -61,7 +70,7 @@ class PlayerContainer extends React.Component<Props, {}> {
       !prevProps.currentPlayingTrack
       || (prevProps.currentPlayingTrack.uri !== this.props.currentPlayingTrack.uri)
     ) {
-      this.play(this.props.currentPlayingTrack.uri);
+      this.play(this.props.currentPlayingTrack);
     }
   }
 
@@ -84,7 +93,9 @@ class PlayerContainer extends React.Component<Props, {}> {
     const { trackDetails } = this.props;
 
     const controls = {
+      nextTrack: this.nextTrack,
       pause: this.pause,
+      previousTrack: this.previousTrack,
       resume: this.resume
     };
 
@@ -130,8 +141,10 @@ class PlayerContainer extends React.Component<Props, {}> {
     // Connect to the player!
     this.player.connect();
   }
-  private play(uri: string = '') {
+  private play(item) {
     let payload;
+    const { uri = '' } = item;
+
     if (uri.indexOf('album') > -1) {
       payload = { context_uri: uri };
     } else {
@@ -159,6 +172,16 @@ class PlayerContainer extends React.Component<Props, {}> {
   private resume = () => {
     this.player.resume().then(() => {
       console.log('Resumed!');
+    });
+  }
+  private previousTrack = () => {
+    this.player.previousTrack().then(() => {
+      console.log('Previous Track!');
+    });
+  }
+  private nextTrack = () => {
+    this.player.nextTrack().then(() => {
+      console.log('Next Track!');
     });
   }
   private handlePlayerStateChange(state: any) {

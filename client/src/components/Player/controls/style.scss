@@ -1,7 +1,14 @@
 @import 'theme.scss';
 
-.PlayButton, .PauseButton {
-  margin: 0;
+.player-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.PlayButton, .PauseButton, .PrevButton, .NextButton {
+  margin: 0 10px;
   padding: 13px;
   background: transparent;
   border: 2px solid $primaryColor;
@@ -11,7 +18,23 @@
   height: 50px;
   min-width: unset;
 
-  .PlayIcon, .PauseIcon {
+  .PlayIcon, .PauseIcon, .PreviousIcon, .NextIcon {
     fill: $primaryColor;
+  }
+}
+
+.PrevButton, .NextButton {
+  opacity: 0.3;
+
+  &.isEnabled {
+    opacity: 1;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &:hover {
+    opacity: 0.3;
   }
 }
