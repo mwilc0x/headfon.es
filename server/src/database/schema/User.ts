@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   id: String,
   accessToken: String,
-  refreshToken: String
+  refreshToken: String,
+  timeExpires: Date
 });
 
 userSchema.methods.me = function() {
@@ -22,9 +23,14 @@ userSchema.methods.getUser = async function() {
 userSchema.methods.handleLogin = async function() {
   try {
     const query = { id: this.id };
+    const { accessToken, refreshToken, timeExpires } = this;
     const user = await this.model('User').findOneAndUpdate(
       query, 
-      { $set: { accessToken: this.accessToken, refreshToken: this.refreshToken }}, 
+      { $set: { 
+        accessToken, 
+        refreshToken, 
+        timeExpires
+      }}, 
       { new: true, upsert: true }
     );
     return user;
@@ -36,9 +42,10 @@ userSchema.methods.handleLogin = async function() {
 userSchema.methods.updateAccessToken = async function() {
   try {
     const query = { id: this.id };
+    const { accessToken, timeExpires } = this;
     const user = await this.model('User').findOneAndUpdate(
       query, 
-      { $set: { accessToken: this.accessToken }}, 
+      { $set: { accessToken, timeExpires }}, 
       { new: true, upsert: true }
     );
     return user;
