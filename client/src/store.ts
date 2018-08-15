@@ -89,6 +89,11 @@ export const playTrack = (track: any) => mutate(draft => {
   draft.currentPlayingTrack = track;
 });
 
+// @TODO
+export const playAlbum = (album: any) => mutate(draft => {
+  draft.currentPlayingTrack = album;
+});
+
 export const setTrackDetails = (trackDetails: any) => mutate(draft => {
   draft.trackDetails = trackDetails;
 });

@@ -59,6 +59,7 @@ query($query: String) {
   search(query: $query) {
     albums {
       items {
+        uri
         artists {
           name
         }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './style.css';
 import { getYear } from '../../../helpers';
-import { playTrack } from '../../../store';
+import { playAlbum } from '../../../store';
 
 interface Props {
   album: any
@@ -25,7 +25,7 @@ class AlbumInfo extends React.Component<Props, {}> {
   }
   private playAlbum = () => {
     const { album } = this.props;
-    playTrack(album);
+    playAlbum(album);
   }
 }
 

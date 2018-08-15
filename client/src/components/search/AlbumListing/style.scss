@@ -1,11 +1,35 @@
 .album-listing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: inline-block;
+
+  .PlayButton {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+
   &:hover {
     cursor: pointer;
-    opacity: 0.85;
+
+    img {
+      opacity: 0.1;
+      transition: opacity .3s ease-in-out;
+    }
   }
 
   img {
+    z-index: 1;
     object-fit: cover;
-    width: 100%
+    width: 100%;
   }
 }

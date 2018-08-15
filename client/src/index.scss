@@ -1,3 +1,5 @@
+@import 'theme.scss';
+
 body {
   margin: 0;
   padding: 0;
@@ -7,7 +9,7 @@ body {
 }
 
 button {
-  background-color: #1db954;
+  background-color: $primaryColor;
   padding: 11px 44px;
   font-size: 11px;
     line-height: 16px;

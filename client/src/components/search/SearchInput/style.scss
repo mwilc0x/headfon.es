@@ -1,3 +1,5 @@
+@import 'theme.scss';
+
 .search {
   position: relative;
     background-color: #282828;
@@ -10,7 +12,7 @@
     font-weight: 600;
     color: #fff;
     text-transform: none;
-    caret-color: #1db954;
+    caret-color: $primaryColor;
     box-sizing: border-box;
     width: 100%;
     background-color: transparent;
