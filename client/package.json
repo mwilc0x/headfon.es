@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.1.1",
+    "css-vars": "^2.2.0",
     "node-sass-chokidar": "^1.3.0",
     "react": "^16.4.1",
     "react-copy-write": "^0.7.0",
@@ -13,8 +14,8 @@
     "urql": "^0.2.2"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/ --include-path src/styling",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --include-path src/styling --watch --recursive",
+    "build-css": "node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules --watch --recursive",
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build && yarn build-css && sw-precache --root='build/' --config config/sw.js ",
     "test": "react-scripts-ts test --env=jsdom",

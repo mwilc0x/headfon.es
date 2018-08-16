@@ -2,17 +2,17 @@
 
 .search {
   position: relative;
-    background-color: #282828;
-    padding: 32px 2em;
+  background-color: var(--bg-secondary);
+  padding: 32px 2em;
 
   input {
     font-size: 25px;
     line-height: 25px;
     letter-spacing: -.005em;
     font-weight: 600;
-    color: #fff;
+    color: var(--text-primary);
     text-transform: none;
-    caret-color: $primaryColor;
+    caret-color: var(--primary);
     box-sizing: border-box;
     width: 100%;
     background-color: transparent;
@@ -31,8 +31,8 @@
   }
 
   .search-input-info {
-    color: #fff;
-    background: #282828;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
     font-weight: bold;
     font-size: 15px;
 

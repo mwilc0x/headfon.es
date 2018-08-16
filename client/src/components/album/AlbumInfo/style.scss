@@ -1,3 +1,5 @@
+@import 'theme.scss';
+
 img.album-cover {
   object-fit: cover;
   width: 60%;
@@ -5,7 +7,7 @@ img.album-cover {
 }
 
 .album-name {
-  color: #fff;
+  color: var(--text-primary);
   font-weight: bold;
   font-size: 18px;
   margin: 15px 0 7px 0;
@@ -21,7 +23,7 @@ img.album-cover {
 }
 
 .album-artist {
-  color: #666;
+  color: var(--text-alternate);
   font-size: 12px;
 
   @media (min-width: 768px) {
@@ -34,7 +36,7 @@ img.album-cover {
 }
 
 .album-year {
-  color: #666;
+  color: var(--text-alternate);
   font-size: 15px;
   margin: 10px 0;
 

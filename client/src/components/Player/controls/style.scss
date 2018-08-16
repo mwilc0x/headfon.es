@@ -11,7 +11,7 @@
   margin: 0 10px;
   padding: 13px;
   background: transparent;
-  border: 2px solid $primaryColor;
+  border: 2px solid var(--primary);
   border-radius: 100%;
   outline: none;
   width: 50px;
@@ -19,7 +19,7 @@
   min-width: unset;
 
   .PlayIcon, .PauseIcon, .PreviousIcon, .NextIcon {
-    fill: $primaryColor;
+    fill: var(--primary);
   }
 }
 
