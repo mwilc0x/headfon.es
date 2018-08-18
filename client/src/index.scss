@@ -5,11 +5,11 @@ body {
   padding: 0;
   font-family: Hiragino Kaku Gothic Pro;
   font-weight: 100;
-  background-color: $backgroundPrimary;
+  background-color: var(--bg-primary);
 }
 
 button {
-  background-color: $primary;
+  background-color: var(--primary);
   padding: 11px 44px;
   font-size: 11px;
   line-height: 16px;
@@ -19,7 +19,7 @@ button {
   letter-spacing: .16em;
   transition: none 33ms cubic-bezier(.3,0,.7,1);
   transition-property: all;
-  color: $textPrimary;
+  color: var(--text-primary);
   margin-top: 16px;
   display: inline-block;
   margin-bottom: 0;

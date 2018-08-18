@@ -1,0 +1,31 @@
+@import 'theme.scss';
+
+.theme-menu {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+
+  > * {
+    margin: 23px 0;
+  }
+
+  h2 {
+    color: var(--text-primary);
+  }
+
+  select {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 23px;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

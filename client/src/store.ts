@@ -15,8 +15,10 @@ interface IAppState {
   authorized: boolean,
   currentPlayingTrack: object | null,
   searchResults: SearchResults,
+  showHiddenMenu: boolean,
   showPlayer: boolean,
   trackDetails: object | null,
+  theme: string,
   user: object | null
 }
 
@@ -31,6 +33,7 @@ const defaultState = {
     }
   },
   searchResults: { albums: { items: [] }, artists: { items: [] }, tracks: { items: [] } },
+  theme: 'dark',
   trackDetails: {
     context: { 
       metadata: { 
@@ -54,7 +57,9 @@ const appState: IAppState = {
   authorized: false,
   currentPlayingTrack: null,
   searchResults: defaultState.searchResults,
+  showHiddenMenu: false,
   showPlayer: false,
+  theme: defaultState.theme,
   trackDetails: defaultState.trackDetails,
   user: null
 };
@@ -62,6 +67,14 @@ const appState: IAppState = {
 export const { Provider, Consumer, createSelector, mutate } = createState(appState);
 
 /* ACTIONS */
+
+export const showHiddenMenu = () => mutate(draft => {
+  draft.showHiddenMenu = true;
+});
+
+export const hideHiddenMenu = () => mutate(draft => {
+  draft.showHiddenMenu = false;
+});
 
 export const authorize = (authorized: boolean) => mutate(draft => {
   draft.authorized = authorized;
@@ -112,7 +125,19 @@ export const resetAlbumViewing = () => mutate(draft => {
   draft.albumViewing = defaultState.albumViewing;
 });
 
+export const setTheme = (theme = '') => mutate(draft => {
+  theme = theme.toLowerCase();
+  draft.theme = theme;
+
+  if (window.localStorage) {
+    window.localStorage.setItem('wavves-theme', theme);
+  }
+});
+
 /* SELECTORS */
+
+const selectShowHiddenMenuFn: any = (state: IAppState) => state.showHiddenMenu;
+export const selectShowHiddenMenu = createSelector(selectShowHiddenMenuFn);
 
 const selectUserFn: any = (state: IAppState) => state.user;
 export const selectUser = createSelector(selectUserFn);
@@ -134,3 +159,6 @@ export const selectTrackDetails = createSelector(selectTrackDetailsFn);
 
 const selectAlbumViewingFn: any = (state: IAppState) => state.albumViewing;
 export const selectAlbumViewing = createSelector(selectAlbumViewingFn);
+
+const selectThemeFn: any = (state: IAppState) => state.theme;
+export const selectTheme = createSelector(selectThemeFn);

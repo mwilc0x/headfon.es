@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ConnectHOC, query } from 'urql';
 import { IRouteProps } from '../../routing';
-import { Consumer, selectAlbumViewing, setAlbumViewing } from '../../store';
+import { Consumer, selectAlbumViewing, setAlbumViewing, selectCurrentPlayingTrack } from '../../store';
 import { AlbumInfo, Track } from '../../components/album';
 import './style.css';
 
@@ -21,8 +21,8 @@ export class Album extends React.Component<Props, {}> {
   }
   public render() {
     return (
-      <Consumer select={[selectAlbumViewing]}>
-        {(albumViewing: any) => {
+      <Consumer select={[selectAlbumViewing, selectCurrentPlayingTrack]}>
+        {(albumViewing: any, currentTrack) => {
           const { tracks } = albumViewing;
           return (
             <div className="album-viewer">

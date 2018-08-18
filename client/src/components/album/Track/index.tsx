@@ -5,9 +5,9 @@ import './style.css';
 
 class Track extends React.Component<any, any> {
   public render() {
-    const { key, track } = this.props;
+    const { isPlaying, key, track } = this.props;
     return (
-      <li className="track" key={key} onClick={this.handlePlay}>
+      <li className={`track ${isPlaying ? 'playing' : ''}`} key={key} onClick={this.handlePlay}>
         <span>{track.name}</span>
         <span>{millisToMinutesAndSeconds(track.duration_ms)}</span>
       </li>

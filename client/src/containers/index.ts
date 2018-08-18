@@ -1,5 +1,7 @@
-import { App } from './App';
+import { AppContainer } from './App';
+import { ModalsContainer } from './Modals';
 
 export {
-  App
+  AppContainer,
+  ModalsContainer
 };

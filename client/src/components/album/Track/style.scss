@@ -5,6 +5,11 @@ li.track {
   width: 100%;
   margin-bottom: 20px;
 
+  &.playing {
+    color: var(--primary);
+    opacity: 0.8;
+  }
+
   &:hover {
     cursor: pointer;
     opacity: 0.85;

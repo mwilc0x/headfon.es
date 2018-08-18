@@ -9,7 +9,7 @@ declare global {
 }
 
 const PlayerControls = (props) => {
-  const { controls, trackDetails } = props;
+  const { controls, handleTrackClick, trackDetails } = props;
   const { context, paused, track_window } = trackDetails;
   const { current_track, next_tracks, previous_tracks } = track_window;
   const { album, artists, name } = current_track;
@@ -29,7 +29,7 @@ const PlayerControls = (props) => {
     <footer className="now-playing-container">
       <div className="now-playing-bar">
         <div className="now-playing-bar-section left">
-          <div className="now-playing">
+          <div className="now-playing" onClick={handleTrackClick}>
             { !!url && <img src={url} /> }
 
             <div className="track-info">
@@ -103,6 +103,7 @@ class PlayerContainer extends React.Component<Props, {}> {
       <div className="player">
         <PlayerControls 
           controls={controls}
+          handleTrackClick={this.handleTrackClick}
           trackDetails={trackDetails} 
         />
       </div>
@@ -186,6 +187,9 @@ class PlayerContainer extends React.Component<Props, {}> {
   }
   private handlePlayerStateChange(state: any) {
     setTrackDetails(state);
+  }
+  private handleTrackClick = () => {
+    return;
   }
 }
 

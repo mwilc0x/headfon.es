@@ -37,14 +37,14 @@ img.album-cover {
 
 .album-year {
   color: var(--text-alternate);
-  font-size: 15px;
+  font-size: 13px;
   margin: 10px 0;
 
   @media (min-width: 768px) {
-    font-size: 17px;
+    font-size: 15px;
   }
 
   @media (min-width: 1260px) {
-    font-size: 19px;
+    font-size: 16px;
   }  
 }
