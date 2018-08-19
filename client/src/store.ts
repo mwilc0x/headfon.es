@@ -15,6 +15,7 @@ interface IAppState {
   authorized: boolean,
   currentPlayingTrack: object | null,
   searchResults: SearchResults,
+  sessionEnded: boolean,
   showHiddenMenu: boolean,
   showPlayer: boolean,
   trackDetails: object | null,
@@ -57,6 +58,7 @@ const appState: IAppState = {
   authorized: false,
   currentPlayingTrack: null,
   searchResults: defaultState.searchResults,
+  sessionEnded: false,
   showHiddenMenu: false,
   showPlayer: false,
   theme: defaultState.theme,
@@ -114,7 +116,11 @@ export const playAlbum = (album: any) => mutate(draft => {
 });
 
 export const setTrackDetails = (trackDetails: any) => mutate(draft => {
-  draft.trackDetails = trackDetails;
+  if (trackDetails === null) {
+    draft.trackDetails = defaultState.trackDetails;
+  } else {
+    draft.trackDetails = trackDetails;
+  }
 });
 
 export const setAlbumViewing = (album: any) => mutate(draft => {
@@ -132,6 +138,10 @@ export const setTheme = (theme = '') => mutate(draft => {
   if (window.localStorage) {
     window.localStorage.setItem('wavves-theme', theme);
   }
+});
+
+export const endSession = () => mutate(draft => {
+  draft.sessionEnded = true;
 });
 
 /* SELECTORS */
@@ -162,3 +172,6 @@ export const selectAlbumViewing = createSelector(selectAlbumViewingFn);
 
 const selectThemeFn: any = (state: IAppState) => state.theme;
 export const selectTheme = createSelector(selectThemeFn);
+
+const selectSessionEndedFn: any = (state: IAppState) => state.sessionEnded;
+export const selectSessionEnded = createSelector(selectSessionEndedFn);

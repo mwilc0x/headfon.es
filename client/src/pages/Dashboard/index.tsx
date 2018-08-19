@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import { logout } from '../../api';
-import { authorize } from '../../store';
-import { render } from '../../index';
+import { authorize, endSession } from '../../store';
 import './style.css';
 
 interface IDashboardProps { path: string }
@@ -19,7 +18,8 @@ export class Dashboard extends React.Component<IDashboardProps, {}> {
   private handleLogout = () => {
     logout().then(r => {
       authorize(false);
-      render();
+      endSession();
+      navigate('/');
     });
   }
 }

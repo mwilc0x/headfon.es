@@ -1,7 +1,13 @@
 import * as React from 'react';
 import Controls from './controls';
 import { getCookie } from '../../helpers/cookies';
-import { Consumer, selectCurrentPlayingTrack, selectTrackDetails, setTrackDetails } from '../../store';
+import { 
+  Consumer, 
+  selectCurrentPlayingTrack, 
+  selectSessionEnded,
+  selectTrackDetails, 
+  setTrackDetails 
+} from '../../store';
 import './style.css';
 
 declare global {
@@ -56,6 +62,7 @@ const PlayerControls = (props) => {
 
 interface Props {
   currentPlayingTrack: any;
+  sessionEnded: any;
   trackDetails: any;
 }
 
@@ -71,6 +78,10 @@ class PlayerContainer extends React.Component<Props, {}> {
       || (prevProps.currentPlayingTrack.uri !== this.props.currentPlayingTrack.uri)
     ) {
       this.play(this.props.currentPlayingTrack);
+    }
+
+    if (this.props.sessionEnded) {
+      this.disconnect();
     }
   }
 
@@ -165,6 +176,11 @@ class PlayerContainer extends React.Component<Props, {}> {
       });
     })  
   }
+  private disconnect = () => {
+    this.player.disconnect().then(() => {
+      console.log('Player disconnected');
+    });
+  }
   private pause = () => {
     this.player.pause().then(() => {
       console.log('Paused!');
@@ -195,10 +211,11 @@ class PlayerContainer extends React.Component<Props, {}> {
 
 const ContextContainer = () => {
   return (
-    <Consumer select={[selectCurrentPlayingTrack, selectTrackDetails]}>
-      {(currentPlayingTrack: any, trackDetails: any) => (
+    <Consumer select={[selectCurrentPlayingTrack, selectTrackDetails, selectSessionEnded]}>
+      {(currentPlayingTrack: any, trackDetails: any, sessionEnded: any) => (
         <PlayerContainer 
-          currentPlayingTrack={currentPlayingTrack} 
+          currentPlayingTrack={currentPlayingTrack}
+          sessionEnded={sessionEnded}
           trackDetails={trackDetails} 
         />
       )}
