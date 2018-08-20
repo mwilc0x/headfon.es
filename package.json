@@ -9,8 +9,8 @@
     "start-dev": "NODE_ENV=development concurrently \"cd client && yarn watch-css\" \"cd client && yarn start\" \"cd server && yarn build && yarn start-dev\"",
     "start-prod": "NODE_ENV=production yarn build-client && yarn start-server-prod",
     "start-server": "cd server && yarn start",
-    "start-server-prod": "cd server && yarn build && yarn start",
-    "now-build": "yarn install-child-deps && yarn build-client && yarn build-server",
+    "start-server-prod": "cd server && yarn build && yarn start-prod",
+    "now-build": "yarn && yarn install-child-deps && yarn build-client && yarn build-server",
     "now-start": "NODE_ENV=production yarn start-server"
   },
   "devDependencies": {
