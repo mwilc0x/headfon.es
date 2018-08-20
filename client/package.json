@@ -17,7 +17,7 @@
     "build-css": "node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules --watch --recursive",
     "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build && yarn build-css && sw-precache --root='build/' --config config/sw.js ",
+    "build": "yarn build-css && react-scripts-ts build && sw-precache --root='build/' --config config/sw.js ",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
