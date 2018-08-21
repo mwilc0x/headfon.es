@@ -8,7 +8,7 @@
     "debug": "dotenv -- nodemon -e ts,graphql -x ts-node --inspect src/index.ts",
     "playground": "graphql playground",
     "build": "rimraf dist && tsc",
-    "generate-typings": "apollo codegen:generate --schema ./src/schema.graphql --target typescript typings"
+    "copy-types-for-client": "cp -R ./src/types/ ../client/node_modules/@types"
   },
   "dependencies": {
     "apollo-errors": "^1.9.0",
@@ -31,7 +31,6 @@
     "@types/passport": "^0.4.5",
     "apollo": "^1.5.0",
     "graphql": "^0.13.2",
-    "graphql-cli": "2.16.4",
     "morgan": "^1.9.0",
     "node-uuid": "^1.4.8",
     "nodemon": "1.18.3",

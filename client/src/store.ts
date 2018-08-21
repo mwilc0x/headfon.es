@@ -7,11 +7,11 @@ export interface SearchGroup {
 export interface SearchResults {
   albums: SearchGroup,
   artists: SearchGroup,
-  tracks: SearchGroup
+  tracks: TrackPaging
 }
 
 interface IAppState {
-  albumViewing: object,
+  albumViewing: Album,
   authorized: boolean,
   currentPlayingTrack: object | null,
   searchResults: SearchResults,
