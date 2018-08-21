@@ -8,7 +8,7 @@
     "debug": "dotenv -- nodemon -e ts,graphql -x ts-node --inspect src/index.ts",
     "playground": "graphql playground",
     "build": "rimraf dist && tsc",
-    "copy-types-for-client": "cp -R ./src/types/ ../client/node_modules/@types"
+    "copy-types-for-client": "cp -R ./src/types/* ../client/node_modules/@types"
   },
   "dependencies": {
     "apollo-errors": "^1.9.0",
