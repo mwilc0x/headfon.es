@@ -5915,8 +5915,8 @@ react-loadable@^5.5.0:
     prop-types "^15.5.0"
 
 react-player-controls@^0.5.20:
-  version "0.5.20"
-  resolved "https://registry.yarnpkg.com/react-player-controls/-/react-player-controls-0.5.20.tgz#851f33856e5ec0e0c220c8b835a5781eb87a5b4d"
+  version "0.5.21"
+  resolved "https://registry.yarnpkg.com/react-player-controls/-/react-player-controls-0.5.21.tgz#6cf9a1633896ae19828d2088560bea64b8ba2ea3"
   dependencies:
     autobind-decorator "^1.3.3"
     classnames "^2.2.5"
