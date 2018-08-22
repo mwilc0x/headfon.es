@@ -35,7 +35,7 @@ class Controls extends React.Component<Props, {}> {
     return (
       <div className="player-controls">
         <PrevButton 
-          isEnabled={previous_tracks.length && !!uri}
+          isEnabled={!!previous_tracks.length && !!uri}
           onClick={controls.previousTrack}
         />
         
@@ -46,7 +46,7 @@ class Controls extends React.Component<Props, {}> {
         }
 
         <NextButton
-          isEnabled={next_tracks.length && !!uri}
+          isEnabled={!!next_tracks.length && !!uri}
           onClick={controls.nextTrack}
         />
       </div>
