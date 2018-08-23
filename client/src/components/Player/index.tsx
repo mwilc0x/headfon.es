@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Controls from './controls';
 import { getCookie } from '../../helpers/cookies';
+import { PlayerControlsContainer } from './controls/container';
 import { 
   Consumer, 
   selectCurrentPlayingTrack, 
@@ -12,52 +12,6 @@ import './style.css';
 
 declare global {
   interface Window { Spotify: any, onSpotifyWebPlaybackSDKReady: any; }
-}
-
-const PlayerControls = (props) => {
-  const { controls, handleTrackClick, trackDetails } = props;
-  const { context, paused, track_window } = trackDetails;
-  const { current_track, next_tracks, previous_tracks } = track_window;
-  const { album, artists, name } = current_track;
-  const { images: [albumImage] } = album;
-  const { url } = albumImage;
-
-  const { uri, metadata: { context_description} } = context;
-
-  const playerContext = {
-    context_description,
-    next_tracks,
-    previous_tracks,
-    uri
-  };
-
-  return (
-    <footer className="now-playing-container">
-      <div className="now-playing-bar">
-        <div className="now-playing-bar-section left">
-          <div className="now-playing" onClick={handleTrackClick}>
-            { !!url && <img src={url} /> }
-
-            <div className="track-info">
-              <span className="track-info__name">{name}</span>
-              <span className="track-info__artist">{artists[0].name}</span>
-            </div>
-
-          </div>
-        </div>
-
-        <div className="now-playing-bar-section middle">
-          <Controls
-            context={playerContext}
-            controls={controls}
-            paused={paused}
-          />
-        </div>
-
-        <div className="now-playing-bar-section right" />
-      </div>
-    </footer>
-  )
 }
 
 interface Props {
@@ -112,7 +66,7 @@ class PlayerContainer extends React.Component<Props, {}> {
 
     return (
       <div className="player">
-        <PlayerControls 
+        <PlayerControlsContainer 
           controls={controls}
           handleTrackClick={this.handleTrackClick}
           trackDetails={trackDetails} 
@@ -141,7 +95,7 @@ class PlayerContainer extends React.Component<Props, {}> {
 
     // Ready
     this.player.addListener('ready', ({ device_id }: any) => {
-      console.log('device id', device_id);
+      // console.log('device id', device_id);
       device_id = device_id;
     });
 

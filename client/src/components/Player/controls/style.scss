@@ -1,5 +1,10 @@
 @import 'theme.scss';
 
+.player-controls-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .player-controls {
   display: flex;
   flex-direction: row;
@@ -36,5 +41,104 @@
 
   &:hover {
     opacity: 0.3;
+  }
+}
+
+.ProgressBar,
+.VolumeSlider {
+  position: relative;
+  background: var(--bg-primary);
+  border-radius: 10px;
+
+  &-elapsed,
+  &-value {
+    background: var(--primary);
+    border-radius: 10px;
+  }
+
+  &-seek {
+    position: absolute;
+    cursor: pointer;
+  }
+
+  &-handle {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: lightseagreen;
+    border-radius: 100%;
+    transform: scale(0);
+    transition: transform 0.1s;
+  }
+
+  &.isSeekable,
+  &.isEnabled {
+    &:hover {
+      .ProgressBar-handle,
+      .VolumeSlider-handle {
+        transform: scale(1);
+      }
+
+      .ProgressBar-intent,
+      .VolumeSlider-intent {
+        position: absolute;
+        background: rgba(0,0,0,0.1);
+      }
+    }
+
+    .ProgressBar-elapsed,
+    .VolumeSlider-value {
+      background: lightcyan;
+    }
+  }
+}
+
+.ProgressBar {
+  height: 5px;
+  margin: 10px 0;
+
+  &-elapsed {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &-buffered {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--bg-primary);
+  }
+
+  &-seek {
+    top: -6px;
+    right: 0;
+    bottom: -6px;
+    left: 0;
+  }
+
+  &-handle {
+    top: 0;
+    margin: -4px 0 0 -8px;
+  }
+
+  &.isSeekable {
+    &:hover {
+      .ProgressBar-handle {
+        transform: scale(1);
+      }
+
+      .ProgressBar-intent {
+        top: 0;
+        left: 0;
+        height: 100%;
+      }
+    }
+  }
+
+  &.isLoading {
+    opacity: 0.5;
+    background: #ccc;
+    animation: barLoading 2s infinite;
   }
 }

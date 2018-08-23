@@ -6,7 +6,6 @@ import './style.css';
 
 interface Props {
   album: any;
-  key: number;
 }
 
 interface State {
@@ -16,14 +15,13 @@ interface State {
 class AlbumListing extends React.Component<Props, State> {
   public state = { showPlayIcon: false };
   public render() {
-    const { album, key } = this.props;
+    const { album } = this.props;
     const { showPlayIcon } = this.state;
 
     const { images } = album;
     return (
       <div 
         className="album-listing" 
-        key={key} 
         onClick={this.navigateToAlbum}
         onMouseEnter={this.handleOnMouseEnter}
         onMouseLeave={this.handleOnMouseLeave}

@@ -42,12 +42,14 @@ const defaultState = {
       },
       uri: ''
     },
+    duration: 0,
     paused: true,
     track_window: { 
       current_track: { 
         album: { images: [{ url: '' }] }, 
         artists: [{ name: '' }],
-        name: ''
+        name: '',
+        uri: ''
       } 
     }
   }
@@ -116,6 +118,7 @@ export const playAlbum = (album: any) => mutate(draft => {
 });
 
 export const setTrackDetails = (trackDetails: any) => mutate(draft => {
+  console.log('setting track details', trackDetails);
   if (trackDetails === null) {
     draft.trackDetails = defaultState.trackDetails;
   } else {
