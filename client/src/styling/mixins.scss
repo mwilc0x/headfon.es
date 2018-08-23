@@ -1,11 +1,8 @@
+// extra bottom padding is for player component
 @mixin module-padding() {
-  padding: 1em;
+  padding: 1em 1em 10em 1em;
 
   @media (min-width: 768px) {
-    padding: 5em;
-  }
-
-  @media (min-width: 1260px) {
-    padding: 5em;
+    padding: 5em 5em 10em 5em;
   }
 }
