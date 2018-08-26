@@ -2,6 +2,8 @@ import {
   AlbumList,
   ArtistList,
   AlbumListing,
+  PlaylistList,
+  PlaylistListing,
   TrackList,
   TrackListing,
 } from './search';
@@ -18,6 +20,8 @@ export {
   Loading,
   Modal,
   Player,
+  PlaylistList,
+  PlaylistListing,
   SearchInput,
   ThemeMenu,
   TrackList,

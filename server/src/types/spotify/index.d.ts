@@ -57,6 +57,25 @@ interface Image {
   width?: number
 }
 
+interface Playlist {
+  collaborative: boolean
+  description: string
+  followerCount: number
+  href: string
+  id: string
+  images: Image[]
+  name: string
+  owner: User
+  public: boolean
+  snapshot_id: string
+  tracks(limit: number, offset: number): Paging
+  totalTracks: number
+  external_urls: ExternalUrls
+  uri: string
+  followersContains: (userIds: string[]) => boolean[]
+  following: boolean
+}
+
 interface Paging {
   href: string
   limit: number
@@ -68,6 +87,16 @@ interface Paging {
 
 interface AlbumPaging extends Paging {
   items: Album[]
+  href?: string
+  limit?: number
+  next?: string
+  previous?: string
+  offset?: number
+  total?: number
+}
+
+interface PlaylistPaging extends Paging {
+  items: Playlist[]
   href?: string
   limit?: number
   next?: string
@@ -104,4 +133,13 @@ interface Track {
   external_urls: ExternalUrls
   saved: Boolean
   type: string
+}
+
+interface User {
+  display_name: string
+  followerCount: number
+  href: string
+  id: string
+  images: Image[]
+  uri: string
 }

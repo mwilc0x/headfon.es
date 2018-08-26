@@ -79,6 +79,15 @@ query($query: String) {
         }
       }
     }
+    playlists {
+      items {
+        name
+        images {
+          url
+        }
+        uri
+      }
+    }
     tracks {
       items {
         album {

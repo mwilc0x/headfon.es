@@ -111,7 +111,7 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
     let payload;
     const { uri = '' } = item;
 
-    if (uri.indexOf('album') > -1) {
+    if (uri.indexOf('album') > -1 || uri.indexOf('playlist') > -1) {
       payload = { context_uri: uri };
     } else {
       // TODO: other URI use cases?

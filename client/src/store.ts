@@ -6,6 +6,7 @@ export interface SearchGroup {
 
 export interface SearchResults {
   albums: AlbumPaging,
+  playlists: PlaylistPaging,
   tracks: TrackPaging
 }
 
@@ -34,7 +35,12 @@ const defaultState = {
     },
     uri: ''
   },
-  searchResults: { albums: { items: [] }, artists: { items: [] }, tracks: { items: [] } },
+  searchResults: { 
+    albums: { items: [] }, 
+    artists: { items: [] },
+    playlists: { items: [] },
+    tracks: { items: [] } 
+  },
   theme: 'dark',
   trackDetails: {
     context: { 
