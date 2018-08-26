@@ -13,7 +13,7 @@ const client = new Client({
   url: `${window.location.origin}/graphql`
 });
 
-export class AppContainer extends React.Component<{}, {}> {
+export class AppContainer extends React.PureComponent {
   public componentDidMount() {
     if (window && window.localStorage) {
       const theme = window.localStorage.getItem('wavves-theme');

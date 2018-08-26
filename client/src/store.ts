@@ -5,8 +5,7 @@ export interface SearchGroup {
 }
 
 export interface SearchResults {
-  albums: SearchGroup,
-  artists: SearchGroup,
+  albums: AlbumPaging,
   tracks: TrackPaging
 }
 
@@ -25,13 +24,15 @@ interface IAppState {
 
 const defaultState = {
   albumViewing: {
+    album_type: '',
     artists: [{ name: '' }],
     images: [{ url: '' }],
     name: '',
     release_date: '',
     tracks: {
       items: []
-    }
+    },
+    uri: ''
   },
   searchResults: { albums: { items: [] }, artists: { items: [] }, tracks: { items: [] } },
   theme: 'dark',
@@ -118,7 +119,6 @@ export const playAlbum = (album: any) => mutate(draft => {
 });
 
 export const setTrackDetails = (trackDetails: any) => mutate(draft => {
-  console.log('setting track details', trackDetails);
   if (trackDetails === null) {
     draft.trackDetails = defaultState.trackDetails;
   } else {

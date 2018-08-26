@@ -4,11 +4,13 @@ import { Consumer, selectSearchResults, selectCurrentPlayingTrack } from '../../
 import { AlbumList, SearchInput, TrackList } from '../../components';
 import './style.css';
 
-export class SearchResults extends React.Component<IRouteProps, {}> {
+export class SearchResults extends React.PureComponent<IRouteProps, {}> {
   public render() {
     return (
       <Consumer select={[selectSearchResults, selectCurrentPlayingTrack]}>
-      {({ albums, tracks }) => {
+      {(state: { albums: AlbumPaging, tracks: TrackPaging }) => {
+        
+        const { albums, tracks } = state;
         return (
           <div className="search-results">
             <SearchInput />

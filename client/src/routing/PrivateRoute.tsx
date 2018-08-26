@@ -4,7 +4,7 @@ import { getCookie } from '../helpers/cookies';
 
 interface IPrivateRouteProps { 
   path: string, 
-  component: any 
+  component: React.ComponentClass 
 };
 
 export default class PrivateRoute extends React.Component<IPrivateRouteProps, {}> {

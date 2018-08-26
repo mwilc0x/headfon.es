@@ -20,7 +20,7 @@ interface Props {
   trackDetails: any;
 }
 
-class PlayerContainer extends React.Component<Props, {}> {
+class PlayerContainer extends React.PureComponent<Props, {}> {
   public static defaultProps = { trackDetails: {} };
 
   public player: any;

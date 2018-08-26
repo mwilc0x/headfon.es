@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ConnectHOC, query } from 'urql';
+import { ConnectHOC, Client, query } from 'urql';
 import { IRouteProps } from '../../routing';
 import { Consumer, selectAlbumViewing, setAlbumViewing, selectTrackDetails } from '../../store';
 import { AlbumInfo, Track } from '../../components/album';
@@ -7,10 +7,10 @@ import './style.css';
 
 interface Props extends IRouteProps {
   id: string;
-  client: any;
+  client: Client;
 }
 
-export class Album extends React.Component<Props, {}> {
+export class Album extends React.PureComponent<Props, {}> {
   public componentDidMount() {
     const { client, id } = this.props;
 

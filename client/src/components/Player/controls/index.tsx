@@ -6,22 +6,16 @@ import {
   PrevButton,
   ProgressBar
 } from 'react-player-controls';
+import { PlayerControls } from './container';
 import './style.css';
 
 interface PlayerContext {
   context_description: string,
   duration: number,
-  next_tracks: any[],
-  previous_tracks: any[],
+  next_tracks: Track[],
+  previous_tracks: Track[],
   trackProgress: number,
   uri: string
-}
-
-interface PlayerControls {
-  nextTrack: () => {},
-  pause: () => {},
-  previousTrack: () => {},
-  resume: () => {}
 }
 
 interface Props {
@@ -30,7 +24,7 @@ interface Props {
   paused: boolean
 }
 
-class Controls extends React.Component<Props, {}> {
+class Controls extends React.PureComponent<Props, {}> {
   public render() {
     const { context, controls, paused } = this.props;    
     const { duration, next_tracks = [], previous_tracks = [], trackProgress, uri } = context;

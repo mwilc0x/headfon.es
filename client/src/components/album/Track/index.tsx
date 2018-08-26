@@ -3,11 +3,16 @@ import { playTrack } from '../../../store';
 import { millisToMinutesAndSeconds } from '../../../helpers';
 import './style.css';
 
-class Track extends React.Component<any, any> {
+interface Props {
+  isPlaying: boolean;
+  track: Track;
+}
+
+class TrackListing extends React.PureComponent<Props, {}> {
   public render() {
-    const { isPlaying, key, track } = this.props;
+    const { isPlaying, track } = this.props;
     return (
-      <li className={`track ${isPlaying ? 'playing' : ''}`} key={key} onClick={this.handlePlay}>
+      <li className={`track ${isPlaying ? 'playing' : ''}`} onClick={this.handlePlay}>
         <span>{track.name}</span>
         <span>{millisToMinutesAndSeconds(track.duration_ms)}</span>
       </li>
@@ -18,4 +23,4 @@ class Track extends React.Component<any, any> {
   }
 }
 
-export default Track;
+export default TrackListing;

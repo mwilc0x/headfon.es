@@ -4,7 +4,7 @@ import './style.css';
 
 const modalRoot = document.getElementById('modal-root') || document.createElement('div');
 
-class Modal extends React.Component {
+class Modal extends React.PureComponent {
   private el = document.createElement('div');
 
   public componentDidMount() {

@@ -1,8 +1,15 @@
 import * as React from 'react';
 import Controls from './';
 
+export interface PlayerControls {
+  nextTrack: () => void,
+  pause: () => void,
+  previousTrack: () => void,
+  resume: () => void
+}
+
 interface PlayerControlsProps {
-  controls: any,
+  controls: PlayerControls,
   handleTrackClick: () => void,
   trackDetails: any
 };

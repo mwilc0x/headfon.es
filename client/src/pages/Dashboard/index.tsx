@@ -4,9 +4,9 @@ import { logout } from '../../api';
 import { authorize, endSession } from '../../store';
 import './style.css';
 
-interface IDashboardProps { path: string }
+interface DashboardProps { path: string }
 
-export class Dashboard extends React.Component<IDashboardProps, {}> {
+export class Dashboard extends React.PureComponent<DashboardProps, {}> {
   public render() {
     return (
       <div className="dashboard">

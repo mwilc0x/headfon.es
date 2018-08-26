@@ -4,10 +4,10 @@ import { getYear } from '../../../helpers';
 import { playAlbum } from '../../../store';
 
 interface Props {
-  album: any
+  album: Album
 }
 
-class AlbumInfo extends React.Component<Props, {}> {
+class AlbumInfo extends React.PureComponent<Props, {}> {
   public render() {
     const { album } = this.props;
     const { artists: [{ name: artistName }], images: [{ url: albumUrl }], name, release_date, tracks } = album;

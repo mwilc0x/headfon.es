@@ -4,10 +4,10 @@ import { millisToMinutesAndSeconds } from '../../../helpers/time';
 import './style.css';
 
 interface Props {
-  track: any
+  track: Track
 }
 
-export default class TrackListing extends React.Component<Props, {}> {
+export default class TrackListing extends React.PureComponent<Props, {}> {
   public static defaultProps = { track: {} }
   public render() {
     const { track } = this.props;

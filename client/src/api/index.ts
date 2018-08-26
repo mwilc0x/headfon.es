@@ -3,10 +3,9 @@ const routes = {
   user: '/user'
 }
 
-const fetchOptions = (options?: any) => ({
-  credentials: 'same-origin',
-  ...options
-});
+const fetchOptions = () => ({
+  credentials: 'same-origin'
+} as any);
 
 export function logout() {
   return fetch(routes.logout, fetchOptions())

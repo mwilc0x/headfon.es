@@ -5,7 +5,7 @@ import { playAlbum, resetAlbumViewing } from '../../../store';
 import './style.css';
 
 interface Props {
-  album: any;
+  album: Album;
 }
 
 interface State {

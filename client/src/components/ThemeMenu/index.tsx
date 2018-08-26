@@ -8,7 +8,7 @@ interface Props {
   selectedTheme: string
 };
 
-export default class ThemeMenu extends React.Component<Props, {}> {
+export default class ThemeMenu extends React.PureComponent<Props, {}> {
   private options = themeOptions;
 
   public render() {

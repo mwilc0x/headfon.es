@@ -40,9 +40,9 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-copy-write@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@types/react-copy-write/-/react-copy-write-0.7.0.tgz#d5baca4877dda21a8ad1f218aaa1ee0ce8e7cdd4"
+"@types/react-copy-write@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@types/react-copy-write/-/react-copy-write-0.7.1.tgz#46c49987e24aa0b974566cd5a4e3fee701243190"
   dependencies:
     "@types/react" "*"
 

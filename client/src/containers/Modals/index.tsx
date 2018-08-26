@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Consumer, selectShowHiddenMenu, showHiddenMenu, selectTheme } from '../../store';
 import { Modal, ThemeMenu } from '../../components';
 
-export class ModalsContainer extends React.Component {
+export class ModalsContainer extends React.PureComponent {
   public componentDidMount() {
     document.addEventListener('keydown', this.handleGlobalKeyDown);
   }
