@@ -1,0 +1,21 @@
+img.playlist-cover {
+  object-fit: cover;
+  width: 60%;
+  max-width: 500px;
+}
+
+.playlist-name {
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 18px;
+  margin: 15px 0 7px 0;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 22px;
+  }
+
+  @media (min-width: 1260px) {
+    font-size: 26px;
+  }
+}

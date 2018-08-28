@@ -8,11 +8,11 @@ interface Props {
   track: Track;
 }
 
-class TrackListing extends React.PureComponent<Props, {}> {
+class PlaylistTrack extends React.PureComponent<Props, {}> {
   public render() {
     const { isPlaying, track } = this.props;
     return (
-      <li className={`album-track ${isPlaying ? 'playing' : ''}`} onClick={this.handlePlay}>
+      <li className={`playlist-track ${isPlaying ? 'playing' : ''}`} onClick={this.handlePlay}>
         <span>{track.name}</span>
         <span>{millisToMinutesAndSeconds(track.duration_ms)}</span>
       </li>
@@ -23,4 +23,4 @@ class TrackListing extends React.PureComponent<Props, {}> {
   }
 }
 
-export default TrackListing;
+export default PlaylistTrack;

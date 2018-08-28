@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { navigate } from '@reach/router';
 import { PlayButton } from 'react-player-controls';
-import { playAlbum } from '../../../store';
+import { playAlbum, resetPlaylistViewing } from '../../../store';
 import './style.css';
 
 interface Props {
@@ -20,30 +20,33 @@ class PlaylistListing extends React.PureComponent<Props, State> {
 
     const { images, name } = playlist;
     return (
-      <div 
-        className="playlist-listing"
-        onClick={this.navigateToPlaylist}
-        onMouseEnter={this.handleOnMouseEnter}
-        onMouseLeave={this.handleOnMouseLeave}
-      >
-        { showPlayIcon 
-          ? ( <PlayButton 
-                isEnabled={true} 
-                onClick={this.handlePlaylistPlay} 
-              /> 
-            ) 
-          : null 
-        }
-        <img src={images[0].url} />
-        <span>{name}</span>
+      <div className="playlist-listing">
+        <div 
+          className="playlist-listing__wrapper"
+          onClick={this.navigateToPlaylist}
+          onMouseEnter={this.handleOnMouseEnter}
+          onMouseLeave={this.handleOnMouseLeave}
+        >
+          { showPlayIcon 
+            ? ( <PlayButton 
+                  isEnabled={true} 
+                  onClick={this.handlePlaylistPlay} 
+                /> 
+              ) 
+            : null 
+          }
+          <img src={images[0].url} />
+        </div>
+
+        <p>{name}</p>
       </div>
     );
   }
   private navigateToPlaylist = () => {
     const { playlist } = this.props;
-    const { id } = playlist;
-    // resetAlbumViewing();
-    navigate(`/playlist/${id}`);
+    const { id, owner = { id: '' } } = playlist;
+    resetPlaylistViewing();
+    navigate(`/playlist/${owner.id}/${id}`);
   }
   private handlePlaylistPlay = (e) => {
     e.stopPropagation();

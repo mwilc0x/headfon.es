@@ -37,6 +37,16 @@ type PlaylistPaging implements Paging {
     total: Int
 }
 
+type PlaylistTrackPaging implements Paging {
+    items: [PlaylistTrack]
+    href: String
+    limit: Int
+    next: String
+    previous: String
+    offset: Int
+    total: Int
+}
+
 type TrackPaging implements Paging {
     items: [Track]
     href: String

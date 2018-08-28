@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AlbumListing } from '../';
+import { AlbumListing, ListHeader } from '../';
 import './style.css';
 
 interface Props {
@@ -12,9 +12,13 @@ export default class AlbumList extends React.PureComponent<Props, {}> {
     const { albums: { items }} = this.props;
     return (
       <div className="album-list">
-        { items.slice(0, 5).map((album: Album, i: number) => (
-          <AlbumListing album={album} key={i} />
-        ))}
+        { !!items.length && <ListHeader>Albums</ListHeader> }
+
+        <div className="album-list__grid">
+          { items.slice(0, 5).map((album: Album, i: number) => (
+            <AlbumListing album={album} key={i} />
+          ))}
+        </div>
       </div>
     )
   }

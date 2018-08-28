@@ -1,4 +1,9 @@
 .album-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.album-list__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 5%;

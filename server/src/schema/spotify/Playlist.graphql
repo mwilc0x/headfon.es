@@ -37,7 +37,7 @@ type Playlist {
   The playlist’s tracks wrapped in a Paging object. 
   If { limit, offset } pair is not set, it fetches all tracks
   """
-  tracks(limit: Int, offset: Int): Paging
+  tracks: PlaylistTrackPaging
   totalTracks: Int
   external_urls: ExternalUrls
   """

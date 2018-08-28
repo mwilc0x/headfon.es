@@ -58,22 +58,22 @@ interface Image {
 }
 
 interface Playlist {
-  collaborative: boolean
+  collaborative?: boolean
   description: string
-  followerCount: number
-  href: string
-  id: string
+  followerCount?: number
+  href?: string
+  id?: string
   images: Image[]
   name: string
-  owner: User
-  public: boolean
-  snapshot_id: string
-  tracks(limit: number, offset: number): Paging
-  totalTracks: number
-  external_urls: ExternalUrls
+  owner?: User
+  public?: boolean
+  snapshot_id?: string
+  tracks: PlaylistTrackPaging
+  totalTracks?: number
+  external_urls?: ExternalUrls
   uri: string
-  followersContains: (userIds: string[]) => boolean[]
-  following: boolean
+  followersContains?: (userIds: string[]) => boolean[]
+  following?: boolean
 }
 
 interface Paging {
@@ -105,6 +105,16 @@ interface PlaylistPaging extends Paging {
   total?: number
 }
 
+interface PlaylistTrackPaging extends Paging {
+  items: PlaylistTrack[]
+  href?: string
+  limit?: number
+  next?: string
+  previous?: string
+  offset?: number
+  total?: number
+}
+
 interface TrackPaging extends Paging {
   items: Track[]
   href?: string
@@ -113,6 +123,13 @@ interface TrackPaging extends Paging {
   previous?: string
   offset?: number
   total?: number
+}
+
+interface PlaylistTrack {
+  added_at: string
+  added_by: User
+  is_local: boolean
+  track: Track
 }
 
 interface Track {

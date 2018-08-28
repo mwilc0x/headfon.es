@@ -3,6 +3,7 @@ type Query {
   albums(ids: [String]): [Album]
   artist(id: String): Artist
   artists(ids: [String]): Artist
+  playlist(userId: String, playlistId: String): Playlist
   track(id: String): Track
   tracks(ids: [String]): [Track]
   recentlyPlayed: [Track]

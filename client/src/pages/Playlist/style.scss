@@ -1,0 +1,36 @@
+@import 'mixins.scss';
+
+.playlist-viewer {
+  @include module-padding();
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 38% 58%;
+    grid-column-gap: 4%;
+  }
+
+  .playlist-viewer__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .playlist-viewer__right {
+    display: flex;
+    flex-direction: column;
+
+    > ol.playlist-track-list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0;
+      // wtf?
+      -webkit-padding-start: 0;
+
+      @media (max-width: 768px) {
+        margin-top: 60px;
+      }
+    }
+  }
+}

@@ -412,6 +412,7 @@ export default {
   getAlbums,
   getArtist,
   getArtists,
+  getPlaylist,
   getTrack,
   getTracks,
   getRecentlyPlayed,

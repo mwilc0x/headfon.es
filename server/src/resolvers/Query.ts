@@ -36,6 +36,11 @@ async function albums(parent, { ids }, ctx: Context, info) {
   return result;
 };
 
+async function playlist(parent, { userId, playlistId }, ctx: Context, info) {
+  const playlist = await api.getPlaylist(ctx.user.accessToken, userId, playlistId);
+  return playlist;
+};
+
 async function track(parent, { id }, ctx: Context, info) {
   const track = await api.getTrack(ctx.user.accessToken, id);
   return track;
@@ -58,5 +63,6 @@ async function search(parent, { query }, ctx: Context, info) {
 }
 export const Query = {
   album: handleErrors(album),
+  playlist: handleErrors(playlist),
   search: handleErrors(search)
 };

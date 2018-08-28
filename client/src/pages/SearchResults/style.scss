@@ -2,4 +2,5 @@
 
 .search-results-listings {
   @include module-padding();
+  padding-top: 1em !important;
 }

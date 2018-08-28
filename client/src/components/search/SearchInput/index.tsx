@@ -81,9 +81,13 @@ query($query: String) {
     }
     playlists {
       items {
+        id
         name
         images {
           url
+        }
+        owner {
+          id
         }
         uri
       }

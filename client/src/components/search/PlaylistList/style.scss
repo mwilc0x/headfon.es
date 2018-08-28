@@ -1,4 +1,9 @@
 .playlist-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-list__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 5%;
