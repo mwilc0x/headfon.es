@@ -2,6 +2,7 @@ import * as React from 'react';
 import './style.css';
 import { getYear } from '../../../helpers';
 import { playAlbum } from '../../../store';
+import { navigate } from '@reach/router';
 
 interface Props {
   album: Album
@@ -17,7 +18,7 @@ class AlbumInfo extends React.PureComponent<Props, {}> {
       <>
         <img className="album-cover" src={albumUrl} />
         <span className="album-name">{name}</span>
-        <span className="album-artist">{artistName}</span>
+        <span className="album-artist" onClick={this.goToArtist}>{artistName}</span>
         <span className="album-year">{getYear(release_date)}{tracksLength}</span>
         <button onClick={this.playAlbum}>Play Album</button>
       </>
@@ -26,6 +27,11 @@ class AlbumInfo extends React.PureComponent<Props, {}> {
   private playAlbum = () => {
     const { album } = this.props;
     playAlbum(album);
+  }
+  private goToArtist = () => {
+    const { album } = this.props;
+    const { artists: [{ id }] } = album;
+    navigate(`/artist/${id}`);
   }
 }
 

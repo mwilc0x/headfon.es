@@ -15,6 +15,12 @@ const AsyncAlbum = Loadable({
   loading: Loading
 });
 
+const AsyncArtist = Loadable({
+  delay: 30000,
+  loader: () => import('../pages/Artist'),
+  loading: Loading
+});
+
 const AsyncPlaylist = Loadable({
   delay: 30000,
   loader: () => import('../pages/Playlist'),
@@ -32,6 +38,7 @@ export default class Routes extends React.Component<{}, {}> {
       return (
         <Router>
           <AsyncAlbum path="/album/:id" />
+          <AsyncArtist path="/artist/:id" />
           <AsyncPlaylist path="/playlist/:userId/:playlistId" />
           <PrivateRoute path="/" component={Dashboard} />
           <Login path="/login" />

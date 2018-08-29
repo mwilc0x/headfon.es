@@ -63,6 +63,7 @@ async function search(parent, { query }, ctx: Context, info) {
 }
 export const Query = {
   album: handleErrors(album),
+  artist: handleErrors(artist),
   playlist: handleErrors(playlist),
   search: handleErrors(search)
 };

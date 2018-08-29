@@ -57,6 +57,7 @@ const GetAlbum = `
     album(id: $id) {
       uri
       artists {
+        id
         name
       }
       images {

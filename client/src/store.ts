@@ -12,6 +12,7 @@ export interface SearchResults {
 
 interface IAppState {
   albumViewing: Album,
+  artistViewing: Artist,
   authorized: boolean,
   currentPlayingTrack: object | null,
   playlistViewing: Playlist,
@@ -35,6 +36,9 @@ const defaultState = {
       items: []
     },
     uri: ''
+  },
+  artistViewing: {
+    name: ''
   },
   playlistViewing: {
     description: '',
@@ -74,6 +78,7 @@ const defaultState = {
 
 const appState: IAppState = {
   albumViewing: defaultState.albumViewing,
+  artistViewing: defaultState.artistViewing,
   authorized: false,
   currentPlayingTrack: null,
   playlistViewing: defaultState.playlistViewing,
@@ -150,6 +155,13 @@ export const resetAlbumViewing = () => mutate(draft => {
   draft.albumViewing = defaultState.albumViewing;
 });
 
+export const setArtistViewing = (artist: any) => mutate(draft => {
+  draft.artistViewing = artist;
+});
+export const resetArtistViewing = () => mutate(draft => {
+  draft.artistViewing = defaultState.artistViewing;
+});
+
 export const setPlaylistViewing = (playlist: any) => mutate(draft => {
   draft.playlistViewing = playlist;
 });
@@ -195,6 +207,9 @@ export const selectTrackDetails = createSelector(selectTrackDetailsFn);
 
 const selectAlbumViewingFn: any = (state: IAppState) => state.albumViewing;
 export const selectAlbumViewing = createSelector(selectAlbumViewingFn);
+
+const selectArtistViewingFn: any = (state: IAppState) => state.artistViewing;
+export const selectArtistViewing = createSelector(selectArtistViewingFn);
 
 const selectPlaylistViewingFn: any = (state: IAppState) => state.playlistViewing;
 export const selectPlaylistViewing = createSelector(selectPlaylistViewingFn);

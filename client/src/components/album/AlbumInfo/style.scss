@@ -33,6 +33,11 @@ img.album-cover {
   @media (min-width: 1260px) {
     font-size: 16px;
   }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
 }
 
 .album-year {

@@ -232,7 +232,7 @@ export async function getTracks(token, ids) {
 }
 
 export async function getArtist(token, id) {
-  let res = await fetch (`https://api.spotify.com/v1/artist/${id.toString()}`, {
+  let res = await fetch (`https://api.spotify.com/v1/artists/${id.toString()}`, {
       method: 'GET',
       headers: makeHeaders(token)
   })
