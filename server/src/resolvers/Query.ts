@@ -21,6 +21,16 @@ async function artist(parent, { id }, ctx: Context, info) {
   return result;
 };
 
+async function artistBio(parent, { id }, ctx: Context, info) {
+  const result = await api.getArtistBio(ctx.user.accessToken, id);
+  return result;
+}
+
+async function artistTopTracks(parent, { id }, ctx: Context, info) {
+  const result = await api.getArtistTopTracks(ctx.user.accessToken, id);
+  return result;
+}
+
 async function artists(parent, { ids }, ctx: Context, info) {
   const result = await api.getArtists(ctx.user.accessToken, ids);
   return result;
@@ -64,6 +74,8 @@ async function search(parent, { query }, ctx: Context, info) {
 export const Query = {
   album: handleErrors(album),
   artist: handleErrors(artist),
+  artistBio: handleErrors(artistBio),
+  artistTopTracks: handleErrors(artistTopTracks),
   playlist: handleErrors(playlist),
   search: handleErrors(search)
 };

@@ -1,4 +1,6 @@
 # import Artist from "./schema/spotify/Artist.graphql"
+# import ArtistBio from "./schema/spotify/ArtistBio.graphql"
+# import ArtistTopTrack from "./schema/spotify/ArtistTopTrack.graphql"
 # import Album from "./schema/spotify/Album.graphql"
 # import AudioFeatures from "./schema/spotify/AudioFeatures.graphql"
 # import Category from "./schema/spotify/Category.graphql"
@@ -12,5 +14,6 @@
 # import Query from "./schema/spotify/Query.graphql"
 # import SearchResults from "./schema/spotify/SearchResults.graphql"
 # import TimeRange from "./schema/spotify/TimeRange.graphql"
+# import TopTracks from "./schema/spotify/TopTracks.graphql"
 # import Track from "./schema/spotify/Track.graphql"
 # import User from "./schema/spotify/User.graphql"

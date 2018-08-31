@@ -1,0 +1,4 @@
+type ArtistBio {
+    bio: String
+    headerImages: [Image]
+}

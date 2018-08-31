@@ -29,6 +29,31 @@ interface Artist {
   type?: string
 }
 
+interface ArtistPage {
+  name: string
+  tracks: ArtistTopTrack[]
+}
+
+interface ArtistTopTrack {
+  album: Album
+  artists?: [Artist]
+  available_markets?: string[]
+  disc_number?: number
+  duration_ms: number
+  explicit?: boolean
+  external_urls?: ExternalUrls
+  href?: string
+  id?: string
+  is_playable?: boolean
+  name: string
+  popularity?: number
+  preview_url?: string
+  track_number?: number
+  type?: string
+  uri: string
+}
+
+
 interface AudioFeatures {
   acousticness: number
   danceability: number

@@ -240,6 +240,25 @@ export async function getArtist(token, id) {
   return res;
 }
 
+export async function getArtistBio(token, id) {
+    let res = await fetch(`https://spclient.wg.spotify.com/open-backend-2/v1/artists/${id}`, {
+        method: 'OPTIONS',
+        headers: makeHeaders(token)
+    });
+    // TODO: this will not work, need alternative
+    res = await res.json();
+    return {};
+}
+
+export async function getArtistTopTracks(token, id) {
+    let res = await fetch (`https://api.spotify.com/v1/artists/${id.toString()}/top-tracks?country=US`, {
+        method: 'GET',
+        headers: makeHeaders(token)
+    })
+    res = await res.json();
+    return res;
+  }
+
 export async function getArtists(token, ids) {
     let res = await fetch (`https://api.spotify.com/v1/artists?ids=${ids.toString()}`, {
         method: 'GET',
@@ -411,6 +430,8 @@ export default {
   getAlbum,
   getAlbums,
   getArtist,
+  getArtistBio,
+  getArtistTopTracks,
   getArtists,
   getPlaylist,
   getTrack,

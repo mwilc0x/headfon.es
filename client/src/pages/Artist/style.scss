@@ -1,0 +1,25 @@
+.artist-viewer {
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.artist-viewer__header {
+  position: relative;
+  align-items: center;
+  background-size: cover;
+  background-position: 50%;
+  padding-left: 220px;
+  margin-left: -220px;
+}
+
+.main-view-container {
+  padding-left: 220px;
+  padding-bottom: 91px;
+  width: 100%;
+  min-height: 0 !important;
+}
+
+.header-image-test {
+  padding-top: 300px;
+}

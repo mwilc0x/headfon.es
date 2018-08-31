@@ -12,7 +12,7 @@ export interface SearchResults {
 
 interface IAppState {
   albumViewing: Album,
-  artistViewing: Artist,
+  artistViewing: ArtistPage,
   authorized: boolean,
   currentPlayingTrack: object | null,
   playlistViewing: Playlist,
@@ -38,7 +38,9 @@ const defaultState = {
     uri: ''
   },
   artistViewing: {
-    name: ''
+    images: [{ url: '' }],
+    name: '',
+    tracks: []
   },
   playlistViewing: {
     description: '',
@@ -156,7 +158,10 @@ export const resetAlbumViewing = () => mutate(draft => {
 });
 
 export const setArtistViewing = (artist: any) => mutate(draft => {
-  draft.artistViewing = artist;
+  draft.artistViewing = { ...draft.artistViewing, ...artist };
+});
+export const setArtistViewingTopTracks = (tracks: any) => mutate(draft => {
+  draft.artistViewing.tracks = tracks;
 });
 export const resetArtistViewing = () => mutate(draft => {
   draft.artistViewing = defaultState.artistViewing;
