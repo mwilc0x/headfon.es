@@ -77,7 +77,7 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
   private init() {
     this.player = new window.Spotify.Player({
       getOAuthToken: async (cb: (token: string) => {}) => {
-        const user = await fetch('/token').then(res => res.json());
+        const user = await fetch('/token', { credentials: 'same-origin' }).then(res => res.json());
         cb(user.accessToken);
       },
       name: 'spotify-app-player',
