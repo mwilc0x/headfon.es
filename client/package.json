@@ -4,13 +4,13 @@
   "dependencies": {
     "@reach/router": "^1.1.1",
     "css-vars": "^2.2.0",
-    "node-sass-chokidar": "^1.3.0",
-    "react": "16.5",
+    "node-sass-chokidar": "^1.3.3",
+    "react": "^16.5.0",
     "react-copy-write": "^0.8.0",
-    "react-dom": "16.5",
+    "react-dom": "^16.5.0",
     "react-loadable": "^5.5.0",
     "react-player-controls": "^0.5.20",
-    "react-scripts-ts": "2.16.0",
+    "react-scripts-ts": "^2.17.0",
     "urql": "^0.2.2"
   },
   "scripts": {
@@ -22,16 +22,16 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
-    "@types/jest": "^23.1.4",
-    "@types/node": "^10.5.1",
-    "@types/reach__router": "^1.0.0",
-    "@types/react": "^16.4.6",
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.9.4",
+    "@types/reach__router": "^1.0.1",
+    "@types/react": "^16.4.13",
     "@types/react-copy-write": "^0.7.1",
-    "@types/react-dom": "^16.0.6",
+    "@types/react-dom": "^16.0.7",
     "eslint-plugin-prettier": "^2.6.2",
     "prettier": "^1.14.2",
     "sw-precache": "^5.2.1",
-    "typescript": "^3.0.0-rc"
+    "typescript": "^3.0.3"
   },
   "proxy": "http://localhost:3004/"
 }
