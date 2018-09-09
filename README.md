@@ -1,8 +1,7 @@
 javascript-architecture
 =======================
 
-Hello! 👋 This repo serves as an organization of some thoughts I've been having over the past
-few months regarding how I would like to structure certain types of client-side JavaScript applications.
+Hello! 👋 This is an example of a client-server JavaScript application.
 
 The case study for this is using the Spotify API as a base service.
 
@@ -11,6 +10,7 @@ Here is a high level view of how this is structured across the client and server
 ### client
 
 - [create-react-app](https://github.com/facebook/create-react-app) base template for the setup. Currently it is non-ejected.
+- [react 16.5](https://github.com/facebook/react/releases/tag/v16.5.0)
 - [@reach/router](https://github.com/reach/router) routing
 - [react-copy-write](https://github.com/aweary/react-copy-write) state management
 - [typescript](https://github.com/Microsoft/TypeScript) type system
@@ -25,9 +25,20 @@ Here is a high level view of how this is structured across the client and server
 - [MongoDB](https://www.mongodb.com/) database local
 - [mLab](https://mlab.com/) database cloud
 
-### environment variables
+#### local database
 
-Initially I had the environment variables stored in a `.env` file. After some more research, and wanting to have this setup to deploy to services such as [now](https://zeit.co/now) and reading [12factor](https://12factor.net/config), I moved them out and will load them into the environment manually on whichever platform. Below is a documentation of which environment variables this app uses.
+- [mongoDB](https://www.mongodb.com/)
+
+address environment variable: `MONGO_DB_URI_DEV`
+
+#### production database
+
+- [mLab](https://mlab.com/) or another hosted mongo cloud solution
+
+address environment variable: `MONGO_DB_URI_PROD`
+
+
+### environment variables
 
 ```bash
 DEBUG=false
@@ -57,6 +68,14 @@ cd spotify
 now -e SESSION_SECRET="thisisasecret" -e SPOTIFY_CLIENT_ID=XXXXXXX -e SPOTIFY_CLIENT_SECRET=XXXXXXX -e SPOTIFY_REDIRECT=XXXXXXX -e JWT_SECRET="XXXXXXX" -e MONGO_DB_URI_PROD="XXXXXXX" -e JWT_ISSUER=XXXXXXX-e JWT_AUDIENCE=XXXXXXX
 ```
 
-voila!
+# issues
 
+If you run into any issues, if something is not working or doesn't make sense, please don't hesitate to file an issue.
+
+# license
+
+MIT
+
+```
 Happy Hacking!
+```
