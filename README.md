@@ -1,5 +1,4 @@
-javascript-architecture
-=======================
+# javascript-architecture
 
 Hello! 👋 This is an example of a client-server JavaScript application.
 
@@ -37,7 +36,6 @@ address environment variable: `MONGO_DB_URI_DEV`
 
 address environment variable: `MONGO_DB_URI_PROD`
 
-
 ### environment variables
 
 ```bash
@@ -65,8 +63,18 @@ This can be deployed using a service such as [now](https://zeit.co/now):
 ```bash
 git clone https://github.com/mjw56/spotify
 cd spotify
-now -e SESSION_SECRET="thisisasecret" -e SPOTIFY_CLIENT_ID=XXXXXXX -e SPOTIFY_CLIENT_SECRET=XXXXXXX -e SPOTIFY_REDIRECT=XXXXXXX -e JWT_SECRET="XXXXXXX" -e MONGO_DB_URI_PROD="XXXXXXX" -e JWT_ISSUER=XXXXXXX-e JWT_AUDIENCE=XXXXXXX
+now -e SESSION_SECRET=XXXXXXXXXXX -e SPOTIFY_CLIENT_ID=XXXXXXXXXXX -e SPOTIFY_CLIENT_SECRET=XXXXXXXXXXX -e SPOTIFY_REDIRECT=/auth/callback -e JWT_SECRET=XXXXXXXXXXX -e MONGO_DB_URI_PROD=XXXXXXXXXXX -e JWT_ISSUER=XXXXXXXXXXX -e JWT_AUDIENCE=XXXXXXXXXXX
 ```
+
+# writing
+
+- [GraphQL Authentication with Passport](https://medium.com/@mjw56/graphql-authentication-with-passport-d75c08d5fbdc)
+
+- [GraphQL Authentication using OAuth & JSON Web Tokens](https://itnext.io/graphql-authentication-using-oauth-json-web-tokens-bdb829602a5c)
+
+- [Multi-Environment MongoDB](https://medium.com/@mjw56/mongodb-local-and-hosted-aad302eb3147)
+
+- [Dynamic App Themes with CSS Variables and JavaScript 🎨](https://itnext.io/css-variables-dynamic-app-themes-86c0db61cbbb)
 
 # issues
 
