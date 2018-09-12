@@ -17,7 +17,7 @@ export class Search extends React.Component<ISearchProps, ISearchState> {
   public render() {
     return (
       <div className="search">
-        <div className="search-input-info">Search for an album or songs</div>
+        <div className="search-input-info">Search for an album, songs or playlists</div>
         <input 
           type="text" 
           name="searchQuery" 
