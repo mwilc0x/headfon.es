@@ -3,6 +3,7 @@ import { ConnectHOC, Client, query } from 'urql';
 import { IRouteProps } from '../../routing';
 import { Consumer, selectArtistViewing, setArtistViewing } from '../../store';
 import { ArtistTopTracks } from '../../components/artist';
+import { ArtistQuery, ArtistBioQuery } from '../../queries';
 import './style.css';
 
 interface Props extends IRouteProps {
@@ -14,12 +15,12 @@ export class ArtistPage extends React.PureComponent<Props, {}> {
   public componentDidMount() {
     const { client, id } = this.props;
 
-    client.executeQuery(query(GetArtist, { id }), true)
-      .then((res: any) => {
-        setArtistViewing(res.data.artist);
-      });
+    client.executeQuery(query(ArtistQuery, { id }), true).then((res: any) => {
+      setArtistViewing(res.data.artist);
+    });
 
-    client.executeQuery(query(GetArtistBio, { id}), true)
+    client
+      .executeQuery(query(ArtistBioQuery, { id }), true)
       .then((res: any) => {
         console.log('artist bio', res);
       });
@@ -29,12 +30,19 @@ export class ArtistPage extends React.PureComponent<Props, {}> {
     return (
       <Consumer select={[selectArtistViewing]}>
         {(artistViewing: any) => {
-          const { images: [{ url }], name, tracks } = artistViewing;
+          const {
+            images: [{ url }],
+            name,
+            tracks,
+          } = artistViewing;
 
           return (
             <div className="artist-viewer">
               <div className="main-view-container">
-                <div className="artist-viewer__header" style={{ backgroundImage: `url(${url})` }}>
+                <div
+                  className="artist-viewer__header"
+                  style={{ backgroundImage: `url(${url})` }}
+                >
                   <div className="header-image-test">test</div>
                 </div>
                 <p>{name}</p>
@@ -49,24 +57,3 @@ export class ArtistPage extends React.PureComponent<Props, {}> {
 }
 
 export default ConnectHOC()(ArtistPage);
-
-const GetArtist = `
-  query($id: String) {
-    artist(id: $id) {
-      images {
-        url
-      }
-      name
-    }
-  }
-`;
-
-const GetArtistBio = `
-  query($id: String) {
-    artistBio(id: $id) {
-      headerImages {
-        url
-      }
-    }
-  }
-`

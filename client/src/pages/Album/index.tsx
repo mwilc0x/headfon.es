@@ -1,8 +1,14 @@
 import * as React from 'react';
 import { ConnectHOC, Client, query } from 'urql';
 import { IRouteProps } from '../../routing';
-import { Consumer, selectAlbumViewing, setAlbumViewing, selectTrackDetails } from '../../store';
+import {
+  Consumer,
+  selectAlbumViewing,
+  setAlbumViewing,
+  selectTrackDetails,
+} from '../../store';
 import { AlbumInfo, Track } from '../../components/album';
+import { AlbumQuery } from '../../queries';
 import './style.css';
 
 interface Props extends IRouteProps {
@@ -14,17 +20,20 @@ export class Album extends React.PureComponent<Props, {}> {
   public componentDidMount() {
     const { client, id } = this.props;
 
-    client.executeQuery(query(GetAlbum, { id }), true)
-      .then((res: any) => {
-        setAlbumViewing(res.data.album);
-      });
+    client.executeQuery(query(AlbumQuery, { id }), true).then((res: any) => {
+      setAlbumViewing(res.data.album);
+    });
   }
   public render() {
     return (
       <Consumer select={[selectAlbumViewing, selectTrackDetails]}>
         {(albumViewing: any, trackDetails) => {
           const { tracks } = albumViewing;
-          const { track_window: { current_track: { uri } } } = trackDetails;
+          const {
+            track_window: {
+              current_track: { uri },
+            },
+          } = trackDetails;
           return (
             <div className="album-viewer">
               <div className="album-viewer__left">
@@ -33,7 +42,7 @@ export class Album extends React.PureComponent<Props, {}> {
 
               <div className="album-viewer__right">
                 <ol className="album-track-list">
-                  { tracks.items.map((track, i) => (
+                  {tracks.items.map((track, i) => (
                     <Track
                       isPlaying={track.uri === uri}
                       key={i}
@@ -43,7 +52,7 @@ export class Album extends React.PureComponent<Props, {}> {
                 </ol>
               </div>
             </div>
-          )
+          );
         }}
       </Consumer>
     );
@@ -51,27 +60,3 @@ export class Album extends React.PureComponent<Props, {}> {
 }
 
 export default ConnectHOC()(Album);
-
-const GetAlbum = `
-  query($id: String) {
-    album(id: $id) {
-      uri
-      artists {
-        id
-        name
-      }
-      images {
-        url
-      }
-      name
-      release_date
-      tracks {
-        items {
-          duration_ms
-          name
-          uri
-        }
-      }
-    }
-  }
-`;
