@@ -1,4 +1,8 @@
-# javascript-architecture
+<p align="center">
+<a href="https://headfon.es" target="_blank">
+<img alt="headfon.es" title="headfon.es" src="logo.png" width="550">
+</a>
+</p>
 
 Hello! 👋 This is an example of a client-server JavaScript application.
 
