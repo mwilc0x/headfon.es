@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://headfon.es" target="_blank">
-<img alt="headfon.es" title="headfon.es" src="logo.png" width="550">
+<img alt="headfon.es" title="headfon.es" src="logo.png" width="200">
 </a>
 </p>
 
