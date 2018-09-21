@@ -3,8 +3,10 @@ import { ConnectHOC, Client, query } from 'urql';
 import { IRouteProps } from '../../routing';
 import {
   Consumer,
+  resetAlbumViewing,
   selectAlbumViewing,
   setAlbumViewing,
+  selectAlbumViewingLoaded,
   selectTrackDetails,
 } from '../../store';
 import { AlbumInfo, Track } from '../../components/album';
@@ -24,16 +26,30 @@ export class Album extends React.PureComponent<Props, {}> {
       setAlbumViewing(res.data.album);
     });
   }
+  public componentWillUnmount() {
+    resetAlbumViewing();
+  }
   public render() {
     return (
-      <Consumer select={[selectAlbumViewing, selectTrackDetails]}>
-        {(albumViewing: any, trackDetails) => {
+      <Consumer
+        select={[
+          selectAlbumViewing,
+          selectAlbumViewingLoaded,
+          selectTrackDetails,
+        ]}
+      >
+        {(albumViewing: any, albumViewingLoaded: any, trackDetails) => {
           const { tracks } = albumViewing;
           const {
             track_window: {
               current_track: { uri },
             },
           } = trackDetails;
+
+          if (albumViewingLoaded === false) {
+            return null;
+          }
+
           return (
             <div className="album-viewer">
               <div className="album-viewer__left">

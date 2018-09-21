@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { navigate } from '@reach/router';
 import { PlayButton } from 'react-player-controls';
+import { ImageLoader } from '../../';
 import { playAlbum, resetPlaylistViewing } from '../../../store';
 import './style.css';
 
@@ -9,7 +10,7 @@ interface Props {
 }
 
 interface State {
-  showPlayIcon: boolean
+  showPlayIcon: boolean;
 }
 
 class PlaylistListing extends React.PureComponent<Props, State> {
@@ -21,21 +22,16 @@ class PlaylistListing extends React.PureComponent<Props, State> {
     const { images, name } = playlist;
     return (
       <div className="playlist-listing">
-        <div 
+        <div
           className="playlist-listing__wrapper"
           onClick={this.navigateToPlaylist}
           onMouseEnter={this.handleOnMouseEnter}
           onMouseLeave={this.handleOnMouseLeave}
         >
-          { showPlayIcon 
-            ? ( <PlayButton 
-                  isEnabled={true} 
-                  onClick={this.handlePlaylistPlay} 
-                /> 
-              ) 
-            : null 
-          }
-          <img src={images[0].url} />
+          {showPlayIcon ? (
+            <PlayButton isEnabled={true} onClick={this.handlePlaylistPlay} />
+          ) : null}
+          <ImageLoader src={images[0].url} />
         </div>
 
         <p>{name}</p>
@@ -47,22 +43,22 @@ class PlaylistListing extends React.PureComponent<Props, State> {
     const { id, owner = { id: '' } } = playlist;
     resetPlaylistViewing();
     navigate(`/playlist/${owner.id}/${id}`);
-  }
-  private handlePlaylistPlay = (e) => {
+  };
+  private handlePlaylistPlay = e => {
     e.stopPropagation();
     const { playlist } = this.props;
     playAlbum(playlist);
-  }
-  private handleOnMouseEnter = (e) => {
+  };
+  private handleOnMouseEnter = e => {
     this.setState({
-      showPlayIcon: true
+      showPlayIcon: true,
     });
-  }
-  private handleOnMouseLeave = (e) => {
+  };
+  private handleOnMouseLeave = e => {
     this.setState({
-      showPlayIcon: false
+      showPlayIcon: false,
     });
-  }
+  };
 }
 
 export default PlaylistListing;

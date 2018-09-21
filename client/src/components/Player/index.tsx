@@ -1,17 +1,21 @@
 import * as React from 'react';
 import { getCookie } from '../../helpers/cookies';
 import { PlayerControlsContainer } from './controls/container';
-import { 
-  Consumer, 
-  selectCurrentPlayingTrack, 
+import {
+  Consumer,
+  selectCurrentPlayingTrack,
   selectSessionEnded,
-  selectTrackDetails, 
-  setTrackDetails 
+  selectTrackDetails,
+  setTrackDetails,
 } from '../../store';
+import { Location } from '@reach/router';
 import './style.css';
 
 declare global {
-  interface Window { Spotify: any, onSpotifyWebPlaybackSDKReady: any; }
+  interface Window {
+    Spotify: any;
+    onSpotifyWebPlaybackSDKReady: any;
+  }
 }
 
 interface Props {
@@ -28,8 +32,8 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
 
   public componentDidUpdate(prevProps: any, prevState: any) {
     if (
-      !prevProps.currentPlayingTrack
-      || (prevProps.currentPlayingTrack.uri !== this.props.currentPlayingTrack.uri)
+      !prevProps.currentPlayingTrack ||
+      prevProps.currentPlayingTrack.uri !== this.props.currentPlayingTrack.uri
     ) {
       this.play(this.props.currentPlayingTrack);
     }
@@ -40,7 +44,7 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
   }
 
   public componentDidMount() {
-    const script = document.createElement("script");
+    const script = document.createElement('script');
 
     script.src = 'https://sdk.scdn.co/spotify-player.js';
     script.async = true;
@@ -51,7 +55,7 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
       }
 
       this.init();
-    }
+    };
     document.body.appendChild(script);
   }
   public render() {
@@ -61,37 +65,57 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
       nextTrack: this.nextTrack,
       pause: this.pause,
       previousTrack: this.previousTrack,
-      resume: this.resume
+      resume: this.resume,
     };
 
     return (
-      <div className="player">
-        <PlayerControlsContainer 
-          controls={controls}
-          handleTrackClick={this.handleTrackClick}
-          trackDetails={trackDetails} 
-        />
-      </div>
+      <Location>
+        {props => {
+          const location = props.location.pathname;
+          return location !== '/login' ? (
+            <div className="player">
+              <PlayerControlsContainer
+                controls={controls}
+                handleTrackClick={this.handleTrackClick}
+                trackDetails={trackDetails}
+              />
+            </div>
+          ) : null;
+        }}
+      </Location>
     );
   }
   private init() {
     this.player = new window.Spotify.Player({
       getOAuthToken: async (cb: (token: string) => {}) => {
-        const user = await fetch('/token', { credentials: 'same-origin' }).then(res => res.json());
+        const user = await fetch('/token', { credentials: 'same-origin' }).then(
+          res => res.json()
+        );
         cb(user.accessToken);
       },
       name: 'spotify-app-player',
-      volume: 0.5
+      volume: 0.5,
     });
 
     // Error handling
-    this.player.addListener('initialization_error', ({ message }: any) => { console.error(message); });
-    this.player.addListener('authentication_error', ({ message }: any) => { console.error(message); });
-    this.player.addListener('account_error', ({ message }: any) => { console.error(message); });
-    this.player.addListener('playback_error', ({ message }: any) => { console.error(message); });
+    this.player.addListener('initialization_error', ({ message }: any) => {
+      console.error(message);
+    });
+    this.player.addListener('authentication_error', ({ message }: any) => {
+      console.error(message);
+    });
+    this.player.addListener('account_error', ({ message }: any) => {
+      console.error(message);
+    });
+    this.player.addListener('playback_error', ({ message }: any) => {
+      console.error(message);
+    });
 
     // Playback status updates
-    this.player.addListener('player_state_changed', this.handlePlayerStateChange.bind(this));
+    this.player.addListener(
+      'player_state_changed',
+      this.handlePlayerStateChange.bind(this)
+    );
 
     // Ready
     this.player.addListener('ready', ({ device_id }: any) => {
@@ -115,66 +139,74 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
       payload = { context_uri: uri };
     } else {
       // TODO: other URI use cases?
-      payload = { uris: [uri] };      
+      payload = { uris: [uri] };
     }
 
-    const { _options: { getOAuthToken, id } } = this.player;
+    const {
+      _options: { getOAuthToken, id },
+    } = this.player;
     getOAuthToken((token: string) => {
       fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
         body: JSON.stringify(payload),
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
-        method: 'PUT'
+        method: 'PUT',
       });
-    })  
+    });
   }
   private disconnect = () => {
     this.player.disconnect().then(() => {
       console.log('Player disconnected');
     });
-  }
+  };
   private pause = () => {
     this.player.pause().then(() => {
       console.log('Paused!');
     });
-  }
+  };
   private resume = () => {
     this.player.resume().then(() => {
       console.log('Resumed!');
     });
-  }
+  };
   private previousTrack = () => {
     this.player.previousTrack().then(() => {
       console.log('Previous Track!');
     });
-  }
+  };
   private nextTrack = () => {
     this.player.nextTrack().then(() => {
       console.log('Next Track!');
     });
-  }
+  };
   private handlePlayerStateChange(state: any) {
     setTrackDetails(state);
   }
   private handleTrackClick = () => {
     return;
-  }
+  };
 }
 
 const ContextContainer = () => {
   return (
-    <Consumer select={[selectCurrentPlayingTrack, selectTrackDetails, selectSessionEnded]}>
+    <Consumer
+      select={[
+        selectCurrentPlayingTrack,
+        selectTrackDetails,
+        selectSessionEnded,
+      ]}
+    >
       {(currentPlayingTrack: any, trackDetails: any, sessionEnded: any) => (
-        <PlayerContainer 
+        <PlayerContainer
           currentPlayingTrack={currentPlayingTrack}
           sessionEnded={sessionEnded}
-          trackDetails={trackDetails} 
+          trackDetails={trackDetails}
         />
       )}
     </Consumer>
   );
-}
+};
 
 export default ContextContainer;

@@ -3,6 +3,15 @@
   padding: 1em 1em 10em 1em;
 
   @media (min-width: 768px) {
-    padding: 5em 5em 10em 5em;
+    padding: 5em 5em 10em 0;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

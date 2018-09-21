@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { navigate } from '@reach/router';
 import { PlayButton } from 'react-player-controls';
+import { ImageLoader } from '../../';
 import { playAlbum, resetAlbumViewing } from '../../../store';
 import './style.css';
 
@@ -9,7 +10,7 @@ interface Props {
 }
 
 interface State {
-  showPlayIcon: boolean
+  showPlayIcon: boolean;
 }
 
 class AlbumListing extends React.Component<Props, State> {
@@ -20,21 +21,16 @@ class AlbumListing extends React.Component<Props, State> {
 
     const { images } = album;
     return (
-      <div 
-        className="album-listing" 
+      <div
+        className="album-listing"
         onClick={this.navigateToAlbum}
         onMouseEnter={this.handleOnMouseEnter}
         onMouseLeave={this.handleOnMouseLeave}
       >
-        { showPlayIcon 
-          ? ( <PlayButton 
-                isEnabled={true} 
-                onClick={this.handleAlbumPlay} 
-              /> 
-            ) 
-          : null 
-        }
-        <img src={images[0].url} />
+        {showPlayIcon ? (
+          <PlayButton isEnabled={true} onClick={this.handleAlbumPlay} />
+        ) : null}
+        <ImageLoader src={images[0].url} />
       </div>
     );
   }
@@ -43,22 +39,22 @@ class AlbumListing extends React.Component<Props, State> {
     const { id } = album;
     resetAlbumViewing();
     navigate(`/album/${id}`);
-  }
-  private handleAlbumPlay = (e) => {
+  };
+  private handleAlbumPlay = e => {
     e.stopPropagation();
     const { album } = this.props;
     playAlbum(album);
-  }
-  private handleOnMouseEnter = (e) => {
+  };
+  private handleOnMouseEnter = e => {
     this.setState({
-      showPlayIcon: true
+      showPlayIcon: true,
     });
-  }
-  private handleOnMouseLeave = (e) => {
+  };
+  private handleOnMouseLeave = e => {
     this.setState({
-      showPlayIcon: false
+      showPlayIcon: false,
     });
-  }
+  };
 }
 
 export default AlbumListing;

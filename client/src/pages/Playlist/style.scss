@@ -4,6 +4,7 @@
   @include module-padding();
   display: flex;
   flex-direction: column;
+  animation: fadein 0.5s;
 
   @media (min-width: 768px) {
     display: grid;

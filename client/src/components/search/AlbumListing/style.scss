@@ -22,8 +22,8 @@
     cursor: pointer;
 
     img {
-      opacity: 0.1;
-      transition: opacity .3s ease-in-out;
+      opacity: 0.1 !important;
+      transition: opacity 0.3s ease-in-out;
     }
   }
 

@@ -1,3 +1,25 @@
 .App {
   text-align: center;
 }
+
+.top-container {
+  display: flex;
+
+  > div:nth-child(1) {
+    flex-basis: 15%;
+  }
+
+  > div:nth-child(2) {
+    flex-basis: 85%;
+  }
+
+  > div:only-child {
+    flex-basis: 100%;
+  }
+
+  @media (max-width: 760px) {
+    > div:nth-child(2) {
+      flex-basis: 100%;
+    }
+  }
+}
