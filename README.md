@@ -4,13 +4,7 @@
 </a>
 </p>
 
-Hello! 👋 This is an example of a client-server JavaScript application.
-
-The case study for this is using the Spotify API as a base service.
-
-Here is a high level view of how this is structured across the client and server:
-
-### client
+### client setup
 
 - [create-react-app](https://github.com/facebook/create-react-app) base template for the setup. Currently it is non-ejected.
 - [react 16.5](https://github.com/facebook/react/releases/tag/v16.5.0)
@@ -19,7 +13,7 @@ Here is a high level view of how this is structured across the client and server
 - [typescript](https://github.com/Microsoft/TypeScript) type system
 - [Spotify Web Playback SDK](https://developer.spotify.com/documentation/web-playback-sdk/)
 
-### server
+### server setup
 
 - [Node.js](https://github.com/nodejs/node) server platform
 - [GraphQL](https://github.com/graphql/graphql-js) data transport
@@ -65,10 +59,16 @@ JWT_AUDIENCE=spotify-app-user
 This can be deployed using a service such as [now](https://zeit.co/now):
 
 ```bash
-git clone https://github.com/mjw56/spotify
+git clone https://github.com/mjw56/headfon.es
 cd spotify
 now -e SESSION_SECRET=XXXXXXXXXXX -e SPOTIFY_CLIENT_ID=XXXXXXXXXXX -e SPOTIFY_CLIENT_SECRET=XXXXXXXXXXX -e SPOTIFY_REDIRECT=/auth/callback -e JWT_SECRET=XXXXXXXXXXX -e MONGO_DB_URI_PROD=XXXXXXXXXXX -e JWT_ISSUER=XXXXXXXXXXX -e JWT_AUDIENCE=XXXXXXXXXXX
 ```
+
+# domain
+
+aliasing to a domain is easy with now
+
+`now alias <now-url> <domain>`
 
 # writing
 
