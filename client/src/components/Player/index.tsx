@@ -132,6 +132,10 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
     this.player.connect();
   }
   private play(item) {
+    if (item === null) {
+      return;
+    }
+
     let payload;
     const { uri = '' } = item;
 
