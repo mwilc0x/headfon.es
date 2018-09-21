@@ -93,7 +93,7 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
         );
         cb(user.accessToken);
       },
-      name: 'spotify-app-player',
+      name: 'headfon.es',
       volume: 0.5,
     });
 
