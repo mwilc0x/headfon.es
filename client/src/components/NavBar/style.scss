@@ -21,4 +21,10 @@
   @media (max-width: 760px) {
     display: none;
   }
+
+  @media (max-width: 1260px) {
+    button {
+      font-size: 15px;
+    }
+  }
 }

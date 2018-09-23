@@ -55,9 +55,10 @@ export class Search extends React.Component<ISearchProps, ISearchState> {
       query: value,
     });
   };
-  private handleKeyPress = (e: React.KeyboardEvent) => {
+  private handleKeyPress = (e: any) => {
     if (e.key === 'Enter') {
       this.handleSearch();
+      e.target.blur();
     }
   };
 }

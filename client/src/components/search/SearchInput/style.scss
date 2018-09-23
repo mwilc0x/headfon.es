@@ -6,9 +6,10 @@
   padding: 32px 2em;
 
   input {
+    padding-left: 0;
     font-size: 25px;
     line-height: 25px;
-    letter-spacing: -.005em;
+    letter-spacing: -0.005em;
     font-weight: 600;
     color: var(--text-primary);
     text-transform: none;
