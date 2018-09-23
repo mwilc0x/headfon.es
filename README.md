@@ -22,6 +22,15 @@
 - [MongoDB](https://www.mongodb.com/) database local
 - [mLab](https://mlab.com/) database cloud
 
+## TODO
+
+- [ ] Review Accessibility + Improvements
+- [ ] Mobile Friendly UI Improvements
+- [ ] React 16 Profiler Exam (performance) 
+- [ ] Improve Search Results (currently listings are limited)
+- [ ] Artist Page
+...
+
 #### local database
 
 - [mongoDB](https://www.mongodb.com/)
