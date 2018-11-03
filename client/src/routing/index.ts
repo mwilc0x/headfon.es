@@ -1,8 +1,11 @@
 import PrivateRoute from './PrivateRoute';
-import Routes, { IRouteProps } from './routes';
+import Routes from './routes';
+
+export interface IRouteProps {
+  path: string;
+}
 
 export {
   PrivateRoute,
-  Routes,
-  IRouteProps
+  Routes
 };

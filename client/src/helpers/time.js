@@ -4,7 +4,7 @@ export function millisToMinutesAndSeconds(millis) {
   return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-export function getYear(dateStr: string) {
+export function getYear(dateStr) {
   if (dateStr === '') {
     return '';
   }

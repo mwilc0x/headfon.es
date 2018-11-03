@@ -10,16 +10,15 @@
     "react-dom": "^16.5.0",
     "react-loadable": "^5.5.0",
     "react-player-controls": "^0.5.20",
-    "react-scripts-ts": "^2.17.0",
     "urql": "^0.2.2"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules --watch --recursive",
-    "start": "react-scripts-ts start",
+    "start": "react-scripts start",
     "build": "yarn build-css && react-scripts-ts build && sw-precache --root='build/' --config config/sw.js ",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@types/jest": "^23.3.2",
@@ -30,8 +29,15 @@
     "@types/react-dom": "^16.0.7",
     "eslint-plugin-prettier": "^2.6.2",
     "prettier": "^1.14.2",
+    "react-scripts": "^2.1.1",
     "sw-precache": "^5.2.1",
     "typescript": "^3.0.3"
   },
-  "proxy": "http://localhost:3004/"
+  "proxy": "http://localhost:3004/",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

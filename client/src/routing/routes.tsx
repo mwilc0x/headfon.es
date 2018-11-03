@@ -5,10 +5,6 @@ import { Loading } from '../components';
 import { Dashboard, Login } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
-export interface IRouteProps {
-  path: string;
-}
-
 const AsyncAlbum = Loadable({
   delay: 30000,
   loader: () => import('../pages/Album'),
