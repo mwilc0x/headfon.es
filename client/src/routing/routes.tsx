@@ -1,33 +1,12 @@
 import * as React from 'react';
 import { Router } from '@reach/router';
-import Loadable from 'react-loadable';
-import { Loading } from '../components';
 import { Dashboard, Login } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
-const AsyncAlbum = Loadable({
-  delay: 30000,
-  loader: () => import('../pages/Album'),
-  loading: Loading,
-});
-
-const AsyncArtist = Loadable({
-  delay: 30000,
-  loader: () => import('../pages/Artist'),
-  loading: Loading,
-});
-
-const AsyncPlaylist = Loadable({
-  delay: 30000,
-  loader: () => import('../pages/Playlist'),
-  loading: Loading,
-});
-
-const AsyncSearchResults = Loadable({
-  delay: 30000,
-  loader: () => import('../pages/SearchResults'),
-  loading: Loading,
-});
+const AsyncAlbum = (React as any).lazy( () => import('../pages/Album'));
+const AsyncArtist = (React as any).lazy( () => import('../pages/Artist'));
+const AsyncPlaylist = (React as any).lazy( () => import('../pages/Playlist'));
+const AsyncSearchResults = (React as any).lazy( () => import('../pages/SearchResults'));
 
 export default class Routes extends React.Component<{}, {}> {
   public render() {

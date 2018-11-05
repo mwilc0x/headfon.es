@@ -8,12 +8,12 @@ import {
   TrackListing,
 } from './search';
 import ImageLoader from './ImageLoader';
-import Loading from './Loading';
 import Logo from './Logo';
 import Modal from './Modal';
 import NavBar from './NavBar';
 import Player from './Player';
 import SearchInput from './search/SearchInput';
+import Spinner from './Spinner';
 import ThemeMenu from './ThemeMenu';
 
 export {
@@ -21,7 +21,6 @@ export {
   AlbumListing,
   ArtistList,
   ImageLoader,
-  Loading,
   Logo,
   Modal,
   NavBar,
@@ -29,6 +28,7 @@ export {
   PlaylistList,
   PlaylistListing,
   SearchInput,
+  Spinner,
   ThemeMenu,
   TrackList,
   TrackListing,

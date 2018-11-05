@@ -2,11 +2,13 @@ import * as React from 'react';
 import { Routes } from '../../routing';
 import { Provider } from '../../store';
 import { Provider as URQLProvider, Client } from 'urql';
-import { NavBar, Player } from '../../components';
+import { NavBar, Player, Spinner } from '../../components';
 import { ModalsContainer as Modals } from '../';
 import { setTheme } from '../../store';
 import { updateThemeForStyle } from '../../helpers';
 import './style.css';
+
+const Suspense = (React as any).Suspense
 
 const client = new Client({
   fetchOptions: { credentials: 'same-origin' },
@@ -26,16 +28,18 @@ export class AppContainer extends React.PureComponent {
   }
   public render() {
     return (
-      <URQLProvider client={client}>
-        <Provider>
-          <div className="top-container">
-            <NavBar />
-            <Routes />
-          </div>
-          <Player />
-          <Modals />
-        </Provider>
-      </URQLProvider>
+      <Suspense fallback={<Spinner size="large" />}>
+        <URQLProvider client={client}>
+          <Provider>
+            <div className="top-container">
+              <NavBar />
+              <Routes />
+            </div>
+            <Player />
+            <Modals />
+          </Provider>
+        </URQLProvider>
+      </Suspense>
     );
   }
 }
