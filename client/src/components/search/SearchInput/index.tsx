@@ -5,62 +5,58 @@ import { navigate } from '@reach/router';
 import { SearchQuery } from '../../../queries';
 import './style.css';
 
-interface ISearchProps {
+interface Props {
   client: Client;
 }
-interface ISearchState {
-  query: string;
-}
 
-export class Search extends React.Component<ISearchProps, ISearchState> {
-  public input;
-  public state: ISearchState = { query: '' };
-  public componentDidMount() {
-    this.input.focus();
-  }
+function Search(props: Props) {
+  const { client } = props;
+  let inputEl = React.useRef(null);
+  const [inputQuery, setQuery] = React.useState('');
 
-  public render() {
-    return (
-      <div className="search">
-        <div className="search-input-info">
-          Search for an album, songs or playlists
-        </div>
-        <input
-          type="text"
-          name="searchQuery"
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-          placeholder="Start typing..."
-          ref={r => (this.input = r)}
-        />
-      </div>
-    );
-  }
-  private handleSearch = () => {
-    const { client } = this.props;
-    const { query: inputQuery } = this.state;
+  React.useEffect(() => {
+    if (inputEl.current == null) return;
+    // (inputEl).focus();
+  });
 
+  function handleSearch() {
     client
       .executeQuery(query(SearchQuery, { query: inputQuery }), true)
       .then((res: any) => {
         updateSearchResults(res.data.search);
         navigate('/search');
       });
-  };
-  private handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  }
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { target } = e;
     const { value } = target;
+    setQuery(value);
+  }
 
-    this.setState({
-      query: value,
-    });
-  };
-  private handleKeyPress = (e: any) => {
+  function handleKeyPress(e: any) {
     if (e.key === 'Enter') {
-      this.handleSearch();
+      handleSearch();
       e.target.blur();
     }
   };
+
+  return (
+    <div className="search">
+      <div className="search-input-info">
+        Search for an album, songs or playlists
+      </div>
+      <input
+        type="text"
+        name="searchQuery"
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        placeholder="Start typing..."
+        ref={inputEl}
+      />
+    </div>
+  );
 }
 
 export default ConnectHOC()(Search);
+

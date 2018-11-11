@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Routes } from '../../routing';
 import { Provider } from '../../store';
 import { Provider as URQLProvider, Client } from 'urql';
-import { NavBar, Player } from '../../components';
+import { NavBar, Player, Spinner } from '../../components';
 import { ModalsContainer as Modals } from '../';
 import { setTheme } from '../../store';
 import { updateThemeForStyle } from '../../helpers';
@@ -13,8 +13,8 @@ const client = new Client({
   url: `${window.location.origin}/graphql`,
 });
 
-export class AppContainer extends React.PureComponent {
-  public componentDidMount() {
+export function AppContainer() {
+  React.useEffect(() => {
     if (window && window.localStorage) {
       const theme = window.localStorage.getItem('wavves-theme');
 
@@ -23,19 +23,20 @@ export class AppContainer extends React.PureComponent {
         setTheme(theme);
       }
     }
-  }
-  public render() {
-    return (
-      <URQLProvider client={client}>
-        <Provider>
-          <div className="top-container">
-            <NavBar />
+  });
+
+  return (
+    <URQLProvider client={client}>
+      <Provider>
+        <div className="top-container">
+          <NavBar />
+          <React.Suspense fallback={<Spinner size="large" />}>
             <Routes />
-          </div>
-          <Player />
-          <Modals />
-        </Provider>
-      </URQLProvider>
-    );
-  }
+          </React.Suspense>
+        </div>
+        <Player />
+        <Modals />
+      </Provider>
+    </URQLProvider>
+  );
 }

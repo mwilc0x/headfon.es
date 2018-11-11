@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import './style.css';
 
 interface Props {
@@ -6,30 +6,19 @@ interface Props {
   src: string;
 }
 
-interface State {
-  visible: boolean;
-}
+function ImageLoader(props: Props) {
+  const [visible, setVisible] = React.useState(false);
+  const { className = '', src } = props;
+  const opacity = visible === true ? 1 : 0;
 
-class ImageLoader extends React.Component<Props, State> {
-  public state = { visible: false };
-  public render() {
-    const { className = '', src } = this.props;
-    const { visible } = this.state;
-    const opacity = visible === true ? 1 : 0;
-    return (
-      <img
-        onLoad={this.handleImageLoad}
-        className={`image-container ${className}`}
-        src={src}
-        style={{ opacity }}
-      />
-    );
-  }
-  private handleImageLoad = () => {
-    this.setState({
-      visible: true,
-    });
-  };
+  return (
+    <img
+      onLoad={() => setVisible(true)}
+      className={`image-container ${className}`}
+      src={src}
+      style={{ opacity }}
+    />
+  );
 }
 
 export default ImageLoader;

@@ -3,6 +3,7 @@ import { ConnectHOC, Client, query } from 'urql';
 import { IRouteProps } from '../../routing';
 import { Consumer, selectArtistViewing, setArtistViewing } from '../../store';
 import { ArtistTopTracks } from '../../components/artist';
+import { Spinner } from '../../components';
 import { ArtistQuery, ArtistBioQuery } from '../../queries';
 import './style.css';
 
@@ -27,31 +28,36 @@ export class ArtistPage extends React.PureComponent<Props, {}> {
   }
   public render() {
     const { id } = this.props;
-    return (
-      <Consumer select={[selectArtistViewing]}>
-        {(artistViewing: any) => {
-          const {
-            images: [{ url }],
-            name,
-            tracks,
-          } = artistViewing;
 
-          return (
-            <div className="artist-viewer">
-              <div className="main-view-container">
-                <div
-                  className="artist-viewer__header"
-                  style={{ backgroundImage: `url(${url})` }}
-                >
-                  <div className="header-image-test">test</div>
+    const Suspense = (React as any).Suspense;
+
+    return (
+      <Suspense maxDuration={1000} fallback={<Spinner size="large" />}>
+        <Consumer select={[selectArtistViewing]}>
+          {(artistViewing: any) => {
+            const {
+              images: [{ url }],
+              name,
+              tracks,
+            } = artistViewing;
+
+            return (
+              <div className="artist-viewer">
+                <div className="main-view-container">
+                  <div
+                    className="artist-viewer__header"
+                    style={{ backgroundImage: `url(${url})` }}
+                  >
+                    <div className="header-image-test">test</div>
+                  </div>
+                  <p>{name}</p>
+                  <ArtistTopTracks id={id} tracks={tracks} />
                 </div>
-                <p>{name}</p>
-                <ArtistTopTracks id={id} tracks={tracks} />
               </div>
-            </div>
-          );
-        }}
-      </Consumer>
+            );
+          }}
+        </Consumer>
+      </Suspense>
     );
   }
 }

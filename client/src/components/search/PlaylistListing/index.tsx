@@ -9,56 +9,44 @@ interface Props {
   playlist: Playlist;
 }
 
-interface State {
-  showPlayIcon: boolean;
-}
+function PlaylistListing(props: Props) {
+  const [showPlayIcon, setPlayIcon] = React.useState(false);
+  const { playlist } = props;
+  const { images, name } = playlist;
 
-class PlaylistListing extends React.PureComponent<Props, State> {
-  public state = { showPlayIcon: false };
-  public render() {
-    const { playlist } = this.props;
-    const { showPlayIcon } = this.state;
-
-    const { images, name } = playlist;
-    return (
-      <div className="playlist-listing">
-        <div
-          className="playlist-listing__wrapper"
-          onClick={this.navigateToPlaylist}
-          onMouseEnter={this.handleOnMouseEnter}
-          onMouseLeave={this.handleOnMouseLeave}
-        >
-          {showPlayIcon ? (
-            <PlayButton isEnabled={true} onClick={this.handlePlaylistPlay} />
-          ) : null}
-          <ImageLoader src={images[0].url} />
-        </div>
-
-        <p>{name}</p>
-      </div>
-    );
-  }
-  private navigateToPlaylist = () => {
-    const { playlist } = this.props;
+  function navigateToPlaylist() {
     const { id, owner = { id: '' } } = playlist;
     resetPlaylistViewing();
     navigate(`/playlist/${owner.id}/${id}`);
-  };
-  private handlePlaylistPlay = e => {
+  }
+  function handlePlaylistPlay(e) {
     e.stopPropagation();
-    const { playlist } = this.props;
     playAlbum(playlist);
-  };
-  private handleOnMouseEnter = e => {
-    this.setState({
-      showPlayIcon: true,
-    });
-  };
-  private handleOnMouseLeave = e => {
-    this.setState({
-      showPlayIcon: false,
-    });
-  };
+  }
+  function handleOnMouseEnter() {
+    setPlayIcon(true);
+  }
+  function handleOnMouseLeave() {
+    setPlayIcon(false);
+  }
+
+  return (
+    <div className="playlist-listing">
+      <div
+        className="playlist-listing__wrapper"
+        onClick={navigateToPlaylist}
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
+      >
+        {showPlayIcon ? (
+          <PlayButton isEnabled={true} onClick={handlePlaylistPlay} />
+        ) : null}
+        <ImageLoader src={images[0].url} />
+      </div>
+
+      <p>{name}</p>
+    </div>
+  );
 }
 
 export default PlaylistListing;

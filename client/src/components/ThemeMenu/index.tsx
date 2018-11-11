@@ -8,32 +8,31 @@ interface Props {
   selectedTheme: string
 };
 
-export default class ThemeMenu extends React.PureComponent<Props, {}> {
-  private options = themeOptions;
+function ThemeMenu(props: Props) {
+  const { selectedTheme } = props;
 
-  public render() {
-    const { selectedTheme } = this.props;
-    return (
-      <div className="theme-menu">
-        <h2>🎨 Theme Selector 🎨</h2>
-        <select onChange={this.handleThemeSelection}>
-          { this.options.map((option, i) => (
-            <option 
-              value={i} 
-              selected={selectedTheme.toLowerCase() === option.name.toLowerCase()}
-            >
-              {option.name}
-            </option>
-          ))}
-        </select>
-        <button onClick={hideHiddenMenu}>Close</button>
-      </div>
-    );
-  }
-
-  private handleThemeSelection = (e) => {
+  function handleThemeSelection(e) {
     const selectedTheme = themeOptions[e.target.value];
     setTheme(selectedTheme.name);
     updateThemeForStyle(selectedTheme.name);
   }
+
+  return (
+    <div className="theme-menu">
+      <h2>🎨 Theme Selector 🎨</h2>
+      <select onChange={handleThemeSelection}>
+        { themeOptions.map((option, i) => (
+          <option 
+            value={i} 
+            selected={selectedTheme.toLowerCase() === option.name.toLowerCase()}
+          >
+            {option.name}
+          </option>
+        ))}
+      </select>
+      <button onClick={hideHiddenMenu}>Close</button>
+    </div>
+  );
 }
+
+export default ThemeMenu;

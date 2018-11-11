@@ -5,11 +5,12 @@ interface Props {
   artists: object
 }
 
-export default class ArtistList extends React.PureComponent<Props, {}> {
-  public static defaultProps = { artists: {} }
-  public render() {
-    return (
-      <div style={{ color: 'yellow' }}>{JSON.stringify(this.props.artists)}</div>
-    )
-  }
+function ArtistList(props: Props) {
+  return (
+    <div style={{ color: 'yellow' }}>{JSON.stringify(props.artists)}</div>
+  );
 }
+
+ArtistList.defaultProps = { artists: {} };
+
+export default ArtistList;

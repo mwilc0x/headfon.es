@@ -7,26 +7,25 @@ interface Props {
   playlist: Playlist;
 }
 
-class PlaylistInfo extends React.PureComponent<Props, {}> {
-  public render() {
-    const { playlist } = this.props;
-    const {
-      images: [{ url: playlistUrl }],
-      name,
-    } = playlist;
-
-    return (
-      <>
-        <ImageLoader className="playlist-cover" src={playlistUrl} />
-        <span className="playlist-name">{name}</span>
-        <button onClick={this.playPlaylist}>Play Playlist</button>
-      </>
-    );
-  }
-  private playPlaylist = () => {
-    const { playlist } = this.props;
+function PlaylistInfo(props: Props) {
+  const { playlist } = props;
+  function playPlaylist() {
     playAlbum(playlist);
-  };
+  }
+
+  const {
+    images: [{ url: playlistUrl }],
+    name,
+  } = playlist;
+
+  return (
+    <>
+      <ImageLoader className="playlist-cover" src={playlistUrl} />
+      <span className="playlist-name">{name}</span>
+      <button onClick={playPlaylist}>Play Playlist</button>
+    </>
+  );
+
 }
 
 export default PlaylistInfo;

@@ -1,45 +1,29 @@
 import * as React from 'react';
 import { Router } from '@reach/router';
-import Loadable from 'react-loadable';
-import { Loading } from '../components';
 import { Dashboard, Login } from '../pages';
+import { Spinner } from '../components';
 import PrivateRoute from './PrivateRoute';
 
-const AsyncAlbum = Loadable({
-  delay: 30000,
-  loader: () => import('../pages/Album'),
-  loading: Loading,
-});
+const AsyncAlbum = React.lazy( () => import('../pages/Album'));
+const AsyncArtist = React.lazy( () => import('../pages/Artist'));
+const AsyncPlaylist = React.lazy( () => import('../pages/Playlist'));
+const AsyncSearchResults = React.lazy( () => import('../pages/SearchResults'));
 
-const AsyncArtist = Loadable({
-  delay: 30000,
-  loader: () => import('../pages/Artist'),
-  loading: Loading,
-});
-
-const AsyncPlaylist = Loadable({
-  delay: 30000,
-  loader: () => import('../pages/Playlist'),
-  loading: Loading,
-});
-
-const AsyncSearchResults = Loadable({
-  delay: 30000,
-  loader: () => import('../pages/SearchResults'),
-  loading: Loading,
-});
+const Suspense = (React as any).Suspense;
 
 export default class Routes extends React.Component<{}, {}> {
   public render() {
     return (
-      <Router>
-        <AsyncAlbum path="/album/:id" />
-        <AsyncArtist path="/artist/:id" />
-        <AsyncPlaylist path="/playlist/:userId/:playlistId" />
-        <PrivateRoute path="/" component={Dashboard} />
-        <Login path="/login" />
-        <AsyncSearchResults path="/search" />
-      </Router>
+      <Suspense fallback={<Spinner />}>
+        <Router>
+            <AsyncAlbum path="/album/:id" />
+            <AsyncArtist path="/artist/:id" />
+            <AsyncPlaylist path="/playlist/:userId/:playlistId" />
+            <PrivateRoute path="/" component={Dashboard} />
+            <Login path="/login" />
+            <AsyncSearchResults path="/search" />
+        </Router>
+      </Suspense>
     );
   }
 }

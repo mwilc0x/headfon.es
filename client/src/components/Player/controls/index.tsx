@@ -24,40 +24,37 @@ interface Props {
   paused: boolean
 }
 
-class Controls extends React.PureComponent<Props, {}> {
-  public render() {
-    const { context, controls, paused } = this.props;    
-    const { duration, next_tracks = [], previous_tracks = [], trackProgress, uri } = context;
+function Controls(props: Props) {
+  const { context, controls, paused } = props;    
+  const { duration, next_tracks = [], previous_tracks = [], trackProgress, uri } = context;
 
-    return (
-      <div className="player-controls-container">
-        <div className="player-controls">
-          <PrevButton 
-            isEnabled={!!previous_tracks.length && !!uri}
-            onClick={controls.previousTrack}
-          />
-          
-          {
-            paused 
-              ? <PlayButton isEnabled={true} onClick={controls.resume} /> 
-              : <PauseButton onClick={controls.pause} />
-          }
+  return (
+    <div className="player-controls-container">
+      <div className="player-controls">
+        <PrevButton 
+          isEnabled={!!previous_tracks.length && !!uri}
+          onClick={controls.previousTrack}
+        />
+        
+        {
+          paused 
+            ? <PlayButton isEnabled={true} onClick={controls.resume} /> 
+            : <PauseButton onClick={controls.pause} />
+        }
 
-          <NextButton
-            isEnabled={!!next_tracks.length && !!uri}
-            onClick={controls.nextTrack}
-          />
-        </div>
-
-        <ProgressBar
-          totalTime={duration}
-          currentTime={trackProgress}
-          isSeekable={false}
-          // onSeek={() => { console.log('seek!')}}
+        <NextButton
+          isEnabled={!!next_tracks.length && !!uri}
+          onClick={controls.nextTrack}
         />
       </div>
-    );
-  }
+
+      <ProgressBar
+        totalTime={duration}
+        currentTime={trackProgress}
+        isSeekable={false}
+      />
+    </div>
+  );
 }
 
 export default Controls;

@@ -9,52 +9,41 @@ interface Props {
   album: Album;
 }
 
-interface State {
-  showPlayIcon: boolean;
-}
+function AlbumListing(props: Props) {
+  const [showPlayIcon, setShowPlayIcon] = React.useState(false);
+  const { album } = props;
+  const { images } = album;
 
-class AlbumListing extends React.Component<Props, State> {
-  public state = { showPlayIcon: false };
-  public render() {
-    const { album } = this.props;
-    const { showPlayIcon } = this.state;
-
-    const { images } = album;
-    return (
-      <div
-        className="album-listing"
-        onClick={this.navigateToAlbum}
-        onMouseEnter={this.handleOnMouseEnter}
-        onMouseLeave={this.handleOnMouseLeave}
-      >
-        {showPlayIcon ? (
-          <PlayButton isEnabled={true} onClick={this.handleAlbumPlay} />
-        ) : null}
-        <ImageLoader src={images[0].url} />
-      </div>
-    );
-  }
-  private navigateToAlbum = () => {
-    const { album } = this.props;
+  function navigateToAlbum() {
     const { id } = album;
     resetAlbumViewing();
     navigate(`/album/${id}`);
-  };
-  private handleAlbumPlay = e => {
+  }
+  function handleAlbumPlay(e) {
     e.stopPropagation();
-    const { album } = this.props;
     playAlbum(album);
+  }
+  function handleOnMouseEnter() {
+    setShowPlayIcon(true);
+  }
+
+  function handleOnMouseLeave() {
+    setShowPlayIcon(false);
   };
-  private handleOnMouseEnter = e => {
-    this.setState({
-      showPlayIcon: true,
-    });
-  };
-  private handleOnMouseLeave = e => {
-    this.setState({
-      showPlayIcon: false,
-    });
-  };
+
+  return (
+    <div
+      className="album-listing"
+      onClick={navigateToAlbum}
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
+    >
+      {showPlayIcon ? (
+        <PlayButton isEnabled={true} onClick={handleAlbumPlay} />
+      ) : null}
+      <ImageLoader src={images[0].url} />
+    </div>
+  );
 }
 
 export default AlbumListing;

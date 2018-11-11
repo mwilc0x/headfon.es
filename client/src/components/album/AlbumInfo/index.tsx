@@ -9,47 +9,46 @@ interface Props {
   album: Album;
 }
 
-class AlbumInfo extends React.PureComponent<Props, {}> {
-  public render() {
-    const { album } = this.props;
-    const {
-      artists: [{ name: artistName }],
-      images: [{ url: albumUrl }],
-      name,
-      release_date,
-      tracks,
-    } = album;
-    const tracksLength =
-      tracks.items && tracks.items.length
-        ? ` • ${tracks.items.length} Songs`
-        : '';
+function AlbumInfo(props: Props) {
+  const { album } = props;
+  const {
+    artists: [{ name: artistName }],
+    images: [{ url: albumUrl }],
+    name,
+    release_date,
+    tracks,
+  } = album;
+  const tracksLength =
+    tracks.items && tracks.items.length
+      ? ` • ${tracks.items.length} Songs`
+      : '';
 
-    return (
-      <>
-        <ImageLoader className="album-cover" src={albumUrl} />
-        <span className="album-name">{name}</span>
-        <span className="album-artist" onClick={this.goToArtist}>
-          {artistName}
-        </span>
-        <span className="album-year">
-          {getYear(release_date)}
-          {tracksLength}
-        </span>
-        <button onClick={this.playAlbum}>Play Album</button>
-      </>
-    );
-  }
-  private playAlbum = () => {
-    const { album } = this.props;
+  return (
+    <>
+      <ImageLoader className="album-cover" src={albumUrl} />
+      <span className="album-name">{name}</span>
+      <span className="album-artist" onClick={goToArtist}>
+        {artistName}
+      </span>
+      <span className="album-year">
+        {getYear(release_date)}
+        {tracksLength}
+      </span>
+      <button onClick={handlePlayAlbum}>Play Album</button>
+    </>
+  );
+
+  function handlePlayAlbum() {
+    const { album } = props;
     playAlbum(album);
-  };
-  private goToArtist = () => {
-    const { album } = this.props;
+  }
+  function goToArtist() {
+    const { album } = props;
     const {
       artists: [{ id }],
     } = album;
     navigate(`/artist/${id}`);
-  };
+  }
 }
 
 export default AlbumInfo;
