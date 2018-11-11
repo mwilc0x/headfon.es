@@ -6,20 +6,21 @@ interface Props {
   playlists: PlaylistPaging
 }
 
-export default class PlaylistList extends React.PureComponent<Props, {}> {
-  public static defaultProps = { playlists: { items: [] } }
-  public render() {
-    const { playlists: { items }} = this.props;
-    return (
-      <div className="playlist-list">
-        {!!items.length && <ListHeader>Playlists</ListHeader> }
+function PlaylistList(props: Props) {
+  const { playlists: { items }} = props;
+  return (
+    <div className="playlist-list">
+      {!!items.length && <ListHeader>Playlists</ListHeader> }
 
-        <div className="playlist-list__grid">
-          { items.slice(0, 5).map((playlist: Playlist, i: number) => (
-            <PlaylistListing playlist={playlist} key={i} />
-          ))}
-        </div>
+      <div className="playlist-list__grid">
+        { items.slice(0, 5).map((playlist: Playlist, i: number) => (
+          <PlaylistListing playlist={playlist} key={i} />
+        ))}
       </div>
-    )
-  }
+    </div>
+  );
 }
+
+PlaylistList.defaultProps = { playlists: { items: [] } };
+
+export default PlaylistList;

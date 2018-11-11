@@ -8,15 +8,13 @@ import { setTheme } from '../../store';
 import { updateThemeForStyle } from '../../helpers';
 import './style.css';
 
-const Suspense = (React as any).Suspense
-
 const client = new Client({
   fetchOptions: { credentials: 'same-origin' },
   url: `${window.location.origin}/graphql`,
 });
 
-export class AppContainer extends React.PureComponent {
-  public componentDidMount() {
+export function AppContainer() {
+  React.useEffect(() => {
     if (window && window.localStorage) {
       const theme = window.localStorage.getItem('wavves-theme');
 
@@ -25,21 +23,20 @@ export class AppContainer extends React.PureComponent {
         setTheme(theme);
       }
     }
-  }
-  public render() {
-    return (
-      <Suspense fallback={<Spinner size="large" />}>
-        <URQLProvider client={client}>
-          <Provider>
-            <div className="top-container">
-              <NavBar />
-              <Routes />
-            </div>
-            <Player />
-            <Modals />
-          </Provider>
-        </URQLProvider>
-      </Suspense>
-    );
-  }
+  });
+
+  return (
+    <URQLProvider client={client}>
+      <Provider>
+        <div className="top-container">
+          <NavBar />
+          <React.Suspense fallback={<Spinner size="large" />}>
+            <Routes />
+          </React.Suspense>
+        </div>
+        <Player />
+        <Modals />
+      </Provider>
+    </URQLProvider>
+  );
 }

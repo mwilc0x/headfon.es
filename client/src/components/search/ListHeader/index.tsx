@@ -1,8 +1,9 @@
 import * as React from 'react';
 import './style.css';
 
-export default class ListHeader extends React.PureComponent {
-  public render() {
-    return <p className="list-header">{this.props.children}</p>;
-  }
+function ListHeader(props) {
+  return <p className="list-header">{props.children}</p>;
 }
+
+export default ListHeader;
+

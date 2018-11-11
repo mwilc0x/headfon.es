@@ -6,20 +6,21 @@ interface Props {
   albums: AlbumPaging
 }
 
-export default class AlbumList extends React.PureComponent<Props, {}> {
-  public static defaultProps = { albums: { items: [] } }
-  public render() {
-    const { albums: { items }} = this.props;
-    return (
-      <div className="album-list">
-        { !!items.length && <ListHeader>Albums</ListHeader> }
+function AlbumList(props: Props) {
+  const { albums: { items }} = props;
+  return (
+    <div className="album-list">
+      { !!items.length && <ListHeader>Albums</ListHeader> }
 
-        <div className="album-list__grid">
-          { items.slice(0, 5).map((album: Album, i: number) => (
-            <AlbumListing album={album} key={i} />
-          ))}
-        </div>
+      <div className="album-list__grid">
+        { items.slice(0, 5).map((album: Album, i: number) => (
+          <AlbumListing album={album} key={i} />
+        ))}
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+AlbumList.defaultProps = { albums: { items: [] } };
+
+export default AlbumList;

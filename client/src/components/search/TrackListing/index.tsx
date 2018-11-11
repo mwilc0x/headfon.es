@@ -7,30 +7,33 @@ interface Props {
   track: Track
 }
 
-export default class TrackListing extends React.PureComponent<Props, {}> {
-  public static defaultProps = { track: {} }
-  public render() {
-    const { track } = this.props;
-    const { 
-      album: { name: albumName },
-      artists: [{ name: artistName }],
-      duration_ms,
-      name
-    } = track;
+function TrackListing(props: Props) {
+  const { track } = props;
 
-    return (
-      <div className="track-listing" onClick={this.handlePlayingTrack}>
-        <div className="track-info">
-          <span className="track-info__name">{name}</span>
-          <span className="track-info__artist">
-            {`${artistName} • ${albumName}`}
-          </span>
-        </div>
-        <span>{millisToMinutesAndSeconds(duration_ms)}</span>
+  function handlePlayingTrack() {
+    playTrack(track);
+  }
+
+  const { 
+    album: { name: albumName },
+    artists: [{ name: artistName }],
+    duration_ms,
+    name
+  } = track;
+
+  return (
+    <div className="track-listing" onClick={handlePlayingTrack}>
+      <div className="track-info">
+        <span className="track-info__name">{name}</span>
+        <span className="track-info__artist">
+          {`${artistName} • ${albumName}`}
+        </span>
       </div>
-    )
-  }
-  private handlePlayingTrack = () => {
-    playTrack(this.props.track);
-  }
+      <span>{millisToMinutesAndSeconds(duration_ms)}</span>
+    </div>
+  );
 }
+
+TrackListing.defaultProps = { track: {} };
+
+export default TrackListing;

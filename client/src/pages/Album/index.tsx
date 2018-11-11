@@ -10,6 +10,7 @@ import {
   selectTrackDetails,
 } from '../../store';
 import { AlbumInfo, Track } from '../../components/album';
+import { Spinner } from '../../components';
 import { AlbumQuery } from '../../queries';
 import './style.css';
 
@@ -30,47 +31,51 @@ export class Album extends React.PureComponent<Props, {}> {
     resetAlbumViewing();
   }
   public render() {
+    const Suspense = (React as any).Suspense;
+
     return (
-      <Consumer
-        select={[
-          selectAlbumViewing,
-          selectAlbumViewingLoaded,
-          selectTrackDetails,
-        ]}
-      >
-        {(albumViewing: any, albumViewingLoaded: any, trackDetails) => {
-          const { tracks } = albumViewing;
-          const {
-            track_window: {
-              current_track: { uri },
-            },
-          } = trackDetails;
+      <Suspense maxDuration={100} fallback={<Spinner size="large" />}>
+        <Consumer
+          select={[
+            selectAlbumViewing,
+            selectAlbumViewingLoaded,
+            selectTrackDetails,
+          ]}
+        >
+          {(albumViewing: any, albumViewingLoaded: any, trackDetails) => {
+            const { tracks } = albumViewing;
+            const {
+              track_window: {
+                current_track: { uri },
+              },
+            } = trackDetails;
 
-          if (albumViewingLoaded === false) {
-            return null;
-          }
+            if (albumViewingLoaded === false) {
+              return null;
+            }
 
-          return (
-            <div className="album-viewer">
-              <div className="album-viewer__left">
-                <AlbumInfo album={albumViewing} />
+            return (
+              <div className="album-viewer">
+                <div className="album-viewer__left">
+                  <AlbumInfo album={albumViewing} />
+                </div>
+
+                <div className="album-viewer__right">
+                  <ol className="album-track-list">
+                    {tracks.items.map((track, i) => (
+                      <Track
+                        isPlaying={track.uri === uri}
+                        key={i}
+                        track={track}
+                      />
+                    ))}
+                  </ol>
+                </div>
               </div>
-
-              <div className="album-viewer__right">
-                <ol className="album-track-list">
-                  {tracks.items.map((track, i) => (
-                    <Track
-                      isPlaying={track.uri === uri}
-                      key={i}
-                      track={track}
-                    />
-                  ))}
-                </ol>
-              </div>
-            </div>
-          );
-        }}
-      </Consumer>
+            );
+          }}
+        </Consumer>
+      </Suspense>
     );
   }
 }
