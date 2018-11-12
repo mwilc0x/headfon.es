@@ -1,61 +1,44 @@
 import * as React from 'react';
-import { ConnectHOC, Client, query } from 'urql';
+import { query } from 'urql';
+import { unstable_createResource as createResource} from 'react-cache';
+import { client } from '../../helpers';
 import { IRouteProps } from '../../routing';
 import { PlaylistInfo, Track } from '../../components/playlist';
-import {
-  Consumer,
-  selectPlaylistViewing,
-  selectTrackDetails,
-  setPlaylistViewing,
-} from '../../store';
 import { PlaylistQuery } from '../../queries';
 import './style.css';
 
 interface Props extends IRouteProps {
-  userId: string;
-  playlistId: string;
-  client: Client;
+  userId?: string;
+  playlistId?: string;
 }
 
-export class Playlist extends React.PureComponent<Props, {}> {
-  public componentDidMount() {
-    const { client, userId, playlistId } = this.props;
-
-    client
-      .executeQuery(query(PlaylistQuery, { userId, playlistId }), true)
-      .then((res: any) => {
-        setPlaylistViewing(res.data.playlist);
-      });
+const PlaylistDataResource = createResource(
+  (input) => { 
+    const { userId, playlistId } = JSON.parse(input);
+    return client.executeQuery(query(PlaylistQuery, { userId, playlistId }), true)
   }
-  public render() {
+);
+
+export function Playlist(props: Props) {
+    const { userId, playlistId } = props;
+    const { data } = PlaylistDataResource.read(JSON.stringify({ userId, playlistId }));
+    const { playlist } = data;
+    const { tracks } = playlist;
     return (
-      <Consumer select={[selectPlaylistViewing, selectTrackDetails]}>
-        {(playlistViewing: any, trackDetails) => {
-          const { tracks } = playlistViewing;
-          const {
-            track_window: {
-              current_track: { uri },
-            },
-          } = trackDetails;
-          return (
-            <div className="playlist-viewer">
-              <div className="playlist-viewer__left">
-                <PlaylistInfo playlist={playlistViewing} />
-              </div>
+      <div className="playlist-viewer">
+        <div className="playlist-viewer__left">
+          <PlaylistInfo playlist={playlist} />
+        </div>
 
-              <div className="playlist-viewer__right">
-                <ol className="playlist-track-list">
-                  {tracks.items.map(({ track }, i) => (
-                    <Track isPlaying={track.uri === uri} track={track} />
-                  ))}
-                </ol>
-              </div>
-            </div>
-          );
-        }}
-      </Consumer>
+        <div className="playlist-viewer__right">
+          <ol className="playlist-track-list">
+            {tracks.items.map(({ track }, i) => (
+              <Track isPlaying={false} track={track} />
+            ))}
+          </ol>
+        </div>
+      </div>
     );
-  }
 }
 
-export default ConnectHOC()(Playlist);
+export default Playlist;

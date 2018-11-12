@@ -27,7 +27,7 @@ interface IAppState {
   user: object | null;
 }
 
-const defaultState = {
+export const defaultState = {
   albumViewing: {
     album_type: '',
     artists: [{ name: '' }],

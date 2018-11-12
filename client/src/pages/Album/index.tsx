@@ -1,83 +1,48 @@
 import * as React from 'react';
-import { ConnectHOC, Client, query } from 'urql';
+import { query } from 'urql';
+import { unstable_createResource as createResource} from 'react-cache';
+import { client } from '../../helpers';
 import { IRouteProps } from '../../routing';
-import {
-  Consumer,
-  resetAlbumViewing,
-  selectAlbumViewing,
-  setAlbumViewing,
-  selectAlbumViewingLoaded,
-  selectTrackDetails,
-} from '../../store';
 import { AlbumInfo, Track } from '../../components/album';
 import { Spinner } from '../../components';
 import { AlbumQuery } from '../../queries';
 import './style.css';
 
 interface Props extends IRouteProps {
-  id: string;
-  client: Client;
+  id?: string;
 }
 
-export class Album extends React.PureComponent<Props, {}> {
-  public componentDidMount() {
-    const { client, id } = this.props;
+const AlbumDataResource = createResource(
+  (id) => client.executeQuery(query(AlbumQuery, { id }), true)
+);
 
-    client.executeQuery(query(AlbumQuery, { id }), true).then((res: any) => {
-      setAlbumViewing(res.data.album);
-    });
-  }
-  public componentWillUnmount() {
-    resetAlbumViewing();
-  }
-  public render() {
-    const Suspense = (React as any).Suspense;
+export function Album(props: Props) {
+  const { id } = props;
+  const { data } = AlbumDataResource.read(id);
+  const { album } = data;
+  const { tracks } = album;
 
-    return (
-      <Suspense maxDuration={100} fallback={<Spinner size="large" />}>
-        <Consumer
-          select={[
-            selectAlbumViewing,
-            selectAlbumViewingLoaded,
-            selectTrackDetails,
-          ]}
-        >
-          {(albumViewing: any, albumViewingLoaded: any, trackDetails) => {
-            const { tracks } = albumViewing;
-            const {
-              track_window: {
-                current_track: { uri },
-              },
-            } = trackDetails;
+  return (
+    <React.Suspense fallback={<Spinner size="large" />}>
+      <div className="album-viewer">
+        <div className="album-viewer__left">
+          <AlbumInfo album={album} />
+        </div>
 
-            if (albumViewingLoaded === false) {
-              return null;
-            }
-
-            return (
-              <div className="album-viewer">
-                <div className="album-viewer__left">
-                  <AlbumInfo album={albumViewing} />
-                </div>
-
-                <div className="album-viewer__right">
-                  <ol className="album-track-list">
-                    {tracks.items.map((track, i) => (
-                      <Track
-                        isPlaying={track.uri === uri}
-                        key={i}
-                        track={track}
-                      />
-                    ))}
-                  </ol>
-                </div>
-              </div>
-            );
-          }}
-        </Consumer>
-      </Suspense>
-    );
-  }
+        <div className="album-viewer__right">
+          <ol className="album-track-list">
+            {(tracks.items || []).map((track, i) => (
+              <Track
+                isPlaying={false}
+                key={i}
+                track={track}
+              />
+            ))}
+          </ol>
+        </div>
+      </div>
+    </React.Suspense>
+  );
 }
 
-export default ConnectHOC()(Album);
+export default Album;

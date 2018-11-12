@@ -18,26 +18,6 @@ export function PlayerControlsContainer(props: Props) {
   let [trackProgress, setTrackProgress] = React.useState(0);
   let progressCounter;
 
-  const prevSongRef = React.useRef(props);
-
-  React.useEffect(() => {
-    const previousSong = prevSongRef.current.trackDetails.track_window.current_track.uri;
-    const currentSong = props.trackDetails.track_window.current_track.uri;
-
-    if (previousSong !== currentSong) {
-      clearInterval(progressCounter);
-      startTrackProgress();
-    }
-
-    prevSongRef.current = props;
-  });
-
-  function startTrackProgress() {
-      setTrackProgress(0);
-      progressCounter = setInterval(() => {
-        setTrackProgress(++trackProgress);
-      }, 1000);
-  }
   const { controls, handleTrackClick, trackDetails } = props;
   const { context, duration, paused, track_window } = trackDetails;
   const { current_track, next_tracks, previous_tracks } = track_window;
@@ -55,6 +35,29 @@ export function PlayerControlsContainer(props: Props) {
     trackProgress,
     uri
   };
+
+  React.useEffect(() => {
+    clearInterval(progressCounter);
+    startTrackProgress();
+
+    return () => {
+      clearInterval(progressCounter);
+    };
+  }, [current_track.uri]);
+
+  function startTrackProgress() {
+      let progress = 0;
+      setTrackProgress(progress);
+      startProgressCounter(progress);
+  }
+
+  function startProgressCounter(progress) {
+    setTimeout(() => {
+      progressCounter = setInterval(() => {
+        setTrackProgress(++progress);
+      }, 1000);
+    })
+  }
 
   return (
     <footer className="now-playing-container">
