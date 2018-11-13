@@ -23,26 +23,28 @@ export function Album(props: Props) {
   const { tracks } = album;
 
   return (
-    <React.Suspense fallback={<Spinner size="large" />}>
-      <div className="album-viewer">
-        <div className="album-viewer__left">
-          <AlbumInfo album={album} />
-        </div>
-
-        <div className="album-viewer__right">
-          <ol className="album-track-list">
-            {(tracks.items || []).map((track, i) => (
-              <Track
-                isPlaying={false}
-                key={i}
-                track={track}
-              />
-            ))}
-          </ol>
-        </div>
+    <div className="album-viewer">
+      <div className="album-viewer__left">
+        <AlbumInfo album={album} />
       </div>
-    </React.Suspense>
+
+      <div className="album-viewer__right">
+        <ol className="album-track-list">
+          {(tracks.items || []).map((track, i) => (
+            <Track
+              isPlaying={false}
+              key={i}
+              track={track}
+            />
+          ))}
+        </ol>
+      </div>
+    </div>
   );
 }
 
-export default Album;
+export default (props: Props) => (
+  <React.Suspense fallback={<Spinner size="large" />}>
+    <Album {...props} />
+  </React.Suspense>
+);

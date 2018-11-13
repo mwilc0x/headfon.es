@@ -1,4 +1,5 @@
 import React from 'react';
+import { Img } from 'the-platform';
 import './style.css';
 
 interface Props {
@@ -7,17 +8,14 @@ interface Props {
 }
 
 function ImageLoader(props: Props) {
-  const [visible, setVisible] = React.useState(false);
-  const { className = '', src } = props;
-  const opacity = visible === true ? 1 : 0;
-
+  const { className, src } = props;
   return (
-    <img
-      onLoad={() => setVisible(true)}
-      className={`image-container ${className}`}
-      src={src}
-      style={{ opacity }}
-    />
+    <React.Suspense fallback={'Loading...'}>
+        <Img
+          className={`image-container ${className}`}
+          src={src}
+        />
+    </React.Suspense>
   );
 }
 

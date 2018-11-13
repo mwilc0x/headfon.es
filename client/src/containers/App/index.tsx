@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Routes } from '../../routing';
 import { Provider } from '../../store';
 import { Provider as URQLProvider, Client } from 'urql';
-import { NavBar, Player, Spinner } from '../../components';
+import { NavBar, Player } from '../../components';
 import { ModalsContainer as Modals } from '../';
 import { setTheme } from '../../store';
 import { updateThemeForStyle } from '../../helpers';
@@ -30,9 +30,7 @@ export function AppContainer() {
       <Provider>
         <div className="top-container">
           <NavBar />
-          <React.Suspense fallback={<Spinner size="large" />}>
-            <Routes />
-          </React.Suspense>
+          <Routes />
         </div>
         <Player />
         <Modals />

@@ -1,16 +1,11 @@
 import * as React from 'react';
-import { ConnectHOC, Client, query } from 'urql';
-import { updateSearchResults } from '../../../store';
+import { ConnectHOC } from 'urql';
 import { navigate } from '@reach/router';
-import { SearchQuery } from '../../../queries';
 import './style.css';
 
-interface Props {
-  client: Client;
-}
+interface Props {}
 
 function Search(props: Props) {
-  const { client } = props;
   let inputEl = React.useRef(null);
   const [inputQuery, setQuery] = React.useState('');
 
@@ -20,12 +15,7 @@ function Search(props: Props) {
   });
 
   function handleSearch() {
-    client
-      .executeQuery(query(SearchQuery, { query: inputQuery }), true)
-      .then((res: any) => {
-        updateSearchResults(res.data.search);
-        navigate('/search');
-      });
+      navigate(`/search/results/${inputQuery}`);
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -42,7 +32,7 @@ function Search(props: Props) {
   };
 
   return (
-    <div className="search">
+    <div className="search-input">
       <div className="search-input-info">
         Search for an album, songs or playlists
       </div>

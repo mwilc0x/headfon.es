@@ -1,6 +1,9 @@
 .Spinner {
     animation: rotate 1.3s linear infinite;
-  
+  }
+
+  .SpinnerContainer {
+    color: var(--primary);
   }
   
   .SpinnerContainer-large {

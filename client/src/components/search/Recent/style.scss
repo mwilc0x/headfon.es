@@ -1,0 +1,15 @@
+@import 'mixins.scss';
+
+.recent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1em !important;
+
+    header {
+        text-transform: uppercase;
+        color: var(--primary);
+        font-size: 17px;
+        font-weight: bold;
+    }
+}

@@ -8,6 +8,6 @@ interface DashboardProps {
 
 export class Dashboard extends React.PureComponent<DashboardProps, {}> {
   public render() {
-    return <Redirect noThrow={true} to="/search" />;
+    return <Redirect noThrow={true} to="/search/recent" />;
   }
 }
