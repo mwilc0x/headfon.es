@@ -6,7 +6,6 @@ import {
   PlaylistListing,
   SearchInput,
   SearchRecent,
-  SearchResults,
   TrackList,
   TrackListing,
 } from './search';
@@ -33,7 +32,6 @@ export {
   PlaylistListing,
   SearchInput,
   SearchRecent,
-  SearchResults,
   Spinner,
   ThemeMenu,
   TrackList,

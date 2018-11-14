@@ -2,7 +2,7 @@ import * as React from 'react';
 import { navigate } from '@reach/router';
 import { PlayButton } from 'react-player-controls';
 import { ImageLoader } from '../../';
-import { playAlbum, resetAlbumViewing } from '../../../store';
+import { playAlbum } from '../../../store';
 import './style.css';
 
 interface Props {
@@ -16,7 +16,6 @@ function AlbumListing(props: Props) {
 
   function navigateToAlbum() {
     const { id } = album;
-    resetAlbumViewing();
     navigate(`/album/${id}`);
   }
   function handleAlbumPlay(e) {

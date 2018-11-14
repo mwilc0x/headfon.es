@@ -5,7 +5,6 @@ import ListHeader from './ListHeader';
 import PlaylistList from './PlaylistList';
 import PlaylistListing from './PlaylistListing';
 import SearchRecent from './Recent';
-import SearchResults from './Results';
 import SearchInput from './SearchInput';
 import TrackList from './TrackList';
 import TrackListing from './TrackListing';
@@ -18,7 +17,6 @@ export {
   PlaylistList,
   PlaylistListing,
   SearchRecent,
-  SearchResults,
   SearchInput,
   TrackList,
   TrackListing

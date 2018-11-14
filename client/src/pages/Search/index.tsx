@@ -4,9 +4,10 @@ import { IRouteProps } from '../../routing';
 import {
   SearchInput,
   SearchRecent,
-  SearchResults
 } from '../../components';
 import './style.css';
+
+const SearchResults = React.lazy(() => import('../../components/search/Results'));
 
 interface Props extends IRouteProps {}
 

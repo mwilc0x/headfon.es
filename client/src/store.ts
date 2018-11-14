@@ -4,20 +4,12 @@ export interface SearchGroup {
   items: object[];
 }
 
-export interface SearchResults {
-  albums: AlbumPaging;
-  playlists: PlaylistPaging;
-  tracks: TrackPaging;
-}
-
 interface IAppState {
-  albumViewing: Album;
   albumViewingLoaded: boolean;
   artistViewing: ArtistPage;
   authorized: boolean;
   currentPlayingTrack: object | null;
   playlistViewing: Playlist;
-  searchResults: SearchResults;
   searchResultsLoaded: boolean;
   sessionEnded: boolean;
   showHiddenMenu: boolean;
@@ -28,17 +20,6 @@ interface IAppState {
 }
 
 export const defaultState = {
-  albumViewing: {
-    album_type: '',
-    artists: [{ name: '' }],
-    images: [{ url: '' }],
-    name: '',
-    release_date: '',
-    tracks: {
-      items: [],
-    },
-    uri: '',
-  },
   artistViewing: {
     images: [{ url: '' }],
     name: '',
@@ -52,12 +33,6 @@ export const defaultState = {
       items: [],
     },
     uri: '',
-  },
-  searchResults: {
-    albums: { items: [] },
-    artists: { items: [] },
-    playlists: { items: [] },
-    tracks: { items: [] },
   },
   theme: 'dark',
   trackDetails: {
@@ -81,13 +56,11 @@ export const defaultState = {
 };
 
 const appState: IAppState = {
-  albumViewing: defaultState.albumViewing,
   albumViewingLoaded: false,
   artistViewing: defaultState.artistViewing,
   authorized: false,
   currentPlayingTrack: null,
   playlistViewing: defaultState.playlistViewing,
-  searchResults: defaultState.searchResults,
   searchResultsLoaded: false,
   sessionEnded: false,
   showHiddenMenu: false,
@@ -123,21 +96,6 @@ export const setUser = (user: object) =>
     draft.user = user;
   });
 
-export const updateSearchResults = (results: any) => {
-  clearSearchResults();
-
-  return mutate(draft => {
-    draft.searchResults = results;
-    draft.searchResultsLoaded = true;
-  });
-};
-
-export const clearSearchResults = () =>
-  mutate(draft => {
-    draft.searchResults = defaultState.searchResults;
-    draft.searchResultsLoaded = false;
-  });
-
 export const showPlayer = () =>
   mutate(draft => {
     draft.showPlayer = true;
@@ -166,17 +124,6 @@ export const setTrackDetails = (trackDetails: any) =>
     } else {
       draft.trackDetails = trackDetails;
     }
-  });
-
-export const setAlbumViewing = (album: any) =>
-  mutate(draft => {
-    draft.albumViewing = album;
-    draft.albumViewingLoaded = true;
-  });
-export const resetAlbumViewing = () =>
-  mutate(draft => {
-    draft.albumViewing = defaultState.albumViewing;
-    draft.albumViewingLoaded = false;
   });
 
 export const setArtistViewing = (artist: any) =>
@@ -237,15 +184,6 @@ export const selectAuthorized = createSelector(selectAuthorizedFn);
 const selectShowPlayerFn: any = (state: IAppState) => state.showPlayer;
 export const selectShowPlayer = createSelector(selectShowPlayerFn);
 
-const selectSearchResultsFn: any = (state: IAppState) => state.searchResults;
-export const selectSearchResults = createSelector(selectSearchResultsFn);
-
-const selectSearchResultsLoadedFn: any = (state: IAppState) =>
-  state.searchResultsLoaded;
-export const selectSearchResultsLoaded = createSelector(
-  selectSearchResultsLoadedFn
-);
-
 const selectCurrentPlayingTrackFn: any = (state: IAppState) =>
   state.currentPlayingTrack;
 export const selectCurrentPlayingTrack = createSelector(
@@ -254,15 +192,6 @@ export const selectCurrentPlayingTrack = createSelector(
 
 const selectTrackDetailsFn: any = (state: IAppState) => state.trackDetails;
 export const selectTrackDetails = createSelector(selectTrackDetailsFn);
-
-const selectAlbumViewingFn: any = (state: IAppState) => state.albumViewing;
-export const selectAlbumViewing = createSelector(selectAlbumViewingFn);
-
-const selectAlbumViewingLoadedFn: any = (state: IAppState) =>
-  state.albumViewingLoaded;
-export const selectAlbumViewingLoaded = createSelector(
-  selectAlbumViewingLoadedFn
-);
 
 const selectArtistViewingFn: any = (state: IAppState) => state.artistViewing;
 export const selectArtistViewing = createSelector(selectArtistViewingFn);

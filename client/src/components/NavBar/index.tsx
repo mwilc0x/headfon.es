@@ -2,12 +2,11 @@ import * as React from 'react';
 import { Location, navigate } from '@reach/router';
 import { Logo } from '../';
 import { logout } from '../../api';
-import { clearSearchResults, setLoggedOut, showHiddenMenu } from '../../store';
+import { setLoggedOut, showHiddenMenu } from '../../store';
 import './style.css';
 
 function NavBar() {
   function handleSearch() {
-    clearSearchResults();
     navigate('/search');
   }
 
