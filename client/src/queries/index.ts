@@ -3,7 +3,8 @@ import ArtistQuery from './Artist';
 import ArtistBioQuery from './ArtistBio';
 import ArtistTopTracksQuery from './ArtistTopTracks';
 import PlaylistQuery from './Playlist';
-import SearchQuery from './Search';
+import SearchResultsQuery from './SearchResults';
+import SearchTypeaheadQuery from './SearchTypeahead';
 
 export {
   AlbumQuery,
@@ -11,5 +12,6 @@ export {
   ArtistBioQuery,
   ArtistTopTracksQuery,
   PlaylistQuery,
-  SearchQuery,
+  SearchResultsQuery,
+  SearchTypeaheadQuery,
 };

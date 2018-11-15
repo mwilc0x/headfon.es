@@ -1,35 +1,33 @@
 import * as React from 'react';
-import { ConnectHOC } from 'urql';
 import { navigate } from '@reach/router';
+import { useDebounce } from '../../../hooks';
 import './style.css';
 
 interface Props {}
 
 function Search(props: Props) {
-  let inputEl = React.useRef(null);
-  const [inputQuery, setQuery] = React.useState('');
+  const { useEffect, useState } = React;
 
-  React.useEffect(() => {
-    if (inputEl.current == null) return;
-    // (inputEl).focus();
-  });
+  const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
-  function handleSearch() {
-      navigate(`/search/results/${inputQuery}`);
-  }
+  useEffect(() => {
+      if (debouncedSearchTerm) {
+        handleSearch();
+      }
+    },
+    [debouncedSearchTerm]
+  );
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { target } = e;
     const { value } = target;
-    setQuery(value);
+    setSearchTerm(value);
   }
 
-  function handleKeyPress(e: any) {
-    if (e.key === 'Enter') {
-      handleSearch();
-      e.target.blur();
-    }
-  };
+  function handleSearch() {
+      navigate(`/search/results/${searchTerm}`);
+  }
 
   return (
     <div className="search-input">
@@ -40,13 +38,11 @@ function Search(props: Props) {
         type="text"
         name="searchQuery"
         onChange={handleChange}
-        onKeyPress={handleKeyPress}
         placeholder="Start typing..."
-        ref={inputEl}
       />
     </div>
   );
 }
 
-export default ConnectHOC()(Search);
+export default Search;
 

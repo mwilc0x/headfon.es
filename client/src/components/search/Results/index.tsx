@@ -2,7 +2,7 @@ import * as React from 'react';
 import { query as urqlQuery } from 'urql';
 import { unstable_createResource as createResource} from 'react-cache';
 import { client } from '../../../helpers';
-import { SearchQuery } from '../../../queries';
+import { SearchResultsQuery } from '../../../queries';
 import {
     AlbumList,
     PlaylistList,
@@ -12,7 +12,7 @@ import { Spinner } from '../../';
 import './style.css';
 
 const SearchDataResource = createResource(
-    (query) => client.executeQuery(urqlQuery(SearchQuery, { query }), true)
+    (query) => client.executeQuery(urqlQuery(SearchResultsQuery, { query }), true)
 );
 
 function Results(props) {

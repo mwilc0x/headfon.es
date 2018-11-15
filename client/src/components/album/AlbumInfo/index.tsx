@@ -23,6 +23,18 @@ function AlbumInfo(props: Props) {
       ? ` • ${tracks.items.length} Songs`
       : '';
 
+  function handlePlayAlbum() {
+    const { album } = props;
+    playAlbum(album);
+  }
+  function goToArtist() {
+    const { album } = props;
+    const {
+      artists: [{ id }],
+    } = album;
+    navigate(`/artist/${id}`);
+  }
+
   return (
     <>
       <ImageLoader className="album-cover" src={albumUrl} />
@@ -37,18 +49,6 @@ function AlbumInfo(props: Props) {
       <button onClick={handlePlayAlbum}>Play Album</button>
     </>
   );
-
-  function handlePlayAlbum() {
-    const { album } = props;
-    playAlbum(album);
-  }
-  function goToArtist() {
-    const { album } = props;
-    const {
-      artists: [{ id }],
-    } = album;
-    navigate(`/artist/${id}`);
-  }
 }
 
 export default AlbumInfo;

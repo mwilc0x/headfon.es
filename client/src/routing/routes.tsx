@@ -23,7 +23,6 @@ export default class Routes extends React.Component<{}, {}> {
             <AsyncSearchResults path="search/*" />
         </Router>
       </React.Suspense>
-
     );
   }
 }
