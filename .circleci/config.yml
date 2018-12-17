@@ -2,7 +2,11 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:10.14.2
+      - image: mongo:4.0.4
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run:
+        name: setup
+        command: |
+          npm run now-build
