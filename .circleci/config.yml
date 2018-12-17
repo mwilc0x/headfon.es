@@ -8,5 +8,4 @@ jobs:
       - checkout
       - run:
         name: setup
-        command: |
-          npm run now-build
+        command: npm run now-build
