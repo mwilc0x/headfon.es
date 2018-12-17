@@ -7,5 +7,5 @@ jobs:
     steps:
       - checkout
       - run:
-        name: setup
-        command: npm run now-build
+          name: setup
+          command: "npm run now-build"
