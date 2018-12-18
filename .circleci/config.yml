@@ -12,7 +12,7 @@ jobs:
       - run:
           name: install-now
           command: "yarn global add now"
-      -run:
+      - run:
           name: deploy
           command: "now -e SESSION_SECRET=$SESSION_SECRET -e SPOTIFY_CLIENT_ID=$SPOTIFY_CLIENT_ID -e SPOTIFY_CLIENT_SECRET=$SPOTIFY_CLIENT_SECRET -e SPOTIFY_REDIRECT=$SPOTIFY_REDIRECT -e JWT_SECRET=$JWT_SECRET -e MONGO_DB_URI_PROD=$MONGO_DB_URI_PROD -e JWT_ISSUER=$JWT_ISSUER -e JWT_AUDIENCE=$JWT_AUDIENCE"
       - restore_cache:
