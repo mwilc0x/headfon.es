@@ -8,7 +8,10 @@ jobs:
       - checkout
       - run:
           name: setup
-          command: "npm run now-build"
+          command: "yarn run now-build"
+      - run:
+          name: install-now
+          command: "yarn global add now"
       - restore_cache:
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
