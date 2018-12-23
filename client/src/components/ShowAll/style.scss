@@ -1,0 +1,10 @@
+.show-all {
+  color: var(--primary);
+  text-align: right;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 1s ease-in-out;
+  }
+}

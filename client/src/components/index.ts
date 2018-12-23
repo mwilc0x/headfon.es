@@ -15,6 +15,7 @@ import Logo from './Logo';
 import Modal from './Modal';
 import NavBar from './NavBar';
 import Player from './Player';
+import ShowAll from './ShowAll';
 import Spinner from './Spinner';
 import ThemeMenu from './ThemeMenu';
 
@@ -32,6 +33,7 @@ export {
   PlaylistListing,
   SearchInput,
   SearchRecent,
+  ShowAll,
   Spinner,
   ThemeMenu,
   TrackList,
