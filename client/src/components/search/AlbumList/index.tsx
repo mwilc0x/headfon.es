@@ -12,7 +12,6 @@ function AlbumList(props: Props) {
     albums: { items },
   } = props;
   const [showAll, setShowAll] = React.useState(false);
-
   let itemsToShow = showAll ? items : items.slice(0, 5);
 
   return (
