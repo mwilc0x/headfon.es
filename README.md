@@ -63,6 +63,13 @@ JWT_ISSUER=spotify-app-dev
 JWT_AUDIENCE=spotify-app-user
 ```
 
+# running locally
+
+```bash
+yarn install-deps
+yarn start-dev
+```
+
 # deployment
 
 This can be deployed using a service such as [now](https://zeit.co/now):

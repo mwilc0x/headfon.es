@@ -1,16 +1,16 @@
 {
   "scripts": {
-    "bootstrap": "yarn install-child-deps && yarn start-prod",
+    "bootstrap": "yarn install-deps && yarn start-prod",
     "build-client": "cd client && yarn build && cd ../",
     "build-server": "cd server && yarn build && yarn copy-types-for-client && cd ../",
     "install-client": "cd client && yarn && cd ../ && yarn copy-types-from-server",
     "install-server": "cd server && yarn && cd ../",
-    "install-child-deps": "yarn install-client && yarn install-server",
+    "install-deps": "yarn && yarn install-client && yarn install-server",
     "start-dev": "NODE_ENV=development concurrently \"cd client && yarn watch-css\" \"cd client && yarn start\" \"cd server && yarn build && yarn start-dev\"",
     "start-prod": "NODE_ENV=production yarn build-client && yarn start-server-prod",
     "start-server": "cd server && yarn start",
     "start-server-prod": "cd server && yarn build && yarn start-prod",
-    "now-build": "yarn && yarn install-child-deps && yarn build-client && yarn build-server",
+    "now-build": "yarn && yarn install-deps && yarn build-client && yarn build-server",
     "now-start": "NODE_ENV=production yarn start-server",
     "copy-types-from-server": "cd server && yarn copy-types-for-client && cd ../"
   },
