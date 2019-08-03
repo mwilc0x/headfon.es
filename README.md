@@ -65,9 +65,17 @@ JWT_AUDIENCE=spotify-app-user
 
 # running locally
 
+To get the client and server code up and running:
+
 ```bash
 yarn install-deps
 yarn start-dev
+```
+
+You will also need to be running an instance of MongoDB
+
+```bash
+mongod
 ```
 
 # deployment
