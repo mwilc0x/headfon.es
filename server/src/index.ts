@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { GraphQLServer } from 'graphql-yoga';
 import resolvers from './resolvers';
 
