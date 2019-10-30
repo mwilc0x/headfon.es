@@ -19,7 +19,7 @@
     "dotenv-cli": "^1.4.0",
     "graphql-yoga": "^1.16.2",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.13",
+    "mongoose": "^5.7.5",
     "node-fetch": "^2.2.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
