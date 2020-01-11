@@ -1,10 +1,15 @@
 import * as React from 'react';
 import './style.css';
 
-function ShowAll({ handleClick }) {
+interface Props {
+  handleClick: any;
+  label: string;
+}
+
+function ShowAll({ handleClick, label }: Props) {
   return (
     <span className="show-all" onClick={handleClick}>
-      Show All
+      {label}
     </span>
   );
 }

@@ -24,12 +24,12 @@
     height: 90px;
   }
 
-  .now-playing-bar-section:first-child { 
+  .now-playing-bar-section:first-child {
     margin-right: auto;
     justify-content: flex-start;
-    
+
     .now-playing {
-      padding-left: 5em;
+      padding-left: 2em;
 
       @media (max-width: 768px) {
         display: none;
@@ -37,7 +37,9 @@
     }
   }
 
-  .now-playing-bar-section:last-child { margin-left: auto;  }
+  .now-playing-bar-section:last-child {
+    margin-left: auto;
+  }
 
   .now-playing-bar-section {
     height: inherit;
@@ -71,13 +73,13 @@
 
       .track-info__name {
         color: var(--text-primary);
-        font-size: 16px;
+        font-size: 12px;
         margin-bottom: 5px;
       }
 
       .track-info__artist {
         color: var(--text-secondary);
-        font-size: 13px;
+        font-size: 10px;
       }
     }
   }

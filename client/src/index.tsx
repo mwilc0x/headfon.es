@@ -3,10 +3,10 @@ import * as ReactDOM from 'react-dom';
 import { AppContainer } from './containers';
 import './index.css';
 
-const createRoot = (ReactDOM as any).createRoot;
+const createRoot = (ReactDOM as any).render;
 
 export const render = () => {
-  createRoot(document.getElementById('root')).render(<AppContainer />);
-}
+  createRoot(<AppContainer />, document.getElementById('root'));
+};
 
 render();

@@ -1,58 +1,52 @@
 import * as React from 'react';
-import {
-  NextButton,
-  PauseButton, 
-  PlayButton,
-  PrevButton,
-  ProgressBar
-} from 'react-player-controls';
+import { PlayerIcon } from 'react-player-controls';
 import { PlayerControls } from './container';
 import './style.css';
 
 interface PlayerContext {
-  context_description: string,
-  duration: number,
-  next_tracks: Track[],
-  previous_tracks: Track[],
-  trackProgress: number,
-  uri: string
+  context_description: string;
+  duration: number;
+  next_tracks: any[];
+  previous_tracks: any[];
+  trackProgress: number;
+  uri: string;
 }
 
 interface Props {
-  context: PlayerContext,
-  controls: PlayerControls,
-  paused: boolean
+  context: PlayerContext;
+  controls: PlayerControls;
+  paused: boolean;
 }
 
 function Controls(props: Props) {
-  const { context, controls, paused } = props;    
-  const { duration, next_tracks = [], previous_tracks = [], trackProgress, uri } = context;
+  const { context, controls, paused } = props;
+  const {
+    // duration,
+    next_tracks = [],
+    previous_tracks = [],
+    // trackProgress,
+    uri,
+  } = context;
 
   return (
     <div className="player-controls-container">
       <div className="player-controls">
-        <PrevButton 
+        <PlayerIcon.Previous
           isEnabled={!!previous_tracks.length && !!uri}
           onClick={controls.previousTrack}
         />
-        
-        {
-          paused 
-            ? <PlayButton isEnabled={true} onClick={controls.resume} /> 
-            : <PauseButton onClick={controls.pause} />
-        }
 
-        <NextButton
+        {paused ? (
+          <PlayerIcon.Play isEnabled={true} onClick={controls.resume} />
+        ) : (
+          <PlayerIcon.Pause onClick={controls.pause} />
+        )}
+
+        <PlayerIcon.Next
           isEnabled={!!next_tracks.length && !!uri}
           onClick={controls.nextTrack}
         />
       </div>
-
-      <ProgressBar
-        totalTime={duration}
-        currentTime={trackProgress}
-        isSeekable={false}
-      />
     </div>
   );
 }

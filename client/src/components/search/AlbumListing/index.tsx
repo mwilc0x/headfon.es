@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { navigate } from '@reach/router';
-import { PlayButton } from 'react-player-controls';
+import { PlayerIcon } from 'react-player-controls';
 import { ImageLoader } from '../../';
 import { playAlbum } from '../../../store';
 import './style.css';
@@ -28,7 +28,7 @@ function AlbumListing(props: Props) {
 
   function handleOnMouseLeave() {
     setShowPlayIcon(false);
-  };
+  }
 
   return (
     <div
@@ -38,7 +38,17 @@ function AlbumListing(props: Props) {
       onMouseLeave={handleOnMouseLeave}
     >
       {showPlayIcon ? (
-        <PlayButton isEnabled={true} onClick={handleAlbumPlay} />
+        <PlayerIcon.Play
+          width="25%"
+          height="25%"
+          style={{
+            fill: 'var(--primary)',
+            position: 'absolute',
+            marginRight: 32,
+          }}
+          isEnabled={true}
+          onClick={handleAlbumPlay}
+        />
       ) : null}
       <ImageLoader src={images[0].url} />
     </div>

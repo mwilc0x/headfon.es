@@ -15,6 +15,6 @@
     "copy-types-from-server": "cd server && yarn copy-types-for-client && cd ../"
   },
   "devDependencies": {
-    "concurrently": "^4.0.1"
+    "concurrently": "^5.0.2"
   }
 }

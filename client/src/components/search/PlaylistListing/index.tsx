@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { navigate } from '@reach/router';
-import { PlayButton } from 'react-player-controls';
+import { PlayerIcon } from 'react-player-controls';
 import { ImageLoader } from '../../';
 import { playAlbum, resetPlaylistViewing } from '../../../store';
 import './style.css';
@@ -39,7 +39,17 @@ function PlaylistListing(props: Props) {
         onMouseLeave={handleOnMouseLeave}
       >
         {showPlayIcon ? (
-          <PlayButton isEnabled={true} onClick={handlePlaylistPlay} />
+          <PlayerIcon.Play
+            width="25%"
+            height="25%"
+            style={{
+              fill: 'var(--primary)',
+              position: 'absolute',
+              marginRight: 32,
+            }}
+            isEnabled={true}
+            onClick={handlePlaylistPlay}
+          />
         ) : null}
         <ImageLoader src={images[0].url} />
       </div>

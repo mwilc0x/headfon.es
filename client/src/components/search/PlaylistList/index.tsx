@@ -26,7 +26,7 @@ function PlaylistList(props: Props) {
       </div>
 
       {!showAll && items.length > 5 ? (
-        <ShowAll handleClick={() => setShowAll(true)}>Show All</ShowAll>
+        <ShowAll handleClick={() => setShowAll(true)} label="Show All" />
       ) : null}
     </div>
   );

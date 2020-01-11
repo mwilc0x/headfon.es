@@ -1,65 +1,49 @@
 import * as React from 'react';
-import { ConnectHOC, Client, query } from 'urql';
+import { useQuery } from 'urql';
 import { IRouteProps } from '../../routing';
 import { Consumer, selectArtistViewing, setArtistViewing } from '../../store';
 import { ArtistTopTracks } from '../../components/artist';
 import { Spinner } from '../../components';
-import { ArtistQuery, ArtistBioQuery } from '../../queries';
+import { ArtistQuery } from '../../queries';
 import './style.css';
 
 interface Props extends IRouteProps {
-  id: string;
-  client: Client;
+  id?: string;
 }
 
-export class ArtistPage extends React.PureComponent<Props, {}> {
-  public componentDidMount() {
-    const { client, id } = this.props;
+export function ArtistPage(props: Props) {
+  const { id = '' } = props;
+  const [result] = useQuery({ query: ArtistQuery, variables: { id } });
+  setArtistViewing(result.data.artist);
 
-    client.executeQuery(query(ArtistQuery, { id }), true).then((res: any) => {
-      setArtistViewing(res.data.artist);
-    });
+  return (
+    <React.Suspense fallback={<Spinner size="large" />}>
+      <Consumer select={[selectArtistViewing]}>
+        {(artistViewing: any) => {
+          const {
+            images: [{ url }],
+            name,
+            tracks,
+          } = artistViewing;
 
-    client
-      .executeQuery(query(ArtistBioQuery, { id }), true)
-      .then((res: any) => {
-        console.log('artist bio', res);
-      });
-  }
-  public render() {
-    const { id } = this.props;
-
-    const Suspense = (React as any).Suspense;
-
-    return (
-      <Suspense maxDuration={1000} fallback={<Spinner size="large" />}>
-        <Consumer select={[selectArtistViewing]}>
-          {(artistViewing: any) => {
-            const {
-              images: [{ url }],
-              name,
-              tracks,
-            } = artistViewing;
-
-            return (
-              <div className="artist-viewer">
-                <div className="main-view-container">
-                  <div
-                    className="artist-viewer__header"
-                    style={{ backgroundImage: `url(${url})` }}
-                  >
-                    <div className="header-image-test">test</div>
-                  </div>
-                  <p>{name}</p>
-                  <ArtistTopTracks id={id} tracks={tracks} />
+          return (
+            <div className="artist-viewer">
+              <div className="main-view-container">
+                <div
+                  className="artist-viewer__header"
+                  style={{ backgroundImage: `url(${url})` }}
+                >
+                  <div className="header-image-test">test</div>
                 </div>
+                <p>{name}</p>
+                <ArtistTopTracks id={id} tracks={tracks} />
               </div>
-            );
-          }}
-        </Consumer>
-      </Suspense>
-    );
-  }
+            </div>
+          );
+        }}
+      </Consumer>
+    </React.Suspense>
+  );
 }
 
-export default ConnectHOC()(ArtistPage);
+export default ArtistPage;

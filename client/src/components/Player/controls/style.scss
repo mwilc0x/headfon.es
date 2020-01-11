@@ -1,6 +1,8 @@
 @import 'theme.scss';
 
 .player-controls-container {
+  height: inherit;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -8,11 +10,27 @@
 .player-controls {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
+  height: inherit;
   width: 100%;
+
+  > svg {
+    height: 25px;
+    fill: var(--primary);
+    margin: 0 5px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
 }
 
-.PlayButton, .PauseButton, .PrevButton, .NextButton {
+.PlayButton,
+.PauseButton,
+.PrevButton,
+.NextButton {
   margin: 0 10px;
   padding: 13px;
   background: transparent;
@@ -23,12 +41,16 @@
   height: 50px;
   min-width: unset;
 
-  .PlayIcon, .PauseIcon, .PreviousIcon, .NextIcon {
+  .PlayIcon,
+  .PauseIcon,
+  .PreviousIcon,
+  .NextIcon {
     fill: var(--primary);
   }
 }
 
-.PrevButton, .NextButton {
+.PrevButton,
+.NextButton {
   opacity: 0.3;
 
   &.isEnabled {
@@ -82,7 +104,7 @@
       .ProgressBar-intent,
       .VolumeSlider-intent {
         position: absolute;
-        background: rgba(0,0,0,0.1);
+        background: rgba(0, 0, 0, 0.1);
       }
     }
 

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { query } from 'urql';
-import { unstable_createResource as createResource} from 'react-cache';
-import { client } from '../../helpers';
+import { useQuery } from 'urql';
 import { IRouteProps } from '../../routing';
 import { AlbumInfo, Track } from '../../components/album';
 import { Spinner } from '../../components';
@@ -12,13 +10,10 @@ interface Props extends IRouteProps {
   id?: string;
 }
 
-const AlbumDataResource = createResource(
-  (id) => client.executeQuery(query(AlbumQuery, { id }), true)
-);
-
 export function Album(props: Props) {
   const { id } = props;
-  const { data } = AlbumDataResource.read(id);
+  const [result] = useQuery({ query: AlbumQuery, variables: { id } });
+  const { data } = result;
   const { album } = data;
   const { tracks } = album;
 
@@ -31,11 +26,7 @@ export function Album(props: Props) {
       <div className="album-viewer__right">
         <ol className="album-track-list">
           {(tracks.items || []).map((track, i) => (
-            <Track
-              isPlaying={false}
-              key={i}
-              track={track}
-            />
+            <Track isPlaying={false} key={i} track={track} />
           ))}
         </ol>
       </div>
