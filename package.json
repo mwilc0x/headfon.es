@@ -1,18 +1,18 @@
 {
   "scripts": {
-    "bootstrap": "yarn install-deps && yarn start-prod",
-    "build-client": "cd client && yarn build && cd ../",
-    "build-server": "cd server && yarn build && yarn copy-types-for-client && cd ../",
-    "install-client": "cd client && yarn && cd ../ && yarn copy-types-from-server",
-    "install-server": "cd server && yarn && cd ../",
-    "install-deps": "yarn && yarn install-client && yarn install-server",
-    "start-dev": "NODE_ENV=development concurrently \"cd client && yarn watch-css\" \"cd client && yarn start\" \"cd server && yarn build && yarn start-dev\"",
-    "start-prod": "NODE_ENV=production yarn build-client && yarn start-server-prod",
-    "start-server": "cd server && yarn start",
-    "start-server-prod": "cd server && yarn build && yarn start-prod",
-    "now-build": "yarn && yarn install-deps && yarn build-client && yarn build-server",
-    "now-start": "NODE_ENV=production yarn start-server",
-    "copy-types-from-server": "cd server && yarn copy-types-for-client && cd ../"
+    "bootstrap": "npm run install-deps && npm run start-prod",
+    "build-client": "cd client && npm run build && cd ../",
+    "build-server": "cd server && npm run build && npm run copy-types-for-client && cd ../",
+    "install-client": "cd client && npm install && cd ../ && npm run copy-types-from-server",
+    "install-server": "cd server && npm install && cd ../",
+    "install-deps": "npm install && npm run install-client && npm run install-server",
+    "start-dev": "NODE_ENV=development concurrently \"cd client && npm run watch-css\" \"cd client && npm run start\" \"cd server && npm run build && npm run start-dev\"",
+    "start-prod": "NODE_ENV=production npm run build-client && npm run start-server-prod",
+    "start-server": "cd server && npm run start",
+    "start-server-prod": "cd server && npm run build && npm run start-prod",
+    "now-build": "npm install && npm run install-deps && npm run build-client && npm run build-server",
+    "now-start": "NODE_ENV=production npm run start-server",
+    "copy-types-from-server": "cd server && npm run copy-types-for-client && cd ../"
   },
   "devDependencies": {
     "concurrently": "^5.0.2"
