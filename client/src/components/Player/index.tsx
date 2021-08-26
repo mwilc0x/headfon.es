@@ -29,6 +29,7 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
 
   public player: any;
   public trackPinger: any;
+  public device_id: any;
 
   public componentDidUpdate(prevProps: any, prevState: any) {
     if (
@@ -119,8 +120,8 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
 
     // Ready
     this.player.addListener('ready', ({ device_id }: any) => {
-      // console.log('device id', device_id);
-      device_id = device_id;
+      console.log('device id', device_id);
+      this.device_id = device_id;
     });
 
     // Not Ready
@@ -147,10 +148,11 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
     }
 
     const {
-      _options: { getOAuthToken, id },
+      _options: { getOAuthToken},
     } = this.player;
+    console.log(this.player)
     getOAuthToken((token: string) => {
-      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.device_id}`, {
         body: JSON.stringify(payload),
         headers: {
           Authorization: `Bearer ${token}`,
