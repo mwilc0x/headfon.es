@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   id: String,
   accessToken: String,
   refreshToken: String,
-  timeExpires: Date
+  timeExpires: Date,
 });
 
 userSchema.methods.me = function() {

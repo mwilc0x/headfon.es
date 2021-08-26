@@ -125,7 +125,7 @@ export async function getCategory(token, id)
     return res;
 }
 
-export async function getRecentlyPlayed(token) {
+export async function getRecentlyPlayed(token): Promise<any> {
     const url = "https://api.spotify.com/v1/me/player/recently-played?limit=50"
     let res = await fetch(url, {
         method: 'GET',
@@ -204,7 +204,7 @@ export async function getAlbum(token, id) {
   return res;
 }
 
-export async function getAlbums(token, ids) {
+export async function getAlbums(token, ids): Promise<any> {
     let res = await fetch (`https://api.spotify.com/v1/albums?ids=${ids.toString()}`, {
         method: 'GET',
         headers: makeHeaders(token)
@@ -222,7 +222,7 @@ export async function getTrack(token, id) {
   return res;
 }
 
-export async function getTracks(token, ids) {
+export async function getTracks(token, ids): Promise<any> {
     let res = await fetch (`https://api.spotify.com/v1/tracks?ids=${ids.toString()}`, {
         method: 'GET',
         headers: makeHeaders(token)
@@ -259,7 +259,7 @@ export async function getArtistTopTracks(token, id) {
     return res;
   }
 
-export async function getArtists(token, ids) {
+export async function getArtists(token, ids): Promise<any> {
     let res = await fetch (`https://api.spotify.com/v1/artists?ids=${ids.toString()}`, {
         method: 'GET',
         headers: makeHeaders(token)
@@ -268,7 +268,7 @@ export async function getArtists(token, ids) {
     return res;
 }
 
-export async function getAudioFeatures(token, ids) {
+export async function getAudioFeatures(token, ids): Promise<any> {
     let res = await fetch (`https://api.spotify.com/v1/audio-features/?ids=${ids.toString()}`, {
         method: 'GET',
         headers: makeHeaders(token)
@@ -338,7 +338,7 @@ export function makeSavedContainsLoader(token) {
     const batchLoadFn = async (keys) => {
         return await getSavedContains(token, keys)
     }
-    return new Dataloader(batchLoadFn, { maxBatchSize: 50 })
+    return new Dataloader(<any>batchLoadFn, { maxBatchSize: 50 })
 }
 
 export function makeAudioFeaturesLoader(token) {
