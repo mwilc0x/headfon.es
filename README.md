@@ -26,10 +26,10 @@
 
 - [ ] Review Accessibility + Improvements
 - [ ] Mobile Friendly UI Improvements
-- [ ] React 16 Profiler Exam (performance) 
+- [ ] React 16 Profiler Exam (performance)
 - [ ] Improve Search Results (currently listings are limited)
 - [ ] Artist Page
-...
+      ...
 
 #### local database
 
@@ -44,6 +44,8 @@ address environment variable: `MONGO_DB_URI_DEV`
 address environment variable: `MONGO_DB_URI_PROD`
 
 ### environment variables
+
+these can live in an `.env` file under `/server`
 
 ```bash
 DEBUG=false
@@ -65,18 +67,26 @@ JWT_AUDIENCE=spotify-app-user
 
 # running locally
 
-To get the client and server code up and running:
+Recommended to run with [Yarn package manager](https://yarnpkg.com/)
+
+To get started, first get a local
+instance of [MongoDB](https://www.mongodb.com/) running:
+
+```bash
+mongod
+```
+
+then, in a separate terminal instance
+from the root `/` dir run:
 
 ```bash
 yarn install-deps
 yarn start-dev
 ```
 
-You will also need to be running an instance of MongoDB
-
-```bash
-mongod
-```
+this will install everything in the client and server
+folders and spin up the NodeJS server and React app,
+opening the app in a browser @ `localhost:3000`
 
 # deployment
 
