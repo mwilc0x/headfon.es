@@ -149,7 +149,6 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
     const {
       _options: { getOAuthToken},
     } = this.player;
-    console.log(this.player)
     getOAuthToken((token: string) => {
       fetch(`https://api.spotify.com/v1/me/player/play?device_id=${this.device_id}`, {
         body: JSON.stringify(payload),
@@ -168,22 +167,22 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
   };
   private pause = () => {
     this.player.pause().then(() => {
-      console.log('Paused!');
+      // console.log('Paused!');
     });
   };
   private resume = () => {
     this.player.resume().then(() => {
-      console.log('Resumed!');
+      // console.log('Resumed!');
     });
   };
   private previousTrack = () => {
     this.player.previousTrack().then(() => {
-      console.log('Previous Track!');
+      // console.log('Previous Track!');
     });
   };
   private nextTrack = () => {
     this.player.nextTrack().then(() => {
-      console.log('Next Track!');
+      // console.log('Next Track!');
     });
   };
   private handlePlayerStateChange(state: any) {
