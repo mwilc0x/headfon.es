@@ -120,7 +120,6 @@ class PlayerContainer extends React.PureComponent<Props, {}> {
 
     // Ready
     this.player.addListener('ready', ({ device_id }: any) => {
-      console.log('device id', device_id);
       this.device_id = device_id;
     });
 
