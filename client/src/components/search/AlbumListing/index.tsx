@@ -46,7 +46,6 @@ function AlbumListing(props: Props) {
             position: 'absolute',
             marginRight: 32,
           }}
-          isEnabled={true}
           onClick={handleAlbumPlay}
         />
       ) : null}

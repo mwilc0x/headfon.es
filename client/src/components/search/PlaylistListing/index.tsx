@@ -47,7 +47,6 @@ function PlaylistListing(props: Props) {
               position: 'absolute',
               marginRight: 32,
             }}
-            isEnabled={true}
             onClick={handlePlaylistPlay}
           />
         ) : null}
