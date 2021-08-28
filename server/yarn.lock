@@ -347,8 +347,8 @@
     form-data "^3.0.0"
 
 "@types/node@*":
-  version "16.7.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.7.2.tgz#0465a39b5456b61a04d98bd5545f8b34be340cb7"
+  version "16.7.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.7.4.tgz#68a9384694af63ceab8848e95d76d9a3519e84b6"
 
 "@types/passport@^1.0.7":
   version "1.0.7"
@@ -2936,8 +2936,8 @@ mongodb@4.1.1:
     saslprep "^1.0.0"
 
 mongoose@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.0.1.tgz#56f8604c2bf584a200746e7f64e5d65d483ffe41"
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.0.2.tgz#f04bbc5aae83e34910ee8cfe2c3bd87a60a31082"
   dependencies:
     bson "^4.2.2"
     kareem "2.3.2"
@@ -3117,8 +3117,8 @@ object-path-immutable@^3.0.0:
     is-plain-object "3.0.0"
 
 object-path@^0.11.4:
-  version "0.11.5"
-  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.5.tgz#d4e3cf19601a5140a55a16ad712019a9c50b577a"
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.7.tgz#5f211161f34bb395e4b13a5f565b79d933b6f65d"
 
 object-treeify@^1.1.4:
   version "1.1.33"
@@ -4179,8 +4179,8 @@ typedarray-to-buffer@^3.1.5:
     is-typedarray "^1.0.0"
 
 typescript@^4.3.5:
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.2.tgz#6d618640d430e3569a1dfb44f7d7e600ced3ee86"
 
 uid2@0.0.x:
   version "0.0.4"
