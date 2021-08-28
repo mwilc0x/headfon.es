@@ -15,9 +15,9 @@
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules --watch --recursive",
+    "watch-css": "yarn run build-css && node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules --watch --recursive",
     "start": "react-scripts start",
-    "build": "npm run build-css && react-scripts build",
+    "build": "yarn run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
