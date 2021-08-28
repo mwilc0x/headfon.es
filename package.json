@@ -11,8 +11,9 @@
     "start-prod": "NODE_ENV=production yarn run build-client && yarn run start-server-prod",
     "start-server": "cd server && yarn run start",
     "start-server-prod": "cd server && yarn run build && yarn run start-prod",
-    "vercel-build": "yarn install && yarn run install-deps && yarn run build-client && yarn run build-server",
-    "vercel-start": "NODE_ENV=production yarn run start-server",
+    "prod-install": "yarn install && yarn run install-deps",
+    "prod-build": "yarn run build-client && yarn run build-server",
+    "prod-start": "NODE_ENV=production yarn run start-server",
     "copy-types-from-server": "cd server && yarn run copy-types-for-client && cd ../"
   },
   "devDependencies": {
