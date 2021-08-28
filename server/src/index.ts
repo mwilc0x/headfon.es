@@ -47,6 +47,7 @@ debug(server);
 
 server.use('/auth/connect', middleware.spotify.redirect, () => {});
 server.use('/auth/callback', middleware.spotify.base, routes.login);
+server.use('/loginfailure', routes.loginFailure);
 server.use('/logout', routes.logout);
 server.use('/app', middleware.auth, routes.app);
 server.use('/user', passport.authenticate(['jwt'], { session: false }), routes.user);
