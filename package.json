@@ -3,6 +3,7 @@
     "bootstrap": "yarn run install-deps && yarn run start-prod",
     "build-client": "cd client && yarn run build && cd ../",
     "build-server": "cd server && yarn run build && yarn run copy-types-for-client && cd ../",
+    "cleanup": "rm -rf node_modules && rm -rf client/node_modules && rm -rf server/node_modules",
     "install-client": "cd client && yarn install && cd ../ && yarn run copy-types-from-server",
     "install-server": "cd server && yarn install && cd ../",
     "install-deps": "yarn install && yarn run install-client && yarn run install-server",
