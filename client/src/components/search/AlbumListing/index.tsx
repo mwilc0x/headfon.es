@@ -46,11 +46,10 @@ function AlbumListing(props: Props) {
             position: 'absolute',
             marginRight: 32,
           }}
-          isEnabled={true}
           onClick={handleAlbumPlay}
         />
       ) : null}
-      <ImageLoader src={images[0].url} />
+      <ImageLoader alt={album.name} src={images[0].url} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-export default `
+const SearchTypeaheadQuery = `
   query($query: String) {
     search(query: $query) {
       artists {
@@ -9,3 +9,5 @@ export default `
     }
   }
 `;
+
+export default SearchTypeaheadQuery;

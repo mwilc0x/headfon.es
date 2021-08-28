@@ -13,7 +13,7 @@ function Search(props: Props) {
 
   useEffect(() => {
       if (debouncedSearchTerm) {
-        handleSearch();
+        navigate(`/search/results/${debouncedSearchTerm}`);
       }
     },
     [debouncedSearchTerm]
@@ -23,10 +23,6 @@ function Search(props: Props) {
     const { target } = e;
     const { value } = target;
     setSearchTerm(value);
-  }
-
-  function handleSearch() {
-      navigate(`/search/results/${searchTerm}`);
   }
 
   return (

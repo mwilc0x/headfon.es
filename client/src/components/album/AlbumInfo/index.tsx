@@ -37,7 +37,7 @@ function AlbumInfo(props: Props) {
 
   return (
     <>
-      <ImageLoader className="album-cover" src={albumUrl} />
+      <ImageLoader alt={name} className="album-cover" src={albumUrl} />
       <span className="album-name">{name}</span>
       <span className="album-artist" onClick={goToArtist}>
         {artistName}

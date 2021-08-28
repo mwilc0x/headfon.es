@@ -19,31 +19,29 @@ interface Props {
 }
 
 function Controls(props: Props) {
-  const { context, controls, paused } = props;
-  const {
-    // duration,
-    next_tracks = [],
-    previous_tracks = [],
-    // trackProgress,
-    uri,
-  } = context;
+  const { /* context ,*/ controls, paused } = props;
+  // const {
+  //   // duration,
+  //   next_tracks = [],
+  //   previous_tracks = [],
+  //   // trackProgress,
+  //   uri,
+  // } = context;
 
   return (
     <div className="player-controls-container">
       <div className="player-controls">
         <PlayerIcon.Previous
-          isEnabled={!!previous_tracks.length && !!uri}
           onClick={controls.previousTrack}
         />
 
         {paused ? (
-          <PlayerIcon.Play isEnabled={true} onClick={controls.resume} />
+          <PlayerIcon.Play onClick={controls.resume} />
         ) : (
           <PlayerIcon.Pause onClick={controls.pause} />
         )}
 
         <PlayerIcon.Next
-          isEnabled={!!next_tracks.length && !!uri}
           onClick={controls.nextTrack}
         />
       </div>

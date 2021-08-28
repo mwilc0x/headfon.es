@@ -1,4 +1,4 @@
-export default `
+const AlbumQuery = `
   query($id: String) {
     artist(id: $id) {
       images {
@@ -8,3 +8,5 @@ export default `
     }
   }
 `;
+
+export default AlbumQuery;

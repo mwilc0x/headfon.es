@@ -28,8 +28,10 @@ function Results(props) {
   );
 }
 
-export default props => (
+const SuspendedResults = props => (
   <React.Suspense fallback={<Spinner size="large" />}>
     <Results {...props} />
   </React.Suspense>
 );
+
+export default SuspendedResults;

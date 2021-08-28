@@ -47,11 +47,10 @@ function PlaylistListing(props: Props) {
               position: 'absolute',
               marginRight: 32,
             }}
-            isEnabled={true}
             onClick={handlePlaylistPlay}
           />
         ) : null}
-        <ImageLoader src={images[0].url} />
+        <ImageLoader alt={name} src={images[0].url} />
       </div>
 
       <p>{name}</p>

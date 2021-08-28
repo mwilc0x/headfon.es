@@ -15,14 +15,14 @@ interface Props {
 };
 
 export function PlayerControlsContainer(props: Props) {
-  let [trackProgress, setTrackProgress] = React.useState(0);
-  let progressCounter;
+  let [trackProgress, /* setTrackProgress */] = React.useState(0);
+  // let progressCounter;
 
   const { controls, handleTrackClick, trackDetails } = props;
   const { context, duration, paused, track_window } = trackDetails;
   const { current_track, next_tracks, previous_tracks } = track_window;
   const { album, artists, name } = current_track;
-  const { images: [albumImage] } = album;
+  const { images: [albumImage], name: albumName } = album;
   const { url } = albumImage;
 
   const { uri, metadata: { context_description} } = context;
@@ -36,35 +36,35 @@ export function PlayerControlsContainer(props: Props) {
     uri
   };
 
-  React.useEffect(() => {
-    clearInterval(progressCounter);
-    startTrackProgress();
+  // React.useEffect(() => {
+  //   clearInterval(progressCounter);
+  //   startTrackProgress();
 
-    return () => {
-      clearInterval(progressCounter);
-    };
-  }, [current_track.uri]);
+  //   return () => {
+  //     clearInterval(progressCounter);
+  //   };
+  // }, [current_track.uri]);
 
-  function startTrackProgress() {
-      let progress = 0;
-      setTrackProgress(progress);
-      startProgressCounter(progress);
-  }
+  // function startTrackProgress() {
+  //     let progress = 0;
+  //     setTrackProgress(progress);
+  //     startProgressCounter(progress);
+  // }
 
-  function startProgressCounter(progress) {
-    setTimeout(() => {
-      progressCounter = setInterval(() => {
-        setTrackProgress(++progress);
-      }, 1000);
-    })
-  }
+  // function startProgressCounter(progress) {
+  //   setTimeout(() => {
+  //     progressCounter = setInterval(() => {
+  //       setTrackProgress(++progress);
+  //     }, 1000);
+  //   })
+  // }
 
   return (
     <footer className="now-playing-container">
       <div className="now-playing-bar">
         <div className="now-playing-bar-section left">
           <div className="now-playing" onClick={handleTrackClick}>
-            { !!url && <img src={url} /> }
+            { !!url && <img alt={albumName} src={url} /> }
 
             <div className="track-info">
               <span className="track-info__name">{name}</span>
