@@ -50,7 +50,7 @@ function AlbumListing(props: Props) {
           onClick={handleAlbumPlay}
         />
       ) : null}
-      <ImageLoader src={images[0].url} />
+      <ImageLoader alt={album.name} src={images[0].url} />
     </div>
   );
 }

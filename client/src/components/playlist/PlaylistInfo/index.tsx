@@ -20,7 +20,7 @@ function PlaylistInfo(props: Props) {
 
   return (
     <>
-      <ImageLoader className="playlist-cover" src={playlistUrl} />
+      <ImageLoader alt={name} className="playlist-cover" src={playlistUrl} />
       <span className="playlist-name">{name}</span>
       <button onClick={playPlaylist}>Play Playlist</button>
     </>
