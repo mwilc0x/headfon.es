@@ -28,7 +28,7 @@ export function Playlist(props: Props) {
       <div className="playlist-viewer__right">
         <ol className="playlist-track-list">
           {tracks.items.map(({ track }, i) => (
-            <Track isPlaying={false} track={track} />
+            <Track isPlaying={false} key={i} track={track} />
           ))}
         </ol>
       </div>
