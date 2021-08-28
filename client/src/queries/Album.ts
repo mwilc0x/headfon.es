@@ -1,4 +1,4 @@
-export default `
+const AlbumQuery = `
   query($id: String) {
     album(id: $id) {
       uri
@@ -21,3 +21,5 @@ export default `
     }
   }
 `;
+
+export default AlbumQuery;

@@ -1,4 +1,4 @@
-export default `
+const PlaylistQuery = `
   query($userId: String, $playlistId: String) {
     playlist(userId: $userId, playlistId: $playlistId) {
       uri
@@ -18,3 +18,5 @@ export default `
     }
   }
 `;
+
+export default PlaylistQuery;

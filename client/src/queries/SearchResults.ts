@@ -1,4 +1,4 @@
-export default `
+const SearchResults = `
   query($query: String) {
     search(query: $query) {
       albums {
@@ -52,3 +52,5 @@ export default `
     }
   }
 `;
+
+export default SearchResults;

@@ -1,4 +1,4 @@
-export default `
+const AlbumBioQuery = `
   query($id: String) {
     artistBio(id: $id) {
       headerImages {
@@ -6,3 +6,5 @@ export default `
       }
     }
 `;
+
+export default AlbumBioQuery;

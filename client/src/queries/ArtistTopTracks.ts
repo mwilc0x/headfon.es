@@ -1,4 +1,4 @@
-export default `
+const ArtistTopTracksQuery = `
   query($id: String) {
     artistTopTracks(id: $id) {
       tracks {
@@ -14,3 +14,5 @@ export default `
     }
   }
 `;
+
+export default ArtistTopTracksQuery;

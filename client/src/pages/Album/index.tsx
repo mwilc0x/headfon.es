@@ -34,8 +34,10 @@ export function Album(props: Props) {
   );
 }
 
-export default (props: Props) => (
+const SuspendedAlbum = (props: Props) => (
   <React.Suspense fallback={<Spinner size="large" />}>
     <Album {...props} />
   </React.Suspense>
 );
+
+export default SuspendedAlbum;
