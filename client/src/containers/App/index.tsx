@@ -25,7 +25,7 @@ const client = new Client({
 export function AppContainer() {
   React.useEffect(() => {
     if (window && window.localStorage) {
-      const theme = window.localStorage.getItem('wavves-theme');
+      const theme = window.localStorage.getItem('headfones-theme');
 
       if (!!theme) {
         updateThemeForStyle(theme);
