@@ -12,19 +12,19 @@ function ThemeMenu(props: Props) {
   const { selectedTheme } = props;
 
   function handleThemeSelection(e) {
-    const selectedTheme = themeOptions[e.target.value];
-    setTheme(selectedTheme.name);
-    updateThemeForStyle(selectedTheme.name);
+    const selectedTheme = (themeOptions.find(o => o.name === e.target.value) || {}).name;
+    setTheme(selectedTheme);
+    updateThemeForStyle(selectedTheme);
   }
-
+  
   return (
     <div className="theme-menu">
       <h2>🎨 Theme Selector 🎨</h2>
-      <select onChange={handleThemeSelection}>
+      <select onChange={handleThemeSelection} value={selectedTheme}>
         { themeOptions.map((option, i) => (
-          <option 
-            value={i} 
-            selected={selectedTheme.toLowerCase() === option.name.toLowerCase()}
+          <option
+            key={option.name} 
+            value={option.name} 
           >
             {option.name}
           </option>
