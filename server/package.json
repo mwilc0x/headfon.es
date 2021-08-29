@@ -3,7 +3,7 @@
   "scripts": {
     "start": "NODE_ENV=production dotenv -- nodemon -e ts,graphql -x ts-node src/index.ts --debug",
     "start-dev": "NODE_ENV=development dotenv -- nodemon -e ts,graphql -x ts-node src/index.ts",
-    "start-prod": "pm2 start yarn -- start",
+    "start-prod": "pm2 start npm -- start",
     "dev": "npm-run-all --parallel start playground",
     "debug": "dotenv -- nodemon -e ts,graphql -x ts-node --inspect src/index.ts",
     "playground": "graphql playground",
