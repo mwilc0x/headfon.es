@@ -25,9 +25,7 @@
     "passport-jwt": "^4.0.0",
     "passport-oauth2-refresh": "^2.1.0",
     "passport-spotify": "^2.0.0",
-    "prisma-binding": "^2.3.16"
-  },
-  "devDependencies": {
+    "prisma-binding": "^2.3.16",
     "@types/async": "^3.2.7",
     "@types/passport": "^1.0.7",
     "morgan": "^1.10.0",
