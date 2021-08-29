@@ -16,10 +16,8 @@
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules",
     "watch-css": "yarn run build-css && node-sass-chokidar src/ -o src/ --include-path src/styling --include-path node_modules --watch --recursive",
-    "start": "react-scripts start",
-    "build": "yarn run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "NODE_ENV=production node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "yarn run build-css && node_modules/react-scripts/bin/react-scripts.js build"
   },
   "devDependencies": {
     "@types/node": "^16.7.2",
