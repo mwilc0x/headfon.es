@@ -1,20 +1,20 @@
 {
   "scripts": {
-    "bootstrap": "npm run install-deps && npm run start-prod",
-    "build-client": "cd client && npm run build && cd ../",
-    "build-server": "cd server && npm run build && npm run copy-types-for-client && cd ../",
+    "bootstrap": "yarn run install-deps && yarn run start-prod",
+    "build-client": "cd client && yarn run build && cd ../",
+    "build-server": "cd server && yarn run build && yarn run copy-types-for-client && cd ../",
     "cleanup": "rm -rf node_modules && rm -rf client/node_modules && rm -rf server/node_modules",
-    "install-client": "cd client && npm install && cd ../ && npm run copy-types-from-server",
-    "install-server": "cd server && npm install && cd ../",
-    "install-deps": "npm install && npm run install-client && npm run install-server",
-    "start-dev": "NODE_ENV=development concurrently \"cd client && npm run watch-css\" \"cd client && npm run start\" \"cd server && npm run build && npm run start-dev\"",
-    "start-prod": "NODE_ENV=production npm run build-client && npm run start-server-prod",
-    "start-server": "cd server && npm run start",
-    "start-server-prod": "cd server && npm run build && npm run start-prod",
-    "prod-install": "npm install && npm run install-deps",
-    "prod-build": "npm run build-client && npm run build-server",
-    "prod-start": "NODE_ENV=production npm run start-server",
-    "copy-types-from-server": "cd server && npm run copy-types-for-client && cd ../"
+    "install-client": "cd client && yarn install && cd ../ && yarn run copy-types-from-server",
+    "install-server": "cd server && yarn install && cd ../",
+    "install-deps": "yarn install && yarn run install-client && yarn run install-server",
+    "start-dev": "NODE_ENV=development concurrently \"cd client && yarn run watch-css\" \"cd client && yarn run start\" \"cd server && yarn run build && yarn run start-dev\"",
+    "start-prod": "NODE_ENV=production yarn run build-client && yarn run start-server-prod",
+    "start-server": "cd server && yarn run start",
+    "start-server-prod": "cd server && yarn run build && yarn run start-prod",
+    "prod-install": "yarn run install-deps",
+    "prod-build": "yarn run build-client && yarn run build-server",
+    "prod-start": "NODE_ENV=production yarn run start-server",
+    "copy-types-from-server": "cd server && yarn run copy-types-for-client && cd ../"
   },
   "devDependencies": {
     "concurrently": "^5.0.2"
