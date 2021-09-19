@@ -21,8 +21,9 @@ It's built on React, TypeScript, GraphQL and NodeJS.
 ### Steps
 
 0. [add environment variables](#environment-variables)
-1. `yarn run install-deps`
-2. `yarn run start-dev`
+1. `mongod`
+2. `yarn run install-deps`
+3. `yarn run start-dev`
 
 This will install everything and open the app in browser.
 If something is broken, [please file an issue](https://github.com/michaelwilcox/headfon.es/issues/new?assignees=&labels=&template=bug_report.md) so I can fix!
