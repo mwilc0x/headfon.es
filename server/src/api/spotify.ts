@@ -71,8 +71,8 @@ export async function getSavedContains(token, trackIds) {
         method: 'GET',
         headers: makeHeaders(token)
     })
-    res = await res.json()
-    return res
+    const json: any = await res.json()
+    return json;
 }
 
 export async function getFeaturedPlaylists(token, queryParams = {})
@@ -81,8 +81,8 @@ export async function getFeaturedPlaylists(token, queryParams = {})
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getCategoryPlaylists(token, id, queryParams = {})
@@ -91,8 +91,8 @@ export async function getCategoryPlaylists(token, id, queryParams = {})
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getRecommendations(token, queryParams)
@@ -101,8 +101,8 @@ export async function getRecommendations(token, queryParams)
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getCategories(token, queryParams = {})
@@ -111,8 +111,8 @@ export async function getCategories(token, queryParams = {})
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getCategory(token, id)
@@ -121,8 +121,8 @@ export async function getCategory(token, id)
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getRecentlyPlayed(token): Promise<any> {
@@ -131,8 +131,8 @@ export async function getRecentlyPlayed(token): Promise<any> {
         method: 'GET',
         headers: makeHeaders(token)
     })
-    res = await res.json()
-    return res
+    const json: any = await res.json()
+    return json;
 }
 
 export async function getTopType(token, params) {
@@ -141,8 +141,8 @@ export async function getTopType(token, params) {
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getPlaylist(token, userId, playlistId)
@@ -151,8 +151,8 @@ export async function getPlaylist(token, userId, playlistId)
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getUser(token, userId)
@@ -161,8 +161,8 @@ export async function getUser(token, userId)
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getMe(token)
@@ -171,8 +171,8 @@ export async function getMe(token)
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getPlaylistTracks(token, { userId, playlistId, limit = 100, offset = 0 })
@@ -181,8 +181,8 @@ export async function getPlaylistTracks(token, { userId, playlistId, limit = 100
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getPlaylistFollowersContains(token, { playlistUserId, playlistId, userIds })
@@ -191,8 +191,8 @@ export async function getPlaylistFollowersContains(token, { playlistUserId, play
         method: 'GET',
         headers: makeHeaders(token)
     });
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getAlbum(token, id) {
@@ -200,8 +200,8 @@ export async function getAlbum(token, id) {
       method: 'GET',
       headers: makeHeaders(token)
   })
-  res = await res.json();
-  return res;
+  const json: any = await res.json();
+  return json;
 }
 
 export async function getAlbums(token, ids): Promise<any> {
@@ -209,8 +209,8 @@ export async function getAlbums(token, ids): Promise<any> {
         method: 'GET',
         headers: makeHeaders(token)
     })
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getTrack(token, id) {
@@ -218,8 +218,8 @@ export async function getTrack(token, id) {
       method: 'GET',
       headers: makeHeaders(token)
   })
-  res = await res.json();
-  return res;
+  const json: any = await res.json();
+  return json;
 }
 
 export async function getTracks(token, ids): Promise<any> {
@@ -227,8 +227,8 @@ export async function getTracks(token, ids): Promise<any> {
         method: 'GET',
         headers: makeHeaders(token)
     })
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getArtist(token, id) {
@@ -236,8 +236,8 @@ export async function getArtist(token, id) {
       method: 'GET',
       headers: makeHeaders(token)
   })
-  res = await res.json();
-  return res;
+  const json: any = await res.json();
+  return json;
 }
 
 export async function getArtistBio(token, id) {
@@ -246,7 +246,7 @@ export async function getArtistBio(token, id) {
         headers: makeHeaders(token)
     });
     // TODO: this will not work, need alternative
-    res = await res.json();
+    const json: any = await res.json();
     return {};
 }
 
@@ -255,8 +255,8 @@ export async function getArtistTopTracks(token, id) {
         method: 'GET',
         headers: makeHeaders(token)
     })
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
   }
 
 export async function getArtists(token, ids): Promise<any> {
@@ -264,8 +264,8 @@ export async function getArtists(token, ids): Promise<any> {
         method: 'GET',
         headers: makeHeaders(token)
     })
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function getAudioFeatures(token, ids): Promise<any> {
@@ -273,8 +273,8 @@ export async function getAudioFeatures(token, ids): Promise<any> {
         method: 'GET',
         headers: makeHeaders(token)
     })
-    res = await res.json();
-    return res;
+    const json: any = await res.json();
+    return json;
 }
 
 export async function search(token, query = '') {

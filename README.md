@@ -14,9 +14,15 @@ It's built on React, TypeScript, GraphQL and NodeJS.
 
 ## Requirements
 
-- [Node >= 14.17.5](https://nodejs.org/en/)
+- [Node <= 14.17.5](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/)
 - [MongoDB](https://www.mongodb.com/)
+
+**NOTE**
+
+Currently this only supports up to Node v14.
+I need to move away from [node-sass-chokidar](https://github.com/michaelwayman/node-sass-chokidar)
+as it is now deprecated. This project is still using `node-sass` ~v4 and this does not support node > v14.
 
 ### Steps
 
